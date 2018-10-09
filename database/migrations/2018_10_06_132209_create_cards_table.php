@@ -28,6 +28,7 @@ class CreateCardsTable extends Migration
             $table->string('name');
             $table->enum('card_type', $this->card_types);
             $table->string('category_text');
+            $table->foreign('edition_id')->references('id')->on('editions');
 
             $table->tinyInteger('cost_gold')->nullable();
             $table->tinyInteger('cost_bio')->nullable();
@@ -40,11 +41,13 @@ class CreateCardsTable extends Migration
             $table->tinyInteger('shield')->nullable();
             $table->tinyInteger('range')->nullable();
             $table->text('card_effect')->nullable();
+            $table->text('lore_text')->nullable();
 
+            $table->boolean('official');
             $table->enum('premium_effect', $this->premium_effects);
             $table->enum('rarity', $this->rarities);
             $table->enum('layout', $this->layouts);
-            $table->foreign('artist_id')->references('id')->on('artists');
+            $table->foreign('artist_id')->references('id')->on('artists')->nullable();
 
             $table->string('image_path')->nullable();
             $table->text('image_settings')->nullable();  # data type?

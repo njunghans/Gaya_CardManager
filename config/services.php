@@ -31,7 +31,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => App\User::class,
+        'model' => gaya\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace gaya;
 
 use Illuminate\Database\Eloquent\Model;
 
