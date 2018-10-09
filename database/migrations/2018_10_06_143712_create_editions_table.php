@@ -15,15 +15,15 @@ class CreateEditionsTable extends Migration
     {
         Schema::create('editions', function (Blueprint $table) {
             $table->increments('id');
-
+            $table->integer('user_id')->unsigned();
             $table->string('name');
             $table->text('description');
             $table->string('icon_path')->nullable();
-
             $table->boolean('official');
-            $table->foreign('user_id')->references('id')->on('users');
 
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

@@ -23,12 +23,12 @@ class CreateCardsTable extends Migration
     {
         Schema::create('cards', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('user_id')->unsigned();
 
             $table->string('name');
             $table->enum('card_type', $this->card_types);
             $table->string('category_text');
-            $table->foreign('edition_id')->references('id')->on('editions');
+            $table->integer('edition_id')->unsigned();
 
             $table->tinyInteger('cost_gold')->nullable();
             $table->tinyInteger('cost_bio')->nullable();
@@ -47,12 +47,16 @@ class CreateCardsTable extends Migration
             $table->enum('premium_effect', $this->premium_effects);
             $table->enum('rarity', $this->rarities);
             $table->enum('layout', $this->layouts);
-            $table->foreign('artist_id')->references('id')->on('artists')->nullable();
+            $table->integer('artist_id')->unsigned()->nullable();
 
             $table->string('image_path')->nullable();
-            $table->text('image_settings')->nullable();  # data type?
+            $table->text('image_settings')->nullable();  # data type?x
 
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('edition_id')->references('id')->on('editions');
+            $table->foreign('artist_id')->references('id')->on('artists');
         });
     }
 

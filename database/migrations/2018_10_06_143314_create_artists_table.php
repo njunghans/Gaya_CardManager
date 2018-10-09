@@ -15,10 +15,12 @@ class CreateArtistsTable extends Migration
     {
         Schema::create('artists', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreign('user_id')->references('id')->on('users')->nullable();
+            $table->integer('user_id')->unsigned();
             $table->string('name');
             # homepage, mail, etc.
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->nullable();
         });
     }
 

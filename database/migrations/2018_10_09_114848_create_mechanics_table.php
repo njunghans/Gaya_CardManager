@@ -26,10 +26,14 @@ class CreateMechanicsTable extends Migration
             $table->boolean('official');
             $table->enum('layout', $this->layouts);
             $table->string('icon_path')->nullable();
-            $table->foreign('introduced_in_edition')->references('id')->on('editions')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->integer('introduced_in_edition')->unsigned()->nullable();
+            $table->integer('user_id')->unsigned();
 
             $table->timestamps();
+
+            $table->foreign('introduced_in_edition')->references('id')->on('editions');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
