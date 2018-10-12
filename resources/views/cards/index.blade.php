@@ -1,5 +1,5 @@
 @extends('layouts.master')
 
 @section('content')
-    <h1>Gaya</h1>
+    <h1>Cards</h1>
 @endsection

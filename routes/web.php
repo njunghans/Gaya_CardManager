@@ -11,11 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/cards', 'HomeController@cards')->name('cards');
+Route::get('/', 'HomeController@start')->name('start');
+
+Route::get('/cards', 'CardController@index')->name('cards.index');
+
+Route::get('/cards/create', 'CardController@create')->name('cards.create');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');

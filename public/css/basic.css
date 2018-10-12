@@ -1,0 +1,109 @@
+    html, body {
+        background-color: #fff;
+        color: #636b6f;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 600;
+        height: 100vh;
+        margin: 0;
+    }
+
+    th {
+        text-align: center;
+    }
+    h2{
+        font-weight: 600;
+    }
+
+    .full-height {
+        height: 50vh;
+    }
+
+    .flex-center {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .position-ref {
+        position: relative;
+    }
+
+    .top-right {
+        position: absolute;
+        right: 10px;
+        top: 18px;
+    }
+
+    .content {
+        text-align: center;
+    }
+
+    .title {
+        font-size: 56px;
+        font-weight: 400;
+        margin: 20px;
+    }
+
+    .links > a {
+        /* color: #636b6f; */
+        color: #0044CC;
+        padding: 0 25px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: .1rem;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+
+    .m-b-md {
+        margin-bottom: 30px;
+    }
+    .number {
+        width: 4em;
+    }
+    .date {
+        width: 7em;
+    }
+    .form {
+        line-height: 2.5;
+    }
+    .header {
+        margin-bottom: 5vh;
+    }
+
+    .sep {
+        border-bottom:2px solid #636b6f;
+    }
+    .sep td {
+        padding-bottom:5px;
+    }
+
+    .btn {
+        font-weight: bold;
+    }
+
+    table.fixed {
+        table-layout:fixed;
+        width:80%;
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    table.fixed td {
+        overflow: hidden;
+    }
+
+    .pdfprint {
+        font-size: 10px !important;
+    }
+    .page-break {
+        page-break-after: always;
+    }
+
+    thead:before, thead:after { display: none; }
+    tbody:before, tbody:after { display: none; }
+
+    #type3 {display:none;}
+    #type3Label {display:none;}
+    #type4 {display:none;}
+    #type4Label {display:none;}

@@ -20,12 +20,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function start()
     {
-        return view('home');
-    }
-    public function cards()
-    {
-        return view('cards');
+        return view('welcome');
     }
 }
