@@ -3,7 +3,6 @@
         color: #636b6f;
         font-family: 'Raleway', sans-serif;
         font-weight: 600;
-        height: 100vh;
         margin: 0;
     }
 
@@ -96,4 +95,22 @@
         background-color: #fff;
         -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    }
+    .wrapper {
+        display: flex;
+        width: 100%;
+        min-height: 70vh;
+        align-items: stretch;
+    }
+
+    #sidebar {
+        min-width: 250px;
+        max-width: 250px;
+    }
+
+    #sidebar {
+        /* don't forget to add all the previously mentioned styles here too */
+        background: #444444;
+        color: #fff;
+        transition: all 0.3s;
     }
