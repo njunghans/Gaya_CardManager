@@ -92,22 +92,6 @@
     table.fixed td {
         overflow: hidden;
     }
-
-    .pdfprint {
-        font-size: 10px !important;
-    }
-    .page-break {
-        page-break-after: always;
-    }
-
-    thead:before, thead:after { display: none; }
-    tbody:before, tbody:after { display: none; }
-
-    #type3 {display:none;}
-    #type3Label {display:none;}
-    #type4 {display:none;}
-    #type4Label {display:none;}
-
     .navbar-laravel {
         background-color: #fff;
         -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);

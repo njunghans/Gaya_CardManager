@@ -19,6 +19,9 @@ Route::get('/cards', 'CardController@index')->name('cards.index');
 
 Route::get('/cards/create', 'CardController@create')->name('cards.create');
 
+
+Route::post('/cards' , 'CardController@store')->name('cards.store');
+
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
