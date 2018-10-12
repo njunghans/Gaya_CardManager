@@ -107,3 +107,9 @@
     #type3Label {display:none;}
     #type4 {display:none;}
     #type4Label {display:none;}
+
+    .navbar-laravel {
+        background-color: #111111;
+        -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    }

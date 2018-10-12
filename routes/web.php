@@ -13,6 +13,8 @@
 
 Route::get('/', 'HomeController@start')->name('start');
 
+Route::get('/rules', 'HomeController@rules')->name('rules');
+
 Route::get('/cards', 'CardController@index')->name('cards.index');
 
 Route::get('/cards/create', 'CardController@create')->name('cards.create');
