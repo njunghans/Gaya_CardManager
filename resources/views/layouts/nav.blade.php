@@ -11,7 +11,10 @@
         </div>
         @if (Route::has('login'))
             @auth
-                <a class="btn btn-default navbar-brand navbar-right" href="{{ route('logout') }}">Logout</a>
+                <a class="btn btn-default navbar-brand navbar-right" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
+
             @else
                 <a class="btn btn-default navbar-brand navbar-right" href="{{ route('login') }}">Login</a>
             @endauth

@@ -12,4 +12,5 @@ class Card extends Model
     public $layouts = ["stock"];
 
     protected $guarded = [];
+
 }

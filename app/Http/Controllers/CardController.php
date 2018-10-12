@@ -2,6 +2,7 @@
 
 namespace gaya\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 
 use gaya\Card;
@@ -18,11 +19,15 @@ class CardController extends Controller
     public function store(Request $request) {
         $data = $request->all();
 
-        $data['user_id'] = 123;
-        $data['edition_id'] = 123;
+        $data['edition_id'] = 1;
         $data['official'] = false;
 
-        Card::create($data);
+        Card::create($this->enrich($data));
         dd("Storing card", $data);
+    }
+
+    protected function enrich($data) {
+        $data['user_id'] = Auth::id();
+        return $data;
     }
 }

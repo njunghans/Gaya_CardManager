@@ -2,6 +2,8 @@
 
 namespace gaya\Http\Controllers\Auth;
 
+use Auth;
+use Illuminate\Http\Request;
 use gaya\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -35,5 +37,10 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function logout(Request $request) {
+        Auth::logout();
+        return redirect('/cards');
     }
 }
