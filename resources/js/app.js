@@ -27,3 +27,4 @@ require('bootstrap');
 window.jQuery = require('jquery');
 require('bootstrap-confirmation');
 require('jquery-ui');
+require('popper.js');

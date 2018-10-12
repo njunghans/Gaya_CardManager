@@ -92,18 +92,3 @@
     table.fixed td {
         overflow: hidden;
     }
-
-    .pdfprint {
-        font-size: 10px !important;
-    }
-    .page-break {
-        page-break-after: always;
-    }
-
-    thead:before, thead:after { display: none; }
-    tbody:before, tbody:after { display: none; }
-
-    #type3 {display:none;}
-    #type3Label {display:none;}
-    #type4 {display:none;}
-    #type4Label {display:none;}
