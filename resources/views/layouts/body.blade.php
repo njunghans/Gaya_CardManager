@@ -13,10 +13,8 @@
             @include('version')
         </div>
     </div>
-    @include('js.main')
     <script>
         @yield('js')
     </script>
-    @include('sweet::alert')
 
 </body>
