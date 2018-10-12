@@ -6,9 +6,6 @@
 
     <title>Gaya</title>
     <!-- CSS -->
-    <link href="/fonts/Raleway.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="/css/sweetalert.css" rel="stylesheet" type="text/css">
-    <link href="/css/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css">
+    <link href="/css/app.css" rel="stylesheet" type="text/css">
     <link href="/css/basic.css" rel="stylesheet" type="text/css">
 </head>
