@@ -20,7 +20,7 @@ class CreateCardsTable extends Migration
             $table->integer('user_id')->unsigned();
 
             $table->string('name');
-            $table->enum('card_type', config('gaya.card_types'));
+            $table->enum('card_type', $this->getKeysFromConfig('card_types'));
             $table->string('category_text');
             $table->integer('edition_id')->unsigned()->nullable();
 
@@ -38,9 +38,9 @@ class CreateCardsTable extends Migration
             $table->text('lore_text')->nullable();
 
             $table->boolean('official');
-            $table->enum('premium_effect', config('gaya.premium_effects'));
-            $table->enum('rarity', config('gaya.rarities'));
-            $table->enum('layout', config('gaya.layouts'));
+            $table->enum('premium_effect', $this->getKeysFromConfig('premium_effects'));
+            $table->enum('rarity', $this->getKeysFromConfig('rarities'));
+            $table->enum('layout', $this->getKeysFromConfig('layouts'));
             $table->integer('artist_id')->unsigned()->nullable();
 
             $table->string('image_path')->nullable();
@@ -62,5 +62,9 @@ class CreateCardsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('cards');
+    }
+
+    private function getKeysFromConfig($key) {
+        return array_keys(config("gaya.$key"));
     }
 }

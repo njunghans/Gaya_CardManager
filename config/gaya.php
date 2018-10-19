@@ -8,20 +8,21 @@
 
 return [
     'card_types' => [
-        'foo', 'bar'
+        'foo' => 'foo_text',
+        'bar' => 'bar_text'
     ],
     
     'premium_effects' => [
-        'normal'
+        'normal' => 'normal_text'
     ],
 
     'rarities' => [
-        'common', 
-        'uncommon', 
-        'rare', 
-        'unique'
+        'common' => 'common',
+        'uncommon' => 'uncommon',
+        'rare' => 'rare',
+        'unique' => 'unique'
     ],
     'layouts' => [
-        'stock'
+        'stock' => 'No special things'
     ]
 ];
