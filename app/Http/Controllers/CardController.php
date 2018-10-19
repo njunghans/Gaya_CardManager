@@ -16,18 +16,28 @@ class CardController extends Controller
         return view('cards.create');
     }
 
+    public function edit($cardId) {
+        $card = Card::find($cardId);
+        return view('cards.edit', compact('card'));
+
+    }
     public function store(Request $request) {
         $data = $request->all();
-
-        $data['edition_id'] = 1;
-        $data['official'] = false;
-
         Card::create($this->enrich($data));
-        dd("Storing card", $data);
+        return redirect()->route('cards.index');
+    }
+
+    public function update(Request $request, $cardId) {
+        $card = Card::find($cardId);
+        $data = $request->all();
+        $card->fill($this->enrich($data))->save();
+        return redirect()->route('cards.index');
     }
 
     protected function enrich($data) {
         $data['user_id'] = Auth::id();
+        $data['official'] = false;
+        $data['edition_id'] = 1;
         return $data;
     }
 }
