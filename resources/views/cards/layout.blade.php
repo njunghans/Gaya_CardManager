@@ -8,9 +8,8 @@
 
         <!-- Sidebar -->
         <nav id="sidebar" class="float-left">
-
+            Gallery
             <ul class="list-unstyled components">
-                <p>Gallery</p>
                 <li class="active">
                     <a href="{{route('cards.create')}}">Create</a>
 
