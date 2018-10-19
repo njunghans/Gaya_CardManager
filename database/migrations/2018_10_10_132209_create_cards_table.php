@@ -11,12 +11,6 @@ class CreateCardsTable extends Migration
      *
      * @return void
      */
-    public $card_types = ["foo"];
-    public $premium_effects = ["normal"];
-    public $rarities = ["common", "uncommon", "rare", "unique"];
-    public $layouts = ["stock"];
-
-    # Move to Card model??
 
 
     public function up()
@@ -26,7 +20,7 @@ class CreateCardsTable extends Migration
             $table->integer('user_id')->unsigned();
 
             $table->string('name');
-            $table->enum('card_type', $this->card_types);
+            $table->enum('card_type', config('gaya.card_types'));
             $table->string('category_text');
             $table->integer('edition_id')->unsigned()->nullable();
 
@@ -44,9 +38,9 @@ class CreateCardsTable extends Migration
             $table->text('lore_text')->nullable();
 
             $table->boolean('official');
-            $table->enum('premium_effect', $this->premium_effects);
-            $table->enum('rarity', $this->rarities);
-            $table->enum('layout', $this->layouts);
+            $table->enum('premium_effect', config('gaya.premium_effects'));
+            $table->enum('rarity', config('gaya.rarities'));
+            $table->enum('layout', config('gaya.layouts'));
             $table->integer('artist_id')->unsigned()->nullable();
 
             $table->string('image_path')->nullable();
