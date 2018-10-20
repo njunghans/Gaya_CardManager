@@ -65,6 +65,6 @@ class CreateCardsTable extends Migration
     }
 
     private function getKeysFromConfig($key) {
-        return array_keys(config("gaya.$key"));
+        return array_keys(config("gaya.drop_downs.$key"));
     }
 }

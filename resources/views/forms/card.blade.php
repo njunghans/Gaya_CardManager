@@ -8,6 +8,20 @@
 </div>
 
 <div class="form-group row">
+    {{ Form::label('card_type' , 'Card Types:' , array('class' => 'col-sm-2 control-label')) }}
+    <div class="col-sm-5">
+        {{ Form::select('card_type' , $dropDowns['card_types'], null , array('class' => 'form-control', 'required')) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {{ Form::label('rarity' , 'Rarity:' , array('class' => 'col-sm-2 control-label')) }}
+    <div class="col-sm-5">
+        {{ Form::select('rarity' , $dropDowns['rarities'], null , array('class' => 'form-control', 'required')) }}
+    </div>
+</div>
+
+<div class="form-group row">
     {{ Form::label('category_text' , 'Category Text:' , array('class' => 'col-sm-2 control-label')) }}
     <div class="col-sm-5">
         {{ Form::text('category_text' , null , array('class' => 'form-control', 'required')) }}
@@ -88,6 +102,20 @@
     {{ Form::label('lore_text' , 'Lore Text:' , array('class' => 'col-sm-2 control-label')) }}
     <div class="col-sm-5">
         {{ Form::textarea('lore_text' , null , ['rows' => '4' , 'class' => 'form-control' , 'placeholder' => 'Enter lore text here']) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {{ Form::label('premium_effect' , 'Premium Effect:' , array('class' => 'col-sm-2 control-label')) }}
+    <div class="col-sm-5">
+        {{ Form::select('premium_effect' , $dropDowns['premium_effects'], null , array('class' => 'form-control', 'required')) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    {{ Form::label('layout' , 'Layout:' , array('class' => 'col-sm-2 control-label')) }}
+    <div class="col-sm-5">
+        {{ Form::select('layout' , $dropDowns['layouts'], null , array('class' => 'form-control', 'required')) }}
     </div>
 </div>
 

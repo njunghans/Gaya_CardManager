@@ -7,22 +7,25 @@
  */
 
 return [
-    'card_types' => [
-        'foo' => 'foo_text',
-        'bar' => 'bar_text'
-    ],
-    
-    'premium_effects' => [
-        'normal' => 'normal_text'
-    ],
 
-    'rarities' => [
-        'common' => 'common',
-        'uncommon' => 'uncommon',
-        'rare' => 'rare',
-        'unique' => 'unique'
-    ],
-    'layouts' => [
-        'stock' => 'No special things'
+    'drop_downs' => [
+        'card_types' => [
+            'foo' => 'foo_text',
+            'bar' => 'bar_text'
+        ],
+
+        'premium_effects' => [
+            'normal' => 'normal_text'
+        ],
+
+        'rarities' => [
+            'common' => 'common',
+            'uncommon' => 'uncommon',
+            'rare' => 'rare',
+            'unique' => 'unique'
+        ],
+        'layouts' => [
+            'stock' => 'No special things'
+        ]
     ]
 ];

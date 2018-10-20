@@ -13,14 +13,16 @@ class CardController extends Controller
         return view('cards.index');
     }
     public function create() {
-        return view('cards.create');
+        $dropDowns = config('gaya.drop_downs');
+        return view('cards.create', compact('dropDowns'));
     }
 
     public function edit($cardId) {
         $card = Card::find($cardId);
-        return view('cards.edit', compact('card'));
-
+        $dropDowns = config('gaya.drop_downs');
+        return view('cards.edit', compact('card', 'dropDowns'));
     }
+
     public function store(Request $request) {
         $data = $request->all();
         Card::create($this->enrich($data));
