@@ -8,7 +8,13 @@ Run
 ```
 composer install
 npm install
+php artisan migrate
 ```
 
 ## Development
 If you included new dependencies make sure to run `npm run dev` after it.
+
+You can use the seeder with 
+```
+php artisan db:seed
+```
