@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             EditionsTableSeeder::class,
             CardsTableSeeder::class,
             SetsTableSeeder::class,
+            CardsInSetsTableSeeder::class,
         ]);
     }
 }

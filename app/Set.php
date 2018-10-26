@@ -17,4 +17,10 @@ use Illuminate\Database\Eloquent\Model;
 class Set extends Model
 {
     protected $guarded = [];
+
+    public function getCardsInSet() {
+        $ids = CardsInSet::where('set_id', $this->id)->pluck('card_id')->toArray();
+        $cards = Card::whereIn('id', $ids)->get();
+        return $cards;
+    }
 }
