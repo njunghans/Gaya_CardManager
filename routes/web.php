@@ -23,6 +23,12 @@ Route::post('/cards/create' , 'CardController@store')->name('cards.store')->midd
 Route::get('/cards/{cardId}/edit', 'CardController@edit')->name('cards.edit')->middleware('auth');
 Route::patch('/cards/{cardId}/edit', 'CardController@update')->name('cards.update')->middleware('auth');
 
+Route::get('/sets', 'SetController@index')->name('sets.index');
+Route::get('/sets/create', 'SetController@create')->name('sets.create')->middleware('auth');
+Route::post('/sets/create' , 'SetController@store')->name('sets.store')->middleware('auth');
+Route::get('/sets/{setId}/edit', 'SetController@edit')->name('sets.edit')->middleware('auth');
+Route::patch('/sets/{setId}/edit', 'SetController@update')->name('sets.update')->middleware('auth');
+
 
 
 

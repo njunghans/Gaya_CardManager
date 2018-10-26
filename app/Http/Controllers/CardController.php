@@ -12,6 +12,7 @@ class CardController extends Controller
     public function index() {
         return view('cards.index');
     }
+
     public function create() {
         $dropDowns = config('gaya.drop_downs');
         return view('cards.create', compact('dropDowns'));

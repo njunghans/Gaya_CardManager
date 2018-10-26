@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             ArtistsTableSeeder::class,
             EditionsTableSeeder::class,
-            CardsTableSeeder::class
+            CardsTableSeeder::class,
+            SetsTableSeeder::class,
         ]);
     }
 }
