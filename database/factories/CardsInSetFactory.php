@@ -15,8 +15,8 @@ use Faker\Generator as Faker;
 
 $factory->define(gaya\CardsInSet::class, function (Faker $faker) {
     return [
-        'set_id' => rand(1, 20),
-        'card_id' => rand(1, 20),
-        'user_id' => rand(1, 20),
+        'set_id' => rand(1, config('seeding.number')),
+        'card_id' => rand(1, config('seeding.number')),
+        'user_id' => rand(1, config('seeding.number')),
     ];
 });

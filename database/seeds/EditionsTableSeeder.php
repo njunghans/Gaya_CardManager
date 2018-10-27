@@ -11,6 +11,6 @@ class EditionsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(gaya\Edition::class, 50)->create();
+        factory(gaya\Edition::class, config('seeding.number'))->create();
     }
 }

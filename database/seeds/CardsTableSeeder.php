@@ -11,6 +11,6 @@ class CardsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(gaya\Card::class, 50)->create();
+        factory(gaya\Card::class, config('seeding.number'))->create();
     }
 }
