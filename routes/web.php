@@ -28,7 +28,7 @@ Route::get('/sets/create', 'SetController@create')->name('sets.create')->middlew
 Route::post('/sets/create' , 'SetController@store')->name('sets.store')->middleware('auth');
 Route::get('/sets/{setId}/edit', 'SetController@edit')->name('sets.edit')->middleware('auth');
 Route::patch('/sets/{setId}/edit', 'SetController@update')->name('sets.update')->middleware('auth');
-
+Route::get('sets/{setId}', 'SetController@view')->name('sets.view')->middleware('auth');
 
 
 

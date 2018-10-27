@@ -14,6 +14,12 @@ class SetController extends Controller
         return view('sets.index');
     }
 
+    public function view($setId) {
+        $set = Set::find($setId);
+        $cards = $set->getCardsInSet();
+        dd($cards);
+    }
+
     public function create() {
         $dropDowns = config('gaya.drop_downs');
         return view('sets.create', compact('dropDowns'));
