@@ -10,10 +10,8 @@
             <hr>
             @include('version')
         </div>
-    <script>
-        @yield('js')
-    </script>
-    <script src="/js/app.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    @yield('js')
 
 
 </body>
