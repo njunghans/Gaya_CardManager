@@ -21,7 +21,7 @@ class CreateCardsTable extends Migration
 
             $table->string('name');
             $table->enum('card_type', $this->getKeysFromConfig('card_types'));
-            $table->string('category_text');
+            $table->text('category_text');
             $table->integer('edition_id')->unsigned()->nullable();
 
             $table->tinyInteger('cost_gold')->nullable();
