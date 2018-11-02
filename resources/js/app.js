@@ -20,11 +20,9 @@ const app = new Vue({
     el: '#app'
 });
 
-/**
- jquery
- */
 require('bootstrap');
 window.jQuery = require('jquery');
 require('bootstrap-confirmation');
 require('jquery-ui');
 require('popper.js');
+require('pixi.js');

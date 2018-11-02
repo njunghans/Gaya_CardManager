@@ -24,6 +24,11 @@ class CardController extends Controller
         return view('cards.edit', compact('card', 'dropDowns'));
     }
 
+    public function show($cardId) {
+        $card = Card::find($cardId);
+        return view('cards.show', compact('card'));
+    }
+
     public function store(Request $request) {
         $data = $request->all();
         Card::create($this->enrich($data));
