@@ -10,11 +10,11 @@ function rand_entry($key) {
 
 $factory->define(gaya\Card::class, function (Faker $faker) {
     return [
-        'user_id' => rand(1, config('seeding.number')),
+        'user_id' => rand(1, config('seeding.numbers.default')),
         'name' => $faker->name,
         'card_type' => rand_entry('card_types'),
         'category_text' => $faker->text,
-        'edition_id' => rand(1, config('seeding.number')),
+        'edition_id' => rand(1, config('seeding.numbers.default')),
         'cost_gold' => rand(0, 10),
         'cost_bio' => rand(0, 10),
         'cost_ene' => rand(0, 10),
@@ -30,7 +30,7 @@ $factory->define(gaya\Card::class, function (Faker $faker) {
         'premium_effect' => rand_entry('premium_effects'),
         'rarity' => rand_entry('rarities'),
         'layout' => rand_entry('layouts'),
-        'artist_id' => rand(1, config('seeding.number')),
+        'artist_id' => rand(1, config('seeding.numbers.default')),
         'image_path' => str_random(),
         'image_settings' => str_random()
 

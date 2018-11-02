@@ -11,6 +11,6 @@ class CardsInSetsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(gaya\CardsInSet::class, config('seeding.number'))->create();
+        factory(gaya\CardsInSet::class, config('seeding.numbers.cardsInSets') ** 2)->create();
     }
 }

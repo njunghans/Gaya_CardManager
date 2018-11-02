@@ -11,6 +11,6 @@ class ArtistsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(gaya\Artist::class, config('seeding.number'))->create();
+        factory(gaya\Artist::class, config('seeding.numbers.default'))->create();
     }
 }

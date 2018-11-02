@@ -11,6 +11,6 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(gaya\User::class, config('seeding.number'))->create();
+        factory(gaya\User::class, config('seeding.numbers.default'))->create();
     }
 }

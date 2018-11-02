@@ -11,6 +11,6 @@ class SetsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(gaya\Set::class, config('seeding.number'))->create();
+        factory(gaya\Set::class, config('seeding.numbers.sets'))->create();
     }
 }

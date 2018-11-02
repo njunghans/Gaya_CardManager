@@ -6,5 +6,9 @@
  * Time: 15:36
  */
 return [
-    "number" => 200
+    "numbers" => [
+        "default" => 200,
+        "sets" => 10,
+        "cardsInSets" => 2000,
+    ]
 ];
