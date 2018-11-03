@@ -13,6 +13,7 @@ PIXI.loader
     .add('gold','/data/Gold.png')
     .add('attack','/data/AttackIcon.png')
     .add('defense','/data/DefenseIcon.png')
+    .add('image', 'https://i.kinja-img.com/gawker-media/image/upload/s--xDUnX_Up--/c_scale,f_auto,fl_progressive,q_80,w_800/frwyglppdktamatyv4f8.jpg')
     .load(setup);
 
 let titleStyle = new PIXI.TextStyle({
@@ -21,7 +22,7 @@ let titleStyle = new PIXI.TextStyle({
     fill: "white",
     stroke: 'black',
     strokeThickness: 4,
-    dropShadow: true,
+    dropShadow: false,
     dropShadowColor: "#000000",
     dropShadowBlur: 4,
     dropShadowAngle: Math.PI / 6,
@@ -32,8 +33,8 @@ let categoryStyle = new PIXI.TextStyle({
     fontSize: 28,
     fill: "white",
     stroke: 'black',
-    strokeThickness: 2,
-    dropShadow: true,
+    strokeThickness: 4,
+    dropShadow: false,
     dropShadowColor: "#000000",
     dropShadowBlur: 4,
     dropShadowAngle: Math.PI / 6,
@@ -59,7 +60,7 @@ title.y = 97;
 title.anchor.x = 0.5;
 title.anchor.y = 0.5;
 
-let category = new PIXI.Text("Test Category", style);
+let category = new PIXI.Text("Test Category", categoryStyle);
 
 category.x = 405;
 category.y = 576;
@@ -67,19 +68,20 @@ category.anchor.x = 0.5;
 category.anchor.y = 0.5;
 
 
-let category = new PIXI.Text("Test Category", style);
-category.rotate180(90);
-category.x = 21;
-category.y = 84;
+let info = new PIXI.Text("Test info @Gaya artist : uhiuhqw", infoStyle);
+info.rotation= Math.PI/2;
+info.x = 37;
+info.y = 84;
 
 //numbers
 let goldStyle = new PIXI.TextStyle({
     fontFamily: "Arial",
     fontSize: 36,
+    fontWeight: 'bold',
     fill: "white",
     stroke: 'black',
     strokeThickness: 4,
-    dropShadow: true,
+    dropShadow: false,
     dropShadowColor: "#000000",
     dropShadowBlur: 4,
     dropShadowAngle: Math.PI / 6,
@@ -125,8 +127,10 @@ function setup() {
 
     let gold = new PIXI.Sprite(PIXI.loader.resources.gold.texture);
 
-    gold.width=67;
-    gold.height=67;
+    gold.width=230/2.5;
+    gold.height=230/2.5;
+    gold.anchor.x = 0.5;
+    gold.anchor.y = 0.5;
     gold.x = 564;
     gold.y = 71;
 
@@ -134,15 +138,30 @@ function setup() {
 
     attack.x = 57;
     attack.y = 808;
+    attack.width=260/2.5;
+    attack.height=290/2.5;
     attack.anchor.x = 0.5;
     attack.anchor.y = 0.5;
 
     let defense = new PIXI.Sprite(PIXI.loader.resources.defense.texture);
 
     defense.x = 570;
-    defense.y = 808;
+    defense.y = 818;
+    defense.width=230/2.5;
+    defense.height=270/2.5;
     defense.anchor.x = 0.5;
     defense.anchor.y = 0.5;
+
+    let image = new PIXI.Sprite(PIXI.loader.resources.image.texture);
+
+    image.anchor.x = 0.5;
+    image.anchor.y = 0.5;
+    image.x = 630/2;
+    image.y = 630/2;
+    image.width=560;
+    image.height=470;
+    image.rotation=-Math.PI/2;
+    app.stage.addChild(image);
 
     app.stage.addChild(frame);
     app.stage.addChild(rarityStoneCommon);
@@ -151,40 +170,8 @@ function setup() {
     app.stage.addChild(defense);
     app.stage.addChild(title);
     app.stage.addChild(category);
+    app.stage.addChild(info);
     app.stage.addChild(attackText);
     app.stage.addChild(defenseText);
+    app.stage.addChild(goldText);
 }
-/*
-// load the texture we need
-PIXI.loader.add('bunny', '/data/Frame.png').load((loader, resources) => {
-    // This creates a texture from a 'bunny.png' image
-    const bunny = new PIXI.Sprite(resources.bunny.texture);
-    bunny.width=630;
-    bunny.height=880;
-
-    // Setup the position of the bunny
-    bunny.x = 0;
-    bunny.y = 0;
-
-    // Add the bunny to the scene we are building
-    app.stage.addChild(bunny);
-    app.stage.addChild(bunny);
-
-});
-
-
-PIXI.loader.add('bunny', '/data/RarityStoneCommon.png').load((loader, resources) => {
-    // This creates a texture from a 'bunny.png' image
-    const bunny = new PIXI.Sprite(resources.bunny.texture);
-    bunny.width=190;
-    bunny.height=170;
-
-    // Setup the position of the bunny
-    bunny.x = 100;
-    bunny.y = 400;
-
-    // Add the bunny to the scene we are building
-    app.stage.addChild(bunny);
-
-});
-*/
