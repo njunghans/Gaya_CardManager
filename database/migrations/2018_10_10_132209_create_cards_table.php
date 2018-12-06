@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateCardsTable extends Migration
 {
@@ -64,7 +64,8 @@ class CreateCardsTable extends Migration
         Schema::dropIfExists('cards');
     }
 
-    private function getKeysFromConfig($key) {
+    private function getKeysFromConfig($key)
+    {
         return array_keys(config("gaya.drop_downs.$key"));
     }
 }

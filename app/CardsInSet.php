@@ -3,6 +3,7 @@
 namespace gaya;
 
 use Illuminate\Database\Eloquent\Model;
+
 /**
  * Cards In set
  *
@@ -11,7 +12,6 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-
 class CardsInSet extends Model
 {
     //
