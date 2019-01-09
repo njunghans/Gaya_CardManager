@@ -1,21 +1,276 @@
-console.log('hallo');
+class CardView {
+    constructor() {
+        this.app = new PIXI.Application({width: 630, height: 880, transparent: true});
+
+        this.frame = new PIXI.Sprite();
+        this.frame.width = 630;
+        this.frame.height = 880;
+
+        this.frame.x = 0;
+        this.frame.y = 0;
+
+        this.rarityStone = new PIXI.Sprite();
+
+        this.rarityStone.width = 80;
+        this.rarityStone.height = 70;
+        this.rarityStone.x = 75;
+        this.rarityStone.y = 540;
+
+        this.gold = new PIXI.Sprite();
+
+        this.gold.width = 230 / 2.5;
+        this.gold.height = 230 / 2.5;
+        this.gold.anchor.x = 0.5;
+        this.gold.anchor.y = 0.5;
+        this.gold.x = 564;
+        this.gold.y = 71;
+
+        this.attack = new PIXI.Sprite();
+
+        this.attack.x = 57;
+        this.attack.y = 808;
+        this.attack.width = 260 / 2.5;
+        this.attack.height = 290 / 2.5;
+        this.attack.anchor.x = 0.5;
+        this.attack.anchor.y = 0.5;
+
+        this.defense = new PIXI.Sprite();
+
+        this.defense.x = 570;
+        this.defense.y = 818;
+        this.defense.width = 230 / 2.5;
+        this.defense.height = 270 / 2.5;
+        this.defense.anchor.x = 0.5;
+        this.defense.anchor.y = 0.5;
 
 
-const app = new PIXI.Application({width: 630, height:880, transparent:true});
-// The application will create a canvas element for you that you
-// can then insert into the DOM
-document.body.appendChild(app.view);
+        this.image = new PIXI.Sprite();
+        this.image.filterArea= new PIXI.Rectangle(80,82,480,500);
+        this.image.filters=[new PIXI.filters.AlphaFilter()];
+        this.image.anchor.x = 0;
+        this.image.anchor.y = 0;
+        //this.image.x = 80;
+        //this.image.y = 82;
+        //this.image.width = 480;
+        //this.image.height = 500;
 
-//load an image and run the `setup` function when it's done
-PIXI.loader
-    .add('frame',"/data/Frame.png")
-    .add('rarityStoneCommon','/data/RarityStoneCommon.png')
-    .add('gold','/data/Gold.png')
-    .add('attack','/data/AttackIcon.png')
-    .add('defense','/data/DefenseIcon.png')
-    .add('image', 'https://i.kinja-img.com/gawker-media/image/upload/s--xDUnX_Up--/c_scale,f_auto,fl_progressive,q_80,w_800/frwyglppdktamatyv4f8.jpg')
-    .load(setup);
+        this.imageCrop = new PIXI.Rectangle(0,0,480,500);
+        this.imageRotation = -Math.PI / 2;
 
+        let titleStyle = new PIXI.TextStyle({
+            fontFamily: "Arial",
+            fontSize: 36,
+            fill: "white",
+            stroke: 'black',
+            strokeThickness: 4,
+            dropShadow: false,
+            dropShadowColor: "#000000",
+            dropShadowBlur: 4,
+            dropShadowAngle: Math.PI / 6,
+            dropShadowDistance: 6
+        });
+        let categoryStyle = new PIXI.TextStyle({
+            fontFamily: "Arial",
+            fontSize: 28,
+            fill: "white",
+            stroke: 'black',
+            strokeThickness: 4,
+            dropShadow: false,
+            dropShadowColor: "#000000",
+            dropShadowBlur: 4,
+            dropShadowAngle: Math.PI / 6,
+            dropShadowDistance: 6
+        });
+        let infoStyle = new PIXI.TextStyle({
+            fontFamily: "Arial",
+            fontSize: 18,
+            fill: "grey",
+            stroke: 'grey',
+            strokeThickness: 0,
+            dropShadow: false,
+            dropShadowColor: "#000000",
+            dropShadowBlur: 4,
+            dropShadowAngle: Math.PI / 6,
+            dropShadowDistance: 6
+        });
+
+        this.title = new PIXI.Text("", titleStyle);
+
+        this.title.x = 268;
+        this.title.y = 97;
+        this.title.anchor.x = 0.5;
+        this.title.anchor.y = 0.5;
+
+        this.category = new PIXI.Text("", categoryStyle);
+
+        this.category.x = 405;
+        this.category.y = 576;
+        this.category.anchor.x = 0.5;
+        this.category.anchor.y = 0.5;
+
+
+        this.info = new PIXI.Text("", infoStyle);
+        this.info.rotation = Math.PI / 2;
+        this.info.x = 37;
+        this.info.y = 84;
+
+        let goldStyle = new PIXI.TextStyle({
+            fontFamily: "Arial",
+            fontSize: 36,
+            fontWeight: 'bold',
+            fill: "white",
+            stroke: 'black',
+            strokeThickness: 4,
+            dropShadow: false,
+            dropShadowColor: "#000000",
+            dropShadowBlur: 4,
+            dropShadowAngle: Math.PI / 6,
+            dropShadowDistance: 6
+        });
+        this.goldText = new PIXI.Text("", goldStyle);
+
+        this.goldText.x = 564;
+        this.goldText.y = 71;
+        this.goldText.anchor.x = 0.5;
+        this.goldText.anchor.y = 0.5;
+
+        this.attackText = new PIXI.Text("2", goldStyle);
+
+        this.attackText.x = 57;
+        this.attackText.y = 808;
+        this.attackText.anchor.x = 0.5;
+        this.attackText.anchor.y = 0.5;
+
+        this.defenseText = new PIXI.Text("2", goldStyle);
+
+        this.defenseText.x = 570;
+        this.defenseText.y = 808;
+        this.defenseText.anchor.x = 0.5;
+        this.defenseText.anchor.y = 0.5;
+
+
+        this.app.stage.addChild(this.image);
+
+        this.app.stage.addChild(this.frame);
+        this.app.stage.addChild(this.rarityStone);
+        this.app.stage.addChild(this.gold);
+        this.app.stage.addChild(this.attack);
+        this.app.stage.addChild(this.defense);
+        this.app.stage.addChild(this.title);
+        this.app.stage.addChild(this.category);
+        this.app.stage.addChild(this.info);
+        this.app.stage.addChild(this.attackText);
+        this.app.stage.addChild(this.defenseText);
+        this.app.stage.addChild(this.goldText);
+
+        //Setting Default Values
+
+        this.setFrame(PIXI.Texture.fromImage("/data/Frame.png"));
+
+        this.setRarity(1);
+
+        this.setGold(PIXI.Texture.fromImage('/data/Gold.png'));
+        this.setAttack(PIXI.Texture.fromImage('/data/AttackIcon.png'));
+        this.setDefense(PIXI.Texture.fromImage('/data/DefenseIcon.png'));
+
+        this.setTitle('Test');
+
+    }
+
+    setTitle(txt){
+        this.title.text=txt;
+    }
+    setCategory(txt){
+        this.category.text=txt;
+    }
+    setInfo(txt){
+        this.info.text=txt;
+    }
+    setGoldText(txt){
+        this.goldText.text=txt;
+    }
+    setAttackText(txt){
+        this.attackText.text=txt;
+    }
+    setDefenseText(txt){
+        this.defenseText.text=txt;
+    }
+
+    setRarity(rarity) {
+        if (rarity === 0) {
+            this.setRarityStone(PIXI.Texture.fromImage('/data/RarityStoneCommon.png'));
+        } else if (rarity === 1) {
+            this.setRarityStone(PIXI.Texture.fromImage('/data/RarityStoneRare.png'));
+        } else if (rarity === 2) {
+            this.setRarityStone(PIXI.Texture.fromImage('/data/RarityStoneEpic.png'));
+        } else if (rarity === 3) {
+            this.setRarityStone(PIXI.Texture.fromImage('/data/RarityStoneUnique.png'));
+        } else {
+            this.setRarityStone(PIXI.Texture.EMPTY);
+        }
+    }
+
+    setFrame(texture) {
+        PIXI.Texture.removeFromCache(this.frame.texture);
+        this.frame.texture = texture;
+    }
+
+    setRarityStone(texture) {
+        PIXI.Texture.removeFromCache(this.rarityStone.texture);
+        this.rarityStone.texture = texture;
+    }
+
+    setGold(texture) {
+        PIXI.Texture.removeFromCache(this.gold.texture);
+        this.gold.texture = texture;
+    }
+
+    setAttack(texture) {
+        PIXI.Texture.removeFromCache(this.attack.texture);
+        this.attack.texture = texture;
+    }
+
+    setDefense(texture) {
+        PIXI.Texture.removeFromCache(this.defense.texture);
+        this.defense.texture = texture;
+    }
+
+    setImage(texture) {
+        PIXI.Texture.removeFromCache(this.image.texture);
+
+        this.image.texture = texture;
+        //this.image.texture.frame = this.imageCrop;
+        // let i = new PIXI.Sprite(texture);
+        // this.image.removeChildren();
+        // this.image.addChild(i);
+    }
+
+}
+
+const card = new CardView();
+document.body.appendChild(card.app.view);
+card.setImage(PIXI.Texture.fromImage('https://i.kinja-img.com/gawker-media/image/upload/s--xDUnX_Up--/c_scale,f_auto,fl_progressive,q_80,w_800/frwyglppdktamatyv4f8.jpg'));
+card.setAttackText('5');
+card.setDefenseText('1');
+async function f( time,  doSmth ) {
+
+    let promise = new Promise((resolve, reject) => {
+        setTimeout(() => resolve("done!"), time)
+    });
+
+    let result = await promise; // wait till the promise resolves (*)
+
+    doSmth();
+}
+
+f(5000, function(){card.setImage(PIXI.Texture.fromImage('https://i.kinja-img.com/gawker-media/image/upload/t_original/bz5twwesa9fddyiljthz.jpg'))});
+f(10000, function(){card.setTitle('Hahahahaha')});
+f(7000, function(){card.setCategory('Weird')});
+f(4000, function(){card.setAttackText('3')});
+
+//card.setImage(PIXI.Texture.fromImage('https://i.kinja-img.com/gawker-media/image/upload/t_original/bz5twwesa9fddyiljthz.jpg'));
+
+/*
 let titleStyle = new PIXI.TextStyle({
     fontFamily: "Arial",
     fontSize: 36,
@@ -109,7 +364,7 @@ defenseText.anchor.x = 0.5;
 defenseText.anchor.y = 0.5;
 
 //This `setup` function will run when the image has loaded
-function setup() {
+function setupAll() {
 
     let frame = new PIXI.Sprite(PIXI.loader.resources.frame.texture);
     frame.width=630;
@@ -152,15 +407,19 @@ function setup() {
     defense.anchor.x = 0.5;
     defense.anchor.y = 0.5;
 
+    let imageCrop = new PIXI.Rectangle(0, 0, 80, 164);
+
+    PIXI.loader.resources.image.texture.frame = imageCrop;
+    PIXI.loader.resources.image.texture.frame.rotation=-Math.PI/2;
     let image = new PIXI.Sprite(PIXI.loader.resources.image.texture);
 
-    image.anchor.x = 0.5;
-    image.anchor.y = 0.5;
-    image.x = 630/2;
-    image.y = 630/2;
-    image.width=560;
-    image.height=470;
-    image.rotation=-Math.PI/2;
+    image.anchor.x = 0;
+    image.anchor.y = 0;
+    image.x = 80;
+    image.y = 80;
+    image.width=480;
+    image.height=540;
+
     app.stage.addChild(image);
 
     app.stage.addChild(frame);
@@ -175,3 +434,4 @@ function setup() {
     app.stage.addChild(defenseText);
     app.stage.addChild(goldText);
 }
+*/

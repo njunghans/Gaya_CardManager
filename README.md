@@ -18,3 +18,11 @@ You can use the seeder with
 ```
 php artisan db:seed
 ```
+
+for php commands:
+In Homestead
+```
+vagrant ssh
+cd code
+php stuff
+```
