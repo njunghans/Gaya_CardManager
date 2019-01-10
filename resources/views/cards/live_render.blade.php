@@ -1,7 +1,4 @@
-<div>
-    <canvas>
-
-    </canvas>
+<div id="render-view">
 </div>
 
 @section('js')

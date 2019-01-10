@@ -1,3 +1,4 @@
+
 class CardView {
     constructor() {
         this.app = new PIXI.Application({width: 630, height: 880, transparent: true});
@@ -134,14 +135,14 @@ class CardView {
         this.goldText.anchor.x = 0.5;
         this.goldText.anchor.y = 0.5;
 
-        this.attackText = new PIXI.Text("2", goldStyle);
+        this.attackText = new PIXI.Text("", goldStyle);
 
         this.attackText.x = 57;
         this.attackText.y = 808;
         this.attackText.anchor.x = 0.5;
         this.attackText.anchor.y = 0.5;
 
-        this.defenseText = new PIXI.Text("2", goldStyle);
+        this.defenseText = new PIXI.Text("", goldStyle);
 
         this.defenseText.x = 570;
         this.defenseText.y = 808;
@@ -167,13 +168,11 @@ class CardView {
 
         this.setFrame(PIXI.Texture.fromImage("/data/Frame.png"));
 
-        this.setRarity(1);
+        //this.setRarity(1);
 
         this.setGold(PIXI.Texture.fromImage('/data/Gold.png'));
-        this.setAttack(PIXI.Texture.fromImage('/data/AttackIcon.png'));
-        this.setDefense(PIXI.Texture.fromImage('/data/DefenseIcon.png'));
 
-        this.setTitle('Test');
+        //this.setDefense(PIXI.Texture.fromImage('/data/DefenseIcon.png'));
 
     }
 
@@ -191,9 +190,20 @@ class CardView {
     }
     setAttackText(txt){
         this.attackText.text=txt;
+
+        if(txt.length){
+            this.setAttack(PIXI.Texture.fromImage('/data/AttackIcon.png'));
+        }else{
+            this.setAttack(null);
+        }
     }
     setDefenseText(txt){
         this.defenseText.text=txt;
+        if(txt.length){
+            this.setDefense(PIXI.Texture.fromImage('/data/DefenseIcon.png'));
+        }else{
+            this.setDefense(null);
+        }
     }
 
     setRarity(rarity) {
@@ -246,27 +256,30 @@ class CardView {
     }
 
 }
-
 const card = new CardView();
-document.body.appendChild(card.app.view);
-card.setImage(PIXI.Texture.fromImage('https://i.kinja-img.com/gawker-media/image/upload/s--xDUnX_Up--/c_scale,f_auto,fl_progressive,q_80,w_800/frwyglppdktamatyv4f8.jpg'));
-card.setAttackText('5');
-card.setDefenseText('1');
-async function f( time,  doSmth ) {
-
-    let promise = new Promise((resolve, reject) => {
-        setTimeout(() => resolve("done!"), time)
-    });
-
-    let result = await promise; // wait till the promise resolves (*)
-
-    doSmth();
-}
-
-f(5000, function(){card.setImage(PIXI.Texture.fromImage('https://i.kinja-img.com/gawker-media/image/upload/t_original/bz5twwesa9fddyiljthz.jpg'))});
-f(10000, function(){card.setTitle('Hahahahaha')});
-f(7000, function(){card.setCategory('Weird')});
-f(4000, function(){card.setAttackText('3')});
+console.log(document.getElementById('render-view'));
+document.getElementById('render-view').appendChild(card.app.view);
+//
+// const card = new CardView();
+// document.body.appendChild(card.app.view);
+// card.setImage(PIXI.Texture.fromImage('https://i.kinja-img.com/gawker-media/image/upload/s--xDUnX_Up--/c_scale,f_auto,fl_progressive,q_80,w_800/frwyglppdktamatyv4f8.jpg'));
+// card.setAttackText('5');
+// card.setDefenseText('1');
+// async function f( time,  doSmth ) {
+//
+//     let promise = new Promise((resolve, reject) => {
+//         setTimeout(() => resolve("done!"), time)
+//     });
+//
+//     let result = await promise; // wait till the promise resolves (*)
+//
+//     doSmth();
+// }
+//
+// f(5000, function(){card.setImage(PIXI.Texture.fromImage('https://i.kinja-img.com/gawker-media/image/upload/t_original/bz5twwesa9fddyiljthz.jpg'))});
+// f(10000, function(){card.setTitle('Hahahahaha')});
+// f(7000, function(){card.setCategory('Weird')});
+// f(4000, function(){card.setAttackText('3')});
 
 //card.setImage(PIXI.Texture.fromImage('https://i.kinja-img.com/gawker-media/image/upload/t_original/bz5twwesa9fddyiljthz.jpg'));
 

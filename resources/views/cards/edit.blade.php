@@ -6,6 +6,7 @@
 
 @section('cards.content')
     <div class="flex-center position-ref">
+        @include('cards.live_render')
         {{ Form::model($card, ['method' => 'PATCH' , 'class'=>'form-horizontal' , 'route' => ['cards.update' , $card->id]]) }}
 
         @include('forms.card')

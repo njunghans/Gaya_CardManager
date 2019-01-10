@@ -6,6 +6,7 @@
 
 @section('cards.content')
     <div class="flex-center position-ref">
+        @include('cards.live_render')
         {{ Form::open(['method' => 'POST' , 'class'=>'form-horizontal' , 'route' => ['cards.store']]) }}
 
         @include('forms.card')
@@ -17,4 +18,5 @@
 
         {{ Form::close() }}
     </div>
+
 @endsection
