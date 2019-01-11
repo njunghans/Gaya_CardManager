@@ -25,6 +25,7 @@ class CreateCardsTable extends Migration
             $table->integer('edition_id')->unsigned()->nullable();
 
             $table->tinyInteger('cost_gold')->nullable();
+            $table->tinyInteger('cost_neutral')->nullable();
             $table->tinyInteger('cost_bio')->nullable();
             $table->tinyInteger('cost_ene')->nullable();
             $table->tinyInteger('cost_par')->nullable();

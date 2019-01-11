@@ -16,6 +16,7 @@ $factory->define(gaya\Card::class, function (Faker $faker) {
         'category_text' => $faker->text,
         'edition_id' => rand(1, config('seeding.numbers.default')),
         'cost_gold' => rand(0, 10),
+        'cost_neutral' => rand(0, 10),
         'cost_bio' => rand(0, 10),
         'cost_ene' => rand(0, 10),
         'cost_par' => rand(0, 10),

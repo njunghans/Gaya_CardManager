@@ -36,6 +36,13 @@
 </div>
 
 <div class="form-group row">
+    {{ Form::label('cost_neutral' , 'Cost Neutral:' , array('class' => 'col-sm-2 control-label')) }}
+    <div class="col-sm-5">
+        {{ Form::number('cost_neutral' , null , array('class' => 'form-control', 'min' => -99, 'max' => 99)) }}
+    </div>
+</div>
+
+<div class="form-group row">
     {{ Form::label('cost_bio' , 'Cost Biological:' , array('class' => 'col-sm-2 control-label')) }}
     <div class="col-sm-5">
         {{ Form::number('cost_bio' , null , array('class' => 'form-control', 'min' => -99, 'max' => 99)) }}
