@@ -46,10 +46,10 @@ class CardView {
 
 
         this.image = new PIXI.Sprite();
-        this.image.filterArea= new PIXI.Rectangle(80,82,480,500);
-        this.image.filters=[new PIXI.filters.AlphaFilter()];
-        this.image.anchor.x = 0;
-        this.image.anchor.y = 0;
+        // this.image.filterArea= new PIXI.Rectangle(80,82,480,500);
+        // this.image.filters=[new PIXI.filters.AlphaFilter()];
+        //this.image.anchor.x = 0;
+        //this.image.anchor.y = 0;
         //this.image.x = 80;
         //this.image.y = 82;
         //this.image.width = 480;
@@ -141,6 +141,7 @@ class CardView {
         this.attackText.y = 808;
         this.attackText.anchor.x = 0.5;
         this.attackText.anchor.y = 0.5;
+        this.setAttack(PIXI.Texture.fromImage('/data/AttackIcon.png'));
 
         this.defenseText = new PIXI.Text("", goldStyle);
 
@@ -148,9 +149,14 @@ class CardView {
         this.defenseText.y = 808;
         this.defenseText.anchor.x = 0.5;
         this.defenseText.anchor.y = 0.5;
+        this.setDefense(PIXI.Texture.fromImage('/data/DefenseIcon.png'));
 
+        this.container = new PIXI.Container();
+        this.container.filterArea= new PIXI.Rectangle(80,82,480,500);
+        this.container.filters=[new PIXI.filters.AlphaFilter()];
+        this.container.addChild(this.image);
 
-        this.app.stage.addChild(this.image);
+        this.app.stage.addChild(this.container);
 
         this.app.stage.addChild(this.frame);
         this.app.stage.addChild(this.rarityStone);
@@ -191,18 +197,21 @@ class CardView {
     setAttackText(txt){
         this.attackText.text=txt;
 
-        if(txt.length){
-            this.setAttack(PIXI.Texture.fromImage('/data/AttackIcon.png'));
+        if(txt.length && txt!='0'){
+
+            this.attack.visible=true;
         }else{
-            this.setAttack(null);
+            this.attackText.text='';
+            this.attack.visible = false;
         }
     }
     setDefenseText(txt){
         this.defenseText.text=txt;
-        if(txt.length){
-            this.setDefense(PIXI.Texture.fromImage('/data/DefenseIcon.png'));
+        if(txt.length && txt!='0'){
+            this.defense.visible=true;
         }else{
-            this.setDefense(null);
+            this.defenseText.text='';
+            this.defense.visible=false;
         }
     }
 
@@ -257,9 +266,36 @@ class CardView {
 
 }
 const card = new CardView();
-console.log(document.getElementById('render-view'));
 document.getElementById('render-view').appendChild(card.app.view);
-//
+let name = document.getElementsByName("name")[0];
+card.setTitle(name.value);
+let card_type = document.getElementsByName("card_type")[0];
+let category_text = document.getElementsByName("category_text")[0];
+card.setCategory(card_type.value + ', '+category_text.value);
+let rarity =  document.getElementsByName("rarity")[0];
+card.setRarity(rarity.selectedIndex);
+let cost_gold =  document.getElementsByName("cost_gold")[0];
+card.setGoldText(cost_gold.value);
+let image_path = document.getElementsByName("image_path")[0];
+card.setImage(PIXI.Texture.fromImage(image_path.value));
+let attack = document.getElementsByName("attack")[0];
+card.setAttackText(attack.value);
+let shield = document.getElementsByName("shield")[0];
+card.setDefenseText(shield.value);
+
+name.addEventListener('input', () => {card.setTitle(name.value)});
+card_type.addEventListener('change', () => {card.setCategory(card_type.value + ', '+category_text.value)});
+category_text.addEventListener('input', () => {card.setCategory(card_type.value + ', '+category_text.value)});
+rarity.addEventListener('change', () => {card.setRarity(rarity.selectedIndex)});
+cost_gold.addEventListener('input', () => {card.setGoldText(cost_gold.value)});
+image_path.addEventListener('input', () => {card.setImage(PIXI.Texture.fromImage(image_path.value))});
+attack.addEventListener('input', () => {card.setAttackText(attack.value)});
+shield.addEventListener('input', () => {card.setDefenseText(shield.value)});
+
+// const card = new CardView();
+// console.log(document.getElementById('render-view'));
+// document.getElementById('render-view').appendChild(card.app.view);
+
 // const card = new CardView();
 // document.body.appendChild(card.app.view);
 // card.setImage(PIXI.Texture.fromImage('https://i.kinja-img.com/gawker-media/image/upload/s--xDUnX_Up--/c_scale,f_auto,fl_progressive,q_80,w_800/frwyglppdktamatyv4f8.jpg'));
@@ -275,11 +311,19 @@ document.getElementById('render-view').appendChild(card.app.view);
 //
 //     doSmth();
 // }
-//
-// f(5000, function(){card.setImage(PIXI.Texture.fromImage('https://i.kinja-img.com/gawker-media/image/upload/t_original/bz5twwesa9fddyiljthz.jpg'))});
+
+//f(5000, function(){card.setImage(PIXI.Texture.fromImage('https://i.kinja-img.com/gawker-media/image/upload/t_original/bz5twwesa9fddyiljthz.jpg'))});
 // f(10000, function(){card.setTitle('Hahahahaha')});
 // f(7000, function(){card.setCategory('Weird')});
-// f(4000, function(){card.setAttackText('3')});
+// f(4000, function(){
+//     card.image.x = 150;
+//     card.image.y=150;
+//     card.image.scale.set(0.7);
+//
+//     card.image.pivot.set(0,0);
+//     card.image.rotation=Math.PI/4;
+//     card.container.scale.set(2);
+// });
 
 //card.setImage(PIXI.Texture.fromImage('https://i.kinja-img.com/gawker-media/image/upload/t_original/bz5twwesa9fddyiljthz.jpg'));
 
