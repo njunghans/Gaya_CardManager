@@ -1,6 +1,5 @@
-
 class CardView {
-    constructor(baseWidth=400) {
+    constructor(baseWidth = 400) {
         this.initializeCard(baseWidth)
     }
 
@@ -63,7 +62,7 @@ class CardView {
         //this.image.width = 480;
         //this.image.height = 500;
 
-        this.imageCrop = new PIXI.Rectangle(0,0,baseWidth / 1.313,baseWidth / 1.26);
+        this.imageCrop = new PIXI.Rectangle(0, 0, baseWidth / 1.313, baseWidth / 1.26);
         this.imageRotation = -Math.PI / 2;
 
         let titleStyle = new PIXI.TextStyle({
@@ -160,8 +159,8 @@ class CardView {
         this.setDefense(PIXI.Texture.fromImage('/data/DefenseIcon.png'));
 
         this.container = new PIXI.Container();
-        this.container.filterArea= new PIXI.Rectangle(baseWidth / 7.88,baseWidth / 7.7,baseWidth / 1.31,baseWidth / 1.26);
-        this.container.filters=[new PIXI.filters.AlphaFilter()];
+        this.container.filterArea = new PIXI.Rectangle(baseWidth / 7.88, baseWidth / 7.7, baseWidth / 1.31, baseWidth / 1.26);
+        this.container.filters = [new PIXI.filters.AlphaFilter()];
         this.container.addChild(this.image);
 
         this.app.stage.addChild(this.container);
@@ -189,36 +188,41 @@ class CardView {
         //this.setDefense(PIXI.Texture.fromImage('/data/DefenseIcon.png'));
     }
 
-    setTitle(txt){
-        this.title.text=txt;
+    setTitle(txt) {
+        this.title.text = txt;
     }
-    setCategory(txt){
-        this.category.text=txt;
-    }
-    setInfo(txt){
-        this.info.text=txt;
-    }
-    setGoldText(txt){
-        this.goldText.text=txt;
-    }
-    setAttackText(txt){
-        this.attackText.text=txt;
 
-        if(txt.length && txt!='0'){
+    setCategory(txt) {
+        this.category.text = txt;
+    }
 
-            this.attack.visible=true;
-        }else{
-            this.attackText.text='';
+    setInfo(txt) {
+        this.info.text = txt;
+    }
+
+    setGoldText(txt) {
+        this.goldText.text = txt;
+    }
+
+    setAttackText(txt) {
+        this.attackText.text = txt;
+
+        if (txt.length && txt != '0') {
+
+            this.attack.visible = true;
+        } else {
+            this.attackText.text = '';
             this.attack.visible = false;
         }
     }
-    setDefenseText(txt){
-        this.defenseText.text=txt;
-        if(txt.length && txt!='0'){
-            this.defense.visible=true;
-        }else{
-            this.defenseText.text='';
-            this.defense.visible=false;
+
+    setDefenseText(txt) {
+        this.defenseText.text = txt;
+        if (txt.length && txt != '0') {
+            this.defense.visible = true;
+        } else {
+            this.defenseText.text = '';
+            this.defense.visible = false;
         }
     }
 
@@ -272,16 +276,17 @@ class CardView {
     }
 
 }
+
 const card = new CardView();
 document.getElementById('render-view').appendChild(card.app.view);
 let name = document.getElementsByName("name")[0];
 card.setTitle(name.value);
 let card_type = document.getElementsByName("card_type")[0];
 let category_text = document.getElementsByName("category_text")[0];
-card.setCategory(card_type.value + ', '+category_text.value);
-let rarity =  document.getElementsByName("rarity")[0];
+card.setCategory(card_type.value + ', ' + category_text.value);
+let rarity = document.getElementsByName("rarity")[0];
 card.setRarity(rarity.selectedIndex);
-let cost_gold =  document.getElementsByName("cost_gold")[0];
+let cost_gold = document.getElementsByName("cost_gold")[0];
 card.setGoldText(cost_gold.value);
 let image_path = document.getElementsByName("image_path")[0];
 card.setImage(PIXI.Texture.fromImage(image_path.value));
@@ -290,14 +295,30 @@ card.setAttackText(attack.value);
 let shield = document.getElementsByName("shield")[0];
 card.setDefenseText(shield.value);
 
-name.addEventListener('input', () => {card.setTitle(name.value)});
-card_type.addEventListener('change', () => {card.setCategory(card_type.value + ', '+category_text.value)});
-category_text.addEventListener('input', () => {card.setCategory(card_type.value + ', '+category_text.value)});
-rarity.addEventListener('change', () => {card.setRarity(rarity.selectedIndex)});
-cost_gold.addEventListener('input', () => {card.setGoldText(cost_gold.value)});
-image_path.addEventListener('input', () => {card.setImage(PIXI.Texture.fromImage(image_path.value))});
-attack.addEventListener('input', () => {card.setAttackText(attack.value)});
-shield.addEventListener('input', () => {card.setDefenseText(shield.value)});
+name.addEventListener('input', () => {
+    card.setTitle(name.value)
+});
+card_type.addEventListener('change', () => {
+    card.setCategory(card_type.value + ', ' + category_text.value)
+});
+category_text.addEventListener('input', () => {
+    card.setCategory(card_type.value + ', ' + category_text.value)
+});
+rarity.addEventListener('change', () => {
+    card.setRarity(rarity.selectedIndex)
+});
+cost_gold.addEventListener('input', () => {
+    card.setGoldText(cost_gold.value)
+});
+image_path.addEventListener('input', () => {
+    card.setImage(PIXI.Texture.fromImage(image_path.value))
+});
+attack.addEventListener('input', () => {
+    card.setAttackText(attack.value)
+});
+shield.addEventListener('input', () => {
+    card.setDefenseText(shield.value)
+});
 
 // const card = new CardView();
 // console.log(document.getElementById('render-view'));
