@@ -1,30 +1,68 @@
 class CardView {
     constructor(baseWidth = 400) {
-        this.initializeCard(baseWidth)
-    }
 
-    setWidth(baseWidth) {
-        this.initializeCard(baseWidth)
-    }
-
-    initializeCard(baseWidth) {
         this.app = new PIXI.Application({width: baseWidth, height: baseWidth / 0.7159, transparent: true});
-
         this.frame = new PIXI.Sprite();
+        this.rarityStone = new PIXI.Sprite();
+        this.gold = new PIXI.Sprite();
+        this.attack = new PIXI.Sprite();
+        this.image = new PIXI.Sprite();
+        this.defense = new PIXI.Sprite();
+
+        this.title = new PIXI.Text("");
+        this.category = new PIXI.Text("");
+        this.info = new PIXI.Text("");
+        this.goldText = new PIXI.Text("");
+        this.attackText = new PIXI.Text("");
+        this.defenseText = new PIXI.Text("");
+
+        this.container = new PIXI.Container();
+
+        this.setAttack(PIXI.Texture.fromImage('/data/AttackIcon.png'));
+        this.setDefense(PIXI.Texture.fromImage('/data/DefenseIcon.png'));
+
+
+        this.container.addChild(this.image);
+        this.container.filters = [new PIXI.filters.AlphaFilter()];
+
+        this.setFrame(PIXI.Texture.fromImage("/data/Frame.png"));
+
+        this.setGold(PIXI.Texture.fromImage('/data/Gold.png'));
+
+        this.app.stage.addChild(this.container);
+
+        this.app.stage.addChild(this.frame);
+        this.app.stage.addChild(this.rarityStone);
+        this.app.stage.addChild(this.gold);
+        this.app.stage.addChild(this.attack);
+        this.app.stage.addChild(this.defense);
+        this.app.stage.addChild(this.title);
+        this.app.stage.addChild(this.category);
+        this.app.stage.addChild(this.info);
+        this.app.stage.addChild(this.attackText);
+        this.app.stage.addChild(this.defenseText);
+        this.app.stage.addChild(this.goldText);
+
+        this.setBaseWidth(baseWidth)
+    }
+
+    setBaseWidth(baseWidth) {
+
+        this.app.width=baseWidth;
+        this.app.height= baseWidth / 0.7159;
+
         this.frame.width = baseWidth;
         this.frame.height = baseWidth / 0.7159;
 
         this.frame.x = 0;
         this.frame.y = 0;
 
-        this.rarityStone = new PIXI.Sprite();
 
         this.rarityStone.width = baseWidth / 7.875;
         this.rarityStone.height = baseWidth / 9;
         this.rarityStone.x = baseWidth / 8.4;
         this.rarityStone.y = baseWidth / 1.1667;
 
-        this.gold = new PIXI.Sprite();
 
         this.gold.width = baseWidth / 6.848;
         this.gold.height = baseWidth / 6.848;
@@ -33,7 +71,6 @@ class CardView {
         this.gold.x = baseWidth / 1.117;
         this.gold.y = baseWidth / 8.873;
 
-        this.attack = new PIXI.Sprite();
 
         this.attack.x = baseWidth / 11;
         this.attack.y = baseWidth / 0.78;
@@ -42,7 +79,6 @@ class CardView {
         this.attack.anchor.x = 0.5;
         this.attack.anchor.y = 0.5;
 
-        this.defense = new PIXI.Sprite();
 
         this.defense.x = baseWidth / 1.1;
         this.defense.y = baseWidth / 0.77;
@@ -51,19 +87,6 @@ class CardView {
         this.defense.anchor.x = 0.5;
         this.defense.anchor.y = 0.5;
 
-
-        this.image = new PIXI.Sprite();
-        // this.image.filterArea= new PIXI.Rectangle(80,82,480,500);
-        // this.image.filters=[new PIXI.filters.AlphaFilter()];
-        //this.image.anchor.x = 0;
-        //this.image.anchor.y = 0;
-        //this.image.x = 80;
-        //this.image.y = 82;
-        //this.image.width = 480;
-        //this.image.height = 500;
-
-        this.imageCrop = new PIXI.Rectangle(0, 0, baseWidth / 1.313, baseWidth / 1.26);
-        this.imageRotation = -Math.PI / 2;
 
         let titleStyle = new PIXI.TextStyle({
             fontFamily: "Arial",
@@ -102,14 +125,14 @@ class CardView {
             dropShadowDistance: 6
         });
 
-        this.title = new PIXI.Text("", titleStyle);
+        this.title.setStyle(titleStyle);
 
         this.title.x = baseWidth / 2.35;
         this.title.y = baseWidth / 6.5;
         this.title.anchor.x = 0.5;
         this.title.anchor.y = 0.5;
 
-        this.category = new PIXI.Text("", categoryStyle);
+        this.category.setStyle(categoryStyle);
 
         this.category.x = baseWidth / 1.56;
         this.category.y = baseWidth / 1.1;
@@ -117,7 +140,8 @@ class CardView {
         this.category.anchor.y = 0.5;
 
 
-        this.info = new PIXI.Text("", infoStyle);
+        this.info.setStyle(infoStyle);
+
         this.info.rotation = Math.PI / 2;
         this.info.x = baseWidth / 17;
         this.info.y = baseWidth / 7.5;
@@ -135,55 +159,30 @@ class CardView {
             dropShadowAngle: Math.PI / 6,
             dropShadowDistance: 6
         });
-        this.goldText = new PIXI.Text("", goldStyle);
-
+        this.goldText.setStyle(goldStyle);
         this.goldText.x = baseWidth / 1.12;
         this.goldText.y = baseWidth / 8.87;
         this.goldText.anchor.x = 0.5;
         this.goldText.anchor.y = 0.5;
 
-        this.attackText = new PIXI.Text("", goldStyle);
-
-        this.attackText.x = baseWidth / 1.1;
+        this.attackText.setStyle(goldStyle);
+        this.attackText.x = baseWidth / 11;
         this.attackText.y = baseWidth / 0.78;
         this.attackText.anchor.x = 0.5;
         this.attackText.anchor.y = 0.5;
-        this.setAttack(PIXI.Texture.fromImage('/data/AttackIcon.png'));
 
-        this.defenseText = new PIXI.Text("", goldStyle);
-
+        this.defenseText.setStyle(goldStyle);
         this.defenseText.x = baseWidth / 1.1;
         this.defenseText.y = baseWidth / 0.78;
         this.defenseText.anchor.x = 0.5;
         this.defenseText.anchor.y = 0.5;
-        this.setDefense(PIXI.Texture.fromImage('/data/DefenseIcon.png'));
 
-        this.container = new PIXI.Container();
         this.container.filterArea = new PIXI.Rectangle(baseWidth / 7.88, baseWidth / 7.7, baseWidth / 1.31, baseWidth / 1.26);
-        this.container.filters = [new PIXI.filters.AlphaFilter()];
-        this.container.addChild(this.image);
 
-        this.app.stage.addChild(this.container);
-
-        this.app.stage.addChild(this.frame);
-        this.app.stage.addChild(this.rarityStone);
-        this.app.stage.addChild(this.gold);
-        this.app.stage.addChild(this.attack);
-        this.app.stage.addChild(this.defense);
-        this.app.stage.addChild(this.title);
-        this.app.stage.addChild(this.category);
-        this.app.stage.addChild(this.info);
-        this.app.stage.addChild(this.attackText);
-        this.app.stage.addChild(this.defenseText);
-        this.app.stage.addChild(this.goldText);
 
         //Setting Default Values
 
-        this.setFrame(PIXI.Texture.fromImage("/data/Frame.png"));
 
-        //this.setRarity(1);
-
-        this.setGold(PIXI.Texture.fromImage('/data/Gold.png'));
 
         //this.setDefense(PIXI.Texture.fromImage('/data/DefenseIcon.png'));
     }
