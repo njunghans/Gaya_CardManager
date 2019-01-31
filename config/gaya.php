@@ -10,11 +10,11 @@ return [
 
     'drop_downs' => [
         'card_types' => [
-            'commander' => 'Commander',
-            'base' => 'Base',
-            'building' => 'Building',
-            'construct' => 'Construct',
-            'action' => 'Action'
+            'Commander' => 'Commander',
+            'Base' => 'Base',
+            'Building' => 'Building',
+            'Construct' => 'Construct',
+            'Action' => 'Action'
         ],
 
         'premium_effects' => [
