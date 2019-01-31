@@ -1,46 +1,54 @@
 
 class CardView {
-    constructor() {
-        this.app = new PIXI.Application({width: 630, height: 880, transparent: true});
+    constructor(baseWidth=400) {
+        this.initializeCard(baseWidth)
+    }
+
+    setWidth(baseWidth) {
+        this.initializeCard(baseWidth)
+    }
+
+    initializeCard(baseWidth) {
+        this.app = new PIXI.Application({width: baseWidth, height: baseWidth / 0.7159, transparent: true});
 
         this.frame = new PIXI.Sprite();
-        this.frame.width = 630;
-        this.frame.height = 880;
+        this.frame.width = baseWidth;
+        this.frame.height = baseWidth / 0.7159;
 
         this.frame.x = 0;
         this.frame.y = 0;
 
         this.rarityStone = new PIXI.Sprite();
 
-        this.rarityStone.width = 80;
-        this.rarityStone.height = 70;
-        this.rarityStone.x = 75;
-        this.rarityStone.y = 540;
+        this.rarityStone.width = baseWidth / 7.875;
+        this.rarityStone.height = baseWidth / 9;
+        this.rarityStone.x = baseWidth / 8.4;
+        this.rarityStone.y = baseWidth / 1.1667;
 
         this.gold = new PIXI.Sprite();
 
-        this.gold.width = 230 / 2.5;
-        this.gold.height = 230 / 2.5;
+        this.gold.width = baseWidth / 6.848;
+        this.gold.height = baseWidth / 6.848;
         this.gold.anchor.x = 0.5;
         this.gold.anchor.y = 0.5;
-        this.gold.x = 564;
-        this.gold.y = 71;
+        this.gold.x = baseWidth / 1.117;
+        this.gold.y = baseWidth / 8.873;
 
         this.attack = new PIXI.Sprite();
 
-        this.attack.x = 57;
-        this.attack.y = 808;
-        this.attack.width = 260 / 2.5;
-        this.attack.height = 290 / 2.5;
+        this.attack.x = baseWidth / 11;
+        this.attack.y = baseWidth / 0.78;
+        this.attack.width = baseWidth / 6.06;
+        this.attack.height = baseWidth / 5.43;
         this.attack.anchor.x = 0.5;
         this.attack.anchor.y = 0.5;
 
         this.defense = new PIXI.Sprite();
 
-        this.defense.x = 570;
-        this.defense.y = 818;
-        this.defense.width = 230 / 2.5;
-        this.defense.height = 270 / 2.5;
+        this.defense.x = baseWidth / 1.1;
+        this.defense.y = baseWidth / 0.77;
+        this.defense.width = baseWidth / 6.85;
+        this.defense.height = baseWidth / 5.833;
         this.defense.anchor.x = 0.5;
         this.defense.anchor.y = 0.5;
 
@@ -55,7 +63,7 @@ class CardView {
         //this.image.width = 480;
         //this.image.height = 500;
 
-        this.imageCrop = new PIXI.Rectangle(0,0,480,500);
+        this.imageCrop = new PIXI.Rectangle(0,0,baseWidth / 1.313,baseWidth / 1.26);
         this.imageRotation = -Math.PI / 2;
 
         let titleStyle = new PIXI.TextStyle({
@@ -97,23 +105,23 @@ class CardView {
 
         this.title = new PIXI.Text("", titleStyle);
 
-        this.title.x = 268;
-        this.title.y = 97;
+        this.title.x = baseWidth / 2.35;
+        this.title.y = baseWidth / 6.5;
         this.title.anchor.x = 0.5;
         this.title.anchor.y = 0.5;
 
         this.category = new PIXI.Text("", categoryStyle);
 
-        this.category.x = 405;
-        this.category.y = 576;
+        this.category.x = baseWidth / 1.56;
+        this.category.y = baseWidth / 1.1;
         this.category.anchor.x = 0.5;
         this.category.anchor.y = 0.5;
 
 
         this.info = new PIXI.Text("", infoStyle);
         this.info.rotation = Math.PI / 2;
-        this.info.x = 37;
-        this.info.y = 84;
+        this.info.x = baseWidth / 17;
+        this.info.y = baseWidth / 7.5;
 
         let goldStyle = new PIXI.TextStyle({
             fontFamily: "Arial",
@@ -130,29 +138,29 @@ class CardView {
         });
         this.goldText = new PIXI.Text("", goldStyle);
 
-        this.goldText.x = 564;
-        this.goldText.y = 71;
+        this.goldText.x = baseWidth / 1.12;
+        this.goldText.y = baseWidth / 8.87;
         this.goldText.anchor.x = 0.5;
         this.goldText.anchor.y = 0.5;
 
         this.attackText = new PIXI.Text("", goldStyle);
 
-        this.attackText.x = 57;
-        this.attackText.y = 808;
+        this.attackText.x = baseWidth / 1.1;
+        this.attackText.y = baseWidth / 0.78;
         this.attackText.anchor.x = 0.5;
         this.attackText.anchor.y = 0.5;
         this.setAttack(PIXI.Texture.fromImage('/data/AttackIcon.png'));
 
         this.defenseText = new PIXI.Text("", goldStyle);
 
-        this.defenseText.x = 570;
-        this.defenseText.y = 808;
+        this.defenseText.x = baseWidth / 1.1;
+        this.defenseText.y = baseWidth / 0.78;
         this.defenseText.anchor.x = 0.5;
         this.defenseText.anchor.y = 0.5;
         this.setDefense(PIXI.Texture.fromImage('/data/DefenseIcon.png'));
 
         this.container = new PIXI.Container();
-        this.container.filterArea= new PIXI.Rectangle(80,82,480,500);
+        this.container.filterArea= new PIXI.Rectangle(baseWidth / 7.88,baseWidth / 7.7,baseWidth / 1.31,baseWidth / 1.26);
         this.container.filters=[new PIXI.filters.AlphaFilter()];
         this.container.addChild(this.image);
 
@@ -179,7 +187,6 @@ class CardView {
         this.setGold(PIXI.Texture.fromImage('/data/Gold.png'));
 
         //this.setDefense(PIXI.Texture.fromImage('/data/DefenseIcon.png'));
-
     }
 
     setTitle(txt){
