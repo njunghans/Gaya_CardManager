@@ -1,6 +1,6 @@
 class CardView {
-    constructor(baseWidth = 700) {
-        this.drag = false;
+    constructor(baseWidth = 500) {
+
         this.app = new PIXI.Application({width: baseWidth, height: baseWidth / 0.7159, transparent: true});
         this.frame = new PIXI.Sprite();
         this.rarityStone = new PIXI.Sprite();
@@ -288,71 +288,61 @@ class CardView {
         this.image.rotation = obj.rotation;
     }
 
-    setCost(bio = 0, ene = 0, art = 0, neutral = 0, par = 0) {
-        this.costs.forEach(spr => {
+    setCost(c) {
+        let costs = this.sortCosts(c);
+        this.costs.forEach(spr=>{
             this.app.stage.removeChild(spr);
+        }, this);
+        this.costs=[];
+        this.costPos =  this.app.   width/1.32;
+        this.addCostSprites(costs);
+    }
+
+    sortCosts(c) {
+        let costs = [];
+        let neu = {};
+        c.forEach(e=>{
+            let d = {};
+            d.type = e.id;
+            d.cost = e.value;
+            if (d.type === "cost_neutral") {
+                d.texture = this.neu_tex
+            } else if (d.type === "cost_bio") {
+                d.texture = this.bio_tex
+            } else if (d.type === "cost_par") {
+                d.texture = this.par_tex
+            } else if (d.type === "cost_art") {
+                d.texture = this.art_tex
+            } else if (d.type === "cost_ene") {
+                d.texture = this.ene_tex
+            }
+            if (d.type === "cost_neutral") {
+                neu = d
+            } else if (d.type !== "cost_gold") {
+            costs.push(d)
+            }
+        }, this);
+        costs.sort(function(a, b) {
+            return b.cost - a.cost
         });
-        this.costs = [];
-        let pos_x = this.app.width / 1.32;
-        for (let i = 0; i < bio; i++) {
-            let biosprite = new PIXI.Sprite();
-            biosprite.texture = this.bio_tex;
-            biosprite.x = pos_x;
-            biosprite.y = this.app.width / 13.87;
-            biosprite.width = this.app.width / 20.2;
-            biosprite.height = this.app.width / 20.2;
-            pos_x -= this.app.width / 20;
-            this.costs.push(biosprite);
-            this.app.stage.addChild(biosprite);
-        }
+        costs.push(neu);
+        return costs;
+    }
 
-        for (let i = 0; i < ene; i++) {
-            let biosprite = new PIXI.Sprite();
-            biosprite.texture = this.ene_tex;
-            biosprite.x = pos_x;
-            biosprite.y = this.app.width / 13.87;
-            biosprite.width = this.app.width / 20.2;
-            biosprite.height = this.app.width / 20.2;
-            pos_x -= this.app.width / 20;
-            this.costs.push(biosprite);
-            this.app.stage.addChild(biosprite);
-        }
-
-        for (let i = 0; i < par; i++) {
-            let biosprite = new PIXI.Sprite();
-            biosprite.texture = this.par_tex;
-            biosprite.x = pos_x;
-            biosprite.y = this.app.width / 13.87;
-            biosprite.width = this.app.width / 20.2;
-            biosprite.height = this.app.width / 20.2;
-            pos_x -= this.app.width / 20;
-            this.costs.push(biosprite);
-            this.app.stage.addChild(biosprite);
-        }
-
-        for (let i = 0; i < art; i++) {
-            let biosprite = new PIXI.Sprite();
-            biosprite.texture = this.art_tex;
-            biosprite.x = pos_x;
-            biosprite.y = this.app.width / 13.87;
-            biosprite.width = this.app.width / 20.2;
-            biosprite.height = this.app.width / 20.2;
-            pos_x -= this.app.width / 20;
-            this.costs.push(biosprite);
-            this.app.stage.addChild(biosprite);
-        }
-
-        for (let i = 0; i < neutral; i++) {
-            let biosprite = new PIXI.Sprite();
-            biosprite.texture = this.neu_tex;
-            biosprite.x = pos_x;
-            biosprite.y = this.app.width / 13.87;
-            biosprite.width = this.app.width / 20.2;
-            biosprite.height = this.app.width / 20.2;
-            pos_x -= this.app.width / 20;
-            this.costs.push(biosprite);
-            this.app.stage.addChild(biosprite);
-        }
+    addCostSprites(costs) {
+        costs.forEach(c=>{
+            for(let i=0; i<c.cost; i++){
+                let s = new PIXI.Sprite();
+                s.texture = c.texture;
+                s.x = this.costPos;
+                s.y = this.app.width/13.87;
+                s.width=this.app.width/20.2;
+                s.height=this.app.width/20.2;
+                this.costPos -=this.app.width/20;
+                this.costs.push(s);
+                this.app.stage.addChild(s);
+            }
+        }, this);
     }
 }
 
@@ -405,7 +395,7 @@ card.setAttackText(attack.value);
 let shield = document.getElementsByName("shield")[0];
 card.setDefenseText(shield.value);
 let costs = document.querySelectorAll("[name^=cost_]");
-card.setCost(costs[2].value, costs[3].value, costs[4].value, costs[1].value, costs[5].value);
+card.setCost(costs);
 
 name.addEventListener('input', () => {
     card.setTitle(name.value)
@@ -431,10 +421,10 @@ attack.addEventListener('input', () => {
 shield.addEventListener('input', () => {
     card.setDefenseText(shield.value)
 });
-costs.forEach(c => {
-    c.addEventListener('input', () => {
-        card.setCost(costs[2].value, costs[3].value, costs[4].value, costs[1].value, costs[5].value);
-    })
+costs.forEach(c =>{
+    c.addEventListener('input', ()=>{
+        card.setCost(costs);
+    }, this)
 });
 
 // const card = new CardView();
