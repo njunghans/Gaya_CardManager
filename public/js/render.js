@@ -43,7 +43,7 @@ class CardView {
         this.app.stage.addChild(this.defenseText);
         this.app.stage.addChild(this.goldText);
 
-        this.setBaseWidth(baseWidth)
+        this.setBaseWidth(baseWidth);
     }
 
     setBaseWidth(baseWidth) {
@@ -178,13 +178,6 @@ class CardView {
         this.defenseText.anchor.y = 0.5;
 
         this.container.filterArea = new PIXI.Rectangle(baseWidth / 7.88, baseWidth / 7.7, baseWidth / 1.31, baseWidth / 1.26);
-
-
-        //Setting Default Values
-
-
-
-        //this.setDefense(PIXI.Texture.fromImage('/data/DefenseIcon.png'));
     }
 
     setTitle(txt) {
@@ -206,7 +199,7 @@ class CardView {
     setAttackText(txt) {
         this.attackText.text = txt;
 
-        if (txt.length && txt != '0') {
+        if (txt.length && txt !== '0') {
 
             this.attack.visible = true;
         } else {
@@ -217,7 +210,7 @@ class CardView {
 
     setDefenseText(txt) {
         this.defenseText.text = txt;
-        if (txt.length && txt != '0') {
+        if (txt.length && txt !== '0') {
             this.defense.visible = true;
         } else {
             this.defenseText.text = '';
