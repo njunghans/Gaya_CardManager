@@ -140,4 +140,11 @@
     </div>
 </div>
 
+<div class="form-group row">
+    {{ Form::label('image_settings' , 'Image Settings:' , array('class' => 'col-sm-2 control-label')) }}
+    <div class="col-sm-5">
+        {{ Form::text('image_settings' , null , array('class' => 'form-control')) }}
+    </div>
+</div>
+
 

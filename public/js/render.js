@@ -2,6 +2,7 @@ class CardView {
     constructor(baseWidth = 500) {
 
         this.app = new PIXI.Application({width: baseWidth, height: baseWidth / 0.7159, transparent: true});
+
         this.frame = new PIXI.Sprite();
         this.rarityStone = new PIXI.Sprite();
         this.gold = new PIXI.Sprite();
@@ -50,7 +51,6 @@ class CardView {
         this.art_tex = PIXI.Texture.fromImage('/data/ManaCrystalBlack.png');
         this.neu_tex = PIXI.Texture.fromImage('/data/ManaCrystalNeutral.png');
 
-        this.image_settings = JSON.parse('{"x":0,"y":0,"width":0,"height":0,"rotation":0}');
 
         this.setBaseWidth(baseWidth);
     }
@@ -272,36 +272,39 @@ class CardView {
     setImage(texture) {
         PIXI.Texture.removeFromCache(this.image.texture);
         this.image.texture = texture;
-        texture.on('update', () => {
-            this.image_settings.width = this.image.texture.baseTexture.realWidth;
-            this.image_settings.height = this.image.texture.baseTexture.realHeight;
-            this.setImageFrame();
-        });
     }
 
     setImageFrame() {
-        let obj = this.image_settings;
-        this.image.width = obj.width * this.app.width / 630;
-        this.image.height = obj.height * this.app.width / 630;
-        this.image.x = obj.x * this.app.width / 630 + this.image.width * this.image.anchor.x;
-        this.image.y = obj.y * this.app.width / 630 + this.image.height * this.image.anchor.y;
-        this.image.rotation = obj.rotation;
+
+        let image_settings = document.getElementsByName("image_settings")[0];
+        try {
+            let obj = JSON.parse(image_settings.value);
+            this.image.width = obj.width * this.app.width / 630;
+            this.image.height = obj.height * this.app.width / 630;
+            this.image.x = obj.x * this.app.width / 630 + this.image.width * this.image.anchor.x;
+            this.image.y = obj.y * this.app.width / 630 + this.image.height * this.image.anchor.y;
+            this.image.rotation = obj.rotation;
+        } catch (e) {
+
+        }
+
+
     }
 
     setCost(c) {
         let costs = this.sortCosts(c);
-        this.costs.forEach(spr=>{
+        this.costs.forEach(spr => {
             this.app.stage.removeChild(spr);
         }, this);
-        this.costs=[];
-        this.costPos =  this.app.   width/1.32;
+        this.costs = [];
+        this.costPos = this.app.width / 1.32;
         this.addCostSprites(costs);
     }
 
     sortCosts(c) {
         let costs = [];
         let neu = {};
-        c.forEach(e=>{
+        c.forEach(e => {
             let d = {};
             d.type = e.id;
             d.cost = e.value;
@@ -319,10 +322,10 @@ class CardView {
             if (d.type === "cost_neutral") {
                 neu = d
             } else if (d.type !== "cost_gold") {
-            costs.push(d)
+                costs.push(d)
             }
         }, this);
-        costs.sort(function(a, b) {
+        costs.sort(function (a, b) {
             return b.cost - a.cost
         });
         costs.push(neu);
@@ -330,15 +333,15 @@ class CardView {
     }
 
     addCostSprites(costs) {
-        costs.forEach(c=>{
-            for(let i=0; i<c.cost; i++){
+        costs.forEach(c => {
+            for (let i = 0; i < c.cost; i++) {
                 let s = new PIXI.Sprite();
                 s.texture = c.texture;
                 s.x = this.costPos;
-                s.y = this.app.width/13.87;
-                s.width=this.app.width/20.2;
-                s.height=this.app.width/20.2;
-                this.costPos -=this.app.width/20;
+                s.y = this.app.width / 13.87;
+                s.width = this.app.width / 20.2;
+                s.height = this.app.width / 20.2;
+                this.costPos -= this.app.width / 20;
                 this.costs.push(s);
                 this.app.stage.addChild(s);
             }
@@ -349,33 +352,51 @@ class CardView {
 const card = new CardView();
 document.getElementById('render-view').appendChild(card.app.view);
 
+
 card.app.view.addEventListener('wheel', e => {
-    if(e.ctrlKey){
+    try {
+        if (!e.ctrlKey) {
 
-        card.image_settings.width += card.image_settings.width*e.deltaY/360;
-        card.image_settings.height += card.image_settings.height*e.deltaY/360;
-        card.setImageFrame();
-    }else{
+            let obj = JSON.parse(image_settings.value);
+            obj.width += obj.width * e.deltaY / 360;
+            obj.height += obj.height * e.deltaY / 360;
+            image_settings.value = JSON.stringify(obj);
 
-        card.image_settings.rotation += e.deltaY/360;
-        card.setImageFrame();
+            card.setImageFrame();
+        } else {
+            let obj = JSON.parse(image_settings.value);
+            obj.rotation += e.deltaY / 360;
+            image_settings.value = JSON.stringify(obj);
+
+            card.setImageFrame();
+        }
+        e.preventDefault();
+    } catch (e) {
+
     }
-    e.preventDefault();
+
 });
 
-card.app.view.addEventListener('mousedown', e =>{
+card.app.view.addEventListener('mousedown', e => {
     card.drag = true;
 });
 
-card.app.view.addEventListener('mouseup', e =>{
+card.app.view.addEventListener('mouseup', e => {
     card.drag = false;
 });
 
-card.app.view.addEventListener('mousemove', e =>{
-    if(card.drag){
-        card.image_settings.x += e.movementX;
-        card.image_settings.y += e.movementY;
-        card.setImageFrame();
+card.app.view.addEventListener('mousemove', e => {
+    if (card.drag) {
+        try {
+            let obj = JSON.parse(image_settings.value);
+            obj.x += e.movementX;
+            obj.y += e.movementY;
+            image_settings.value = JSON.stringify(obj);
+            card.setImageFrame();
+        } catch (e) {
+
+        }
+
     }
 });
 
@@ -390,6 +411,10 @@ let cost_gold = document.getElementsByName("cost_gold")[0];
 card.setGoldText(cost_gold.value);
 let image_path = document.getElementsByName("image_path")[0];
 card.setImage(PIXI.Texture.fromImage(image_path.value));
+
+let image_settings = document.getElementsByName("image_settings")[0];
+card.setImageFrame();
+
 let attack = document.getElementsByName("attack")[0];
 card.setAttackText(attack.value);
 let shield = document.getElementsByName("shield")[0];
@@ -413,7 +438,18 @@ cost_gold.addEventListener('input', () => {
     card.setGoldText(cost_gold.value)
 });
 image_path.addEventListener('input', () => {
-    card.setImage(PIXI.Texture.fromImage(image_path.value))
+    let texture = PIXI.Texture.fromImage(image_path.value);
+    card.setImage(texture);
+
+    texture.on('update', () => {
+        image_settings.value = '{"x":0,"y":0,"width":'
+            + card.image.texture.baseTexture.realWidth
+            + ',"height":'
+            + card.image.texture.baseTexture.realHeight
+            + ',"rotation":0}';
+        card.setImageFrame();
+    });
+    texture.update();
 });
 attack.addEventListener('input', () => {
     card.setAttackText(attack.value)
@@ -421,8 +457,8 @@ attack.addEventListener('input', () => {
 shield.addEventListener('input', () => {
     card.setDefenseText(shield.value)
 });
-costs.forEach(c =>{
-    c.addEventListener('input', ()=>{
+costs.forEach(c => {
+    c.addEventListener('input', () => {
         card.setCost(costs);
     }, this)
 });
