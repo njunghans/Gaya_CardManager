@@ -32,7 +32,7 @@ $factory->define(gaya\Card::class, function (Faker $faker) {
         'rarity' => rand_entry('rarities'),
         'layout' => rand_entry('layouts'),
         'artist_id' => rand(1, config('seeding.numbers.default')),
-        'image_path' => str_random(),
+        'image_path' => config('gaya.image_base_path').uniqid(),
         'image_settings' => str_random()
 
     ];
