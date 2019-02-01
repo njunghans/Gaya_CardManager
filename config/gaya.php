@@ -7,7 +7,7 @@
  */
 
 return [
-    'image_base_path' => "files/card_images/",
+    'image_base_path' => "/files/card_images/",
     'drop_downs' => [
         'card_types' => [
             'Commander' => 'Commander',
