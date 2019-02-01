@@ -7,7 +7,7 @@
 @section('cards.content')
     <div class="flex-center position-ref">
         @include('cards.live_render')
-        {{ Form::open(['method' => 'POST' , 'class'=>'form-horizontal' , 'route' => ['cards.store']]) }}
+        {{ Form::open(['method' => 'POST' , 'enctype' => 'multipart/form-data', 'class'=>'form-horizontal' , 'route' => ['cards.store']]) }}
 
         @include('forms.card')
         <div class="form-group">

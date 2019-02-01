@@ -133,4 +133,11 @@
     </div>
 </div>
 
+<div class="form-group row">
+    {{ Form::label('card_image' , 'Upload Card Image:' , array('class' => 'col-sm-2 control-label')) }}
+    <div class="col-sm-5">
+        {{ Form::file('card_image', array('class' => '')) }}
+    </div>
+</div>
+
 
