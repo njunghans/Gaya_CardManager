@@ -43,7 +43,7 @@ class CardController extends Controller
     {
         $card = Card::find($cardId);
         $card->fill($this->enrich($request))->save();
-        return redirect()->route('cards.index');
+        return redirect()->route('cards.edit', ['cardId' => $cardId]);
     }
 
     protected function enrich(Request $request)
