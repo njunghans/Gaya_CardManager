@@ -32,8 +32,8 @@ $factory->define(gaya\Card::class, function (Faker $faker) {
         'rarity' => rand_entry('rarities'),
         'layout' => rand_entry('layouts'),
         'artist_id' => rand(1, config('seeding.numbers.default')),
-        'image_path' => config('gaya.image_base_path').uniqid(),
-        'image_settings' => str_random()
+        'image_path' => config('gaya.image_base_path')."5c54628ee3909.png",
+        'image_settings' => "{\"x\":-86,\"y\":-143,\"width\":1920,\"height\":1080,\"rotation\":0}"
 
     ];
 });

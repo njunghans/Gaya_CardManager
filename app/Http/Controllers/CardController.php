@@ -51,17 +51,25 @@ class CardController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('card_image')) {
-            $image = $request->file('card_image');
-            $imageName = uniqid().'.'.$image->getClientOriginalExtension();
-            $image->move(public_path(config('gaya.image_base_path')), $imageName);
-            $data['image_path'] = config('gaya.image_base_path').$imageName;
+            $data['image_path'] = $this->processImage($request);
         }
-
         $data['user_id'] = Auth::id();
         $data['official'] = false;
         $data['edition_id'] = 1;
         unset($data['card_image']);
 
         return $data;
+    }
+
+    public function uploadImage(Request $request) {
+        return $this->processImage($request);
+    }
+
+    protected function processImage(Request $request) {
+        $image = $request->file('card_image');
+        $imageName = uniqid() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path(config('gaya.image_base_path')), $imageName);
+        return config('gaya.image_base_path') . $imageName;
+
     }
 }

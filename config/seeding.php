@@ -7,8 +7,8 @@
  */
 return [
     "numbers" => [
-        "default" => 200,
-        "sets" => 10,
-        "cardsInSets" => 2000,
+        "default" => 100,
+        "sets" => 3,
+        "cardsInSets" => 300,
     ]
 ];
