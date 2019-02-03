@@ -20,4 +20,6 @@ require('bootstrap-confirmation');
 require('jquery-ui');
 require('popper.js');
 require('pixi.js');
+require('pixi-multistyle-text');
+require('webfont');
 console.log('main');

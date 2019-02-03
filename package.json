@@ -24,6 +24,8 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "pixi.js": "^4.8.2"
+        "pixi-multistyle-text": "^0.7.0",
+        "pixi.js": "^4.8.2",
+        "webfont": "^8.2.1"
     }
 }
