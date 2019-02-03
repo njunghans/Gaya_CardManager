@@ -21,5 +21,7 @@ require('jquery-ui');
 require('popper.js');
 require('pixi.js');
 require('pixi-multistyle-text');
-require('webfont');
+require('svg2ttf');
+require('require.js');
+require('require');
 console.log('main');
