@@ -8,6 +8,8 @@
 
 return [
     'image_base_path' => "/files/card_images/",
+    'icon_base_path' => "/files/icons/",
+    'font_base_path' => "/files/icons/",
     'drop_downs' => [
         'card_types' => [
             'Commander' => 'Commander',
