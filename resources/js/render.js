@@ -134,14 +134,14 @@ class CardView {
             dropShadowDistance: 6
         });
 
-        this.title.setStyle(titleStyle);
+        this.title.style = titleStyle;
 
         this.title.x = baseWidth / 2.35;
         this.title.y = baseWidth / 6.5;
         this.title.anchor.x = 0.5;
         this.title.anchor.y = 0.5;
 
-        this.category.setStyle(categoryStyle);
+        this.category.style = categoryStyle;
 
         this.category.x = baseWidth / 1.56;
         this.category.y = baseWidth / 1.1;
@@ -149,7 +149,7 @@ class CardView {
         this.category.anchor.y = 0.5;
 
 
-        this.info.setStyle(infoStyle);
+        this.info.style = infoStyle;
 
         this.info.rotation = Math.PI / 2;
         this.info.x = baseWidth / 17;
@@ -168,19 +168,19 @@ class CardView {
             dropShadowAngle: Math.PI / 6,
             dropShadowDistance: 6
         });
-        this.goldText.setStyle(goldStyle);
+        this.goldText.style = goldStyle;
         this.goldText.x = baseWidth / 1.12;
         this.goldText.y = baseWidth / 8.87;
         this.goldText.anchor.x = 0.5;
         this.goldText.anchor.y = 0.5;
 
-        this.attackText.setStyle(goldStyle);
+        this.attackText.style = goldStyle;
         this.attackText.x = baseWidth / 11;
         this.attackText.y = baseWidth / 0.78;
         this.attackText.anchor.x = 0.5;
         this.attackText.anchor.y = 0.5;
 
-        this.defenseText.setStyle(goldStyle);
+        this.defenseText.style = goldStyle;
         this.defenseText.x = baseWidth / 1.1;
         this.defenseText.y = baseWidth / 0.78;
         this.defenseText.anchor.x = 0.5;
@@ -194,10 +194,12 @@ class CardView {
 
     setTitle(txt) {
         this.title.text = txt;
+        this.title.style = setFontStyle(txt, this.title.style, 200)
     }
 
     setCategory(txt) {
         this.category.text = txt;
+        this.category.style = setFontStyle(txt, this.category.style, 200)
     }
 
     setInfo(txt) {
@@ -375,6 +377,9 @@ card.app.view.addEventListener('wheel', e => {
 
     }
 
+
+
+
 });
 
 card.app.view.addEventListener('mousedown', e => {
@@ -462,3 +467,22 @@ costs.forEach(c => {
         card.setCost(costs);
     }, this)
 });
+
+function setFontStyle(text, style, maxWidth, maxFontSize=40, minFontSize=18, align = "center") {
+    style.fontSize = maxFontSize;
+    style.wordWrap = false;
+    style.align = align;
+    let width = PIXI.TextMetrics.measureText(text, style).width;
+    while (width > maxWidth && style.fontSize > minFontSize) {
+        style.fontSize -= 1;
+        width = PIXI.TextMetrics.measureText(text, style).width;
+        if (width > maxWidth && style.fontSize === minFontSize) {
+            console.log(width, style.fontSize);
+            style.wordWrap = true;
+            style.breakWords =  true;
+            style.wordWrapWidth = maxWidth;
+            width = PIXI.TextMetrics.measureText(text, style).width;
+        }
+    }
+    return style
+}
