@@ -476,13 +476,11 @@ function setFontStyle(text, style, maxWidth, maxFontSize=40, minFontSize=18, ali
     while (width > maxWidth && style.fontSize > minFontSize) {
         style.fontSize -= 1;
         width = PIXI.TextMetrics.measureText(text, style).width;
-        if (width > maxWidth && style.fontSize === minFontSize) {
-            console.log(width, style.fontSize);
-            style.wordWrap = true;
-            style.breakWords =  true;
-            style.wordWrapWidth = maxWidth;
-            width = PIXI.TextMetrics.measureText(text, style).width;
-        }
+    }
+    if (width > maxWidth && style.fontSize === minFontSize) {
+        style.wordWrap = true;
+        style.breakWords =  true;
+        style.wordWrapWidth = maxWidth;
     }
     return style
 }
