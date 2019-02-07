@@ -11,13 +11,15 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .js('resources/js/render.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
-
-mix.webpackConfig({
-    node: {
-        fs: 'empty'
-    }
-});
+mix.setPublicPath('public')
+    .js('resources/js/app.js', 'js')
+    .js('resources/js/render.js', 'js')
+    .sass('resources/sass/app.scss', 'css')
+    .sass('resources/sass/basic.scss', 'css')
+    .webpackConfig({
+        node: {
+            fs: 'empty'
+        }
+    })
+    .sourceMaps();
 

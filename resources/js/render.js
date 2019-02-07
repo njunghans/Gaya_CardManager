@@ -378,8 +378,6 @@ card.app.view.addEventListener('wheel', e => {
     }
 
 
-
-
 });
 
 card.app.view.addEventListener('mousedown', e => {
@@ -468,7 +466,7 @@ costs.forEach(c => {
     }, this)
 });
 
-function setFontStyle(text, style, maxWidth, maxFontSize=40, minFontSize=18, align = "center") {
+function setFontStyle(text, style, maxWidth, maxFontSize = 40, minFontSize = 18, align = "center") {
     style.fontSize = maxFontSize;
     style.wordWrap = false;
     style.align = align;
@@ -479,7 +477,7 @@ function setFontStyle(text, style, maxWidth, maxFontSize=40, minFontSize=18, ali
     }
     if (width > maxWidth && style.fontSize === minFontSize) {
         style.wordWrap = true;
-        style.breakWords =  true;
+        style.breakWords = true;
         style.wordWrapWidth = maxWidth;
     }
     return style

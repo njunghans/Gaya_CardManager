@@ -20,4 +20,3 @@ require('bootstrap-confirmation');
 require('jquery-ui');
 require('popper.js');
 require('pixi.js');
-console.log('main');
