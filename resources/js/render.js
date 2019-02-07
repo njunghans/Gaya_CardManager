@@ -19,8 +19,8 @@ class CardView {
 
         this.container = new PIXI.Container();
 
-        this.setAttack(PIXI.Texture.fromImage('/data/AttackIcon.png'));
-        this.setDefense(PIXI.Texture.fromImage('/data/DefenseIcon.png'));
+        this.setAttackSymbol(PIXI.Texture.fromImage('/data/AttackIcon.png'));
+        this.setDefenseSymbol(PIXI.Texture.fromImage('/data/DefenseIcon.png'));
 
 
         this.container.addChild(this.image);
@@ -28,7 +28,7 @@ class CardView {
 
         this.setFrame(PIXI.Texture.fromImage("/data/Frame.png"));
 
-        this.setGold(PIXI.Texture.fromImage('/data/Gold.png'));
+        this.setGoldSymbol(PIXI.Texture.fromImage('/data/Gold.png'));
 
         this.app.stage.addChild(this.container);
 
@@ -52,10 +52,48 @@ class CardView {
         this.neu_tex = PIXI.Texture.fromImage('/data/ManaCrystalNeutral.png');
 
 
-        this.setBaseWidth(baseWidth);
+        this.setWidths(baseWidth);
+        this.setStyles();
+        this.setImageFrame();
     }
 
-    setBaseWidth(baseWidth) {
+    setStyles() {
+        let base = {
+            fontFamily: "Arial",
+            fontSize: 36,
+            fontWeight: "normal",
+            fill: "white",
+            stroke: 'black',
+            strokeThickness: 4,
+            dropShadow: false,
+            dropShadowColor: "#000000",
+            dropShadowBlur: 4,
+            dropShadowAngle: Math.PI / 6,
+            dropShadowDistance: 6
+        };
+
+        this.title.style = new PIXI.TextStyle(base);
+
+        let category = jQuery.extend({}, base);
+        category.fontSize = 26;
+        this.category.style = new PIXI.TextStyle(category);
+
+        let info = jQuery.extend({}, base);
+        info.fill = "grey";
+        info.stroke = "grey";
+        info.fontSize = 18;
+        info.strokeThickness = 0;
+        this.info.style = new PIXI.TextStyle(info);
+
+        let stat = jQuery.extend({}, base);
+        stat.fontWeight = "bold";
+
+        this.goldText.style = new PIXI.TextStyle(stat);
+        this.attackText.style = new PIXI.TextStyle(stat);
+        this.defenseText.style = new PIXI.TextStyle(stat);
+    }
+
+    setWidths(baseWidth) {
 
         this.app.width = baseWidth;
         this.app.height = baseWidth / 0.7159;
@@ -66,12 +104,10 @@ class CardView {
         this.frame.x = 0;
         this.frame.y = 0;
 
-
         this.rarityStone.width = baseWidth / 7.875;
         this.rarityStone.height = baseWidth / 9;
         this.rarityStone.x = baseWidth / 8.4;
         this.rarityStone.y = baseWidth / 1.1667;
-
 
         this.gold.width = baseWidth / 6.848;
         this.gold.height = baseWidth / 6.848;
@@ -80,14 +116,12 @@ class CardView {
         this.gold.x = baseWidth / 1.117;
         this.gold.y = baseWidth / 8.873;
 
-
         this.attack.x = baseWidth / 11;
         this.attack.y = baseWidth / 0.78;
         this.attack.width = baseWidth / 6.06;
         this.attack.height = baseWidth / 5.43;
         this.attack.anchor.x = 0.5;
         this.attack.anchor.y = 0.5;
-
 
         this.defense.x = baseWidth / 1.1;
         this.defense.y = baseWidth / 0.77;
@@ -96,100 +130,36 @@ class CardView {
         this.defense.anchor.x = 0.5;
         this.defense.anchor.y = 0.5;
 
-
-        let titleStyle = new PIXI.TextStyle({
-            fontFamily: "Arial",
-            fontSize: 36,
-            fill: "white",
-            stroke: 'black',
-            strokeThickness: 4,
-            dropShadow: false,
-            dropShadowColor: "#000000",
-            dropShadowBlur: 4,
-            dropShadowAngle: Math.PI / 6,
-            dropShadowDistance: 6
-        });
-        let categoryStyle = new PIXI.TextStyle({
-            fontFamily: "Arial",
-            fontSize: 28,
-            fill: "white",
-            stroke: 'black',
-            strokeThickness: 4,
-            dropShadow: false,
-            dropShadowColor: "#000000",
-            dropShadowBlur: 4,
-            dropShadowAngle: Math.PI / 6,
-            dropShadowDistance: 6
-        });
-        let infoStyle = new PIXI.TextStyle({
-            fontFamily: "Arial",
-            fontSize: 18,
-            fill: "grey",
-            stroke: 'grey',
-            strokeThickness: 0,
-            dropShadow: false,
-            dropShadowColor: "#000000",
-            dropShadowBlur: 4,
-            dropShadowAngle: Math.PI / 6,
-            dropShadowDistance: 6
-        });
-
-        this.title.style = titleStyle;
-
         this.title.x = baseWidth / 2.35;
         this.title.y = baseWidth / 6.5;
         this.title.anchor.x = 0.5;
         this.title.anchor.y = 0.5;
-
-        this.category.style = categoryStyle;
 
         this.category.x = baseWidth / 1.56;
         this.category.y = baseWidth / 1.1;
         this.category.anchor.x = 0.5;
         this.category.anchor.y = 0.5;
 
-
-        this.info.style = infoStyle;
-
         this.info.rotation = Math.PI / 2;
         this.info.x = baseWidth / 17;
         this.info.y = baseWidth / 7.5;
 
-        let goldStyle = new PIXI.TextStyle({
-            fontFamily: "Arial",
-            fontSize: 36,
-            fontWeight: 'bold',
-            fill: "white",
-            stroke: 'black',
-            strokeThickness: 4,
-            dropShadow: false,
-            dropShadowColor: "#000000",
-            dropShadowBlur: 4,
-            dropShadowAngle: Math.PI / 6,
-            dropShadowDistance: 6
-        });
-        this.goldText.style = goldStyle;
         this.goldText.x = baseWidth / 1.12;
         this.goldText.y = baseWidth / 8.87;
         this.goldText.anchor.x = 0.5;
         this.goldText.anchor.y = 0.5;
 
-        this.attackText.style = goldStyle;
         this.attackText.x = baseWidth / 11;
         this.attackText.y = baseWidth / 0.78;
         this.attackText.anchor.x = 0.5;
         this.attackText.anchor.y = 0.5;
 
-        this.defenseText.style = goldStyle;
         this.defenseText.x = baseWidth / 1.1;
         this.defenseText.y = baseWidth / 0.78;
         this.defenseText.anchor.x = 0.5;
         this.defenseText.anchor.y = 0.5;
 
-        this.setImageFrame();
-
         this.container.filterArea = new PIXI.Rectangle(baseWidth / 7.88, baseWidth / 7.7, baseWidth / 1.31, baseWidth / 1.26);
-
     }
 
     setTitle(txt) {
@@ -256,17 +226,17 @@ class CardView {
         this.rarityStone.texture = texture;
     }
 
-    setGold(texture) {
+    setGoldSymbol(texture) {
         PIXI.Texture.removeFromCache(this.gold.texture);
         this.gold.texture = texture;
     }
 
-    setAttack(texture) {
+    setAttackSymbol(texture) {
         PIXI.Texture.removeFromCache(this.attack.texture);
         this.attack.texture = texture;
     }
 
-    setDefense(texture) {
+    setDefenseSymbol(texture) {
         PIXI.Texture.removeFromCache(this.defense.texture);
         this.defense.texture = texture;
     }
@@ -277,7 +247,6 @@ class CardView {
     }
 
     setImageFrame() {
-
         let image_settings = document.getElementsByName("image_settings")[0];
         try {
             let obj = JSON.parse(image_settings.value);
@@ -289,8 +258,6 @@ class CardView {
         } catch (e) {
 
         }
-
-
     }
 
     setCost(c) {
