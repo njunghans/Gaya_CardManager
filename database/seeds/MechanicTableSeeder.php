@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CardsInSetsTableSeeder extends Seeder
+class MechanicTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class CardsInSetsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(gaya\CardsInSet::class, config('seeding.numbers.cardsInSets'))->create();
+        factory(gaya\Mechanic::class, 1)->create();
     }
 }

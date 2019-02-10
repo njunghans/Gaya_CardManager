@@ -11,7 +11,6 @@ class CreateMechanicsTable extends Migration
      *
      * @return void
      */
-    public $layouts = ["text", "icon", "both"];
 
     public function up()
     {
@@ -24,7 +23,6 @@ class CreateMechanicsTable extends Migration
 
             $table->string('pattern')->unique();
             $table->boolean('official');
-            $table->enum('layout', $this->layouts);
             $table->string('icon_path')->nullable();
 
             $table->integer('introduced_in_edition')->unsigned()->nullable();
