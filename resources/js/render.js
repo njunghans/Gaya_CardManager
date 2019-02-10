@@ -392,6 +392,30 @@ card.setDefenseText(shield.value);
 let costs = document.querySelectorAll("[name^=cost_]");
 card.setCost(costs);
 
+let upload_image = document.getElementById('card_image');
+console.log(upload_image);
+upload_image.addEventListener('change', () => {
+    var fReader = new FileReader();
+    fReader.readAsDataURL(upload_image.files[0]);
+    fReader.onloadend = function(event){
+        let texture = PIXI.Texture.fromImage(event.target.result);
+        card.setImage(texture);
+
+        texture.on('update', () => {
+            image_settings.value = '{"x":0,"y":0,"width":'
+                + card.image.texture.baseTexture.realWidth
+                + ',"height":'
+                + card.image.texture.baseTexture.realHeight
+                + ',"rotation":0}';
+            card.setImageFrame();
+        });
+        texture.update();
+    }
+
+
+
+});
+
 name.addEventListener('input', () => {
     card.setTitle(name.value)
 });
