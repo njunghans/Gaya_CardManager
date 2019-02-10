@@ -14,12 +14,14 @@ const mix = require('laravel-mix');
 mix.setPublicPath('public')
     .js('resources/js/app.js', 'js')
     .js('resources/js/render.js', 'js')
+    .js('resources/js/backend.js', 'js')
+    .js('resources/js/mechanics.js', 'js')
     .sass('resources/sass/app.scss', 'css')
     .sass('resources/sass/basic.scss', 'css')
     .webpackConfig({
         node: {
             fs: 'empty'
-        }
+        },
     })
     .sourceMaps();
 

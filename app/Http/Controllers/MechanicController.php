@@ -2,18 +2,17 @@
 
 namespace gaya\Http\Controllers;
 
+use gaya\Mechanic;
 use Illuminate\Http\Request;
 
 class MechanicController extends Controller
 {
     //Generate font
 
-    public function createFont(Request $request) {
-        $svgFilePath=$this->saveSvg($request);
-        $fontFilePath = config('gaya.font_base_path') . uniqid() . '.ttf';
-        shell_exec('svg2ttf ' . $svgFilePath . ' ' . $fontFilePath);
-        return $fontFilePath;
+    public function index() {
+        return Mechanic::all();
     }
+
     public function saveSvg(Request $request){
 
         $image = $request->file('icon');

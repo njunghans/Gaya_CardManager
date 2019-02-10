@@ -1,3 +1,5 @@
+Mechanics = require('./mechanics');
+
 class CardView {
     constructor(baseWidth = 500) {
 

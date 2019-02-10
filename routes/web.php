@@ -32,6 +32,7 @@ Route::get('/sets/{setId}/edit', 'SetController@edit')->name('sets.edit')->middl
 Route::patch('/sets/{setId}/edit', 'SetController@update')->name('sets.update')->middleware('auth');
 Route::get('sets/{setId}', 'SetController@view')->name('sets.view')->middleware('auth');
 
+Route::get('/mechanics', 'MechanicController@index')->name('mechanics.index');
 
 
 //
