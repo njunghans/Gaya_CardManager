@@ -1,6 +1,6 @@
 Backend = require('./backend');
 
-class Mechanics extends Backend{
+class Mechanics extends Backend {
 
     constructor() {
         super();
@@ -10,7 +10,6 @@ class Mechanics extends Backend{
     }
 
     setIdentifiers() {
-        console.log("settings identifiers with", this.mechanics);
         let ids = [];
         this.mechanics.forEach(e => {
             ids.push(e.pattern)
@@ -26,7 +25,6 @@ class Mechanics extends Backend{
 
     setMechanics(m) {
         this.mechanics = m;
-        console.log('setting', m)
     }
 
 }
