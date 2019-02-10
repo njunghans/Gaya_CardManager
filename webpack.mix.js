@@ -16,6 +16,8 @@ mix.setPublicPath('public')
     .js('resources/js/render.js', 'js')
     .js('resources/js/backend.js', 'js')
     .js('resources/js/mechanics.js', 'js')
+    .js('resources/js/cardView.js', 'js')
+    .js('resources/js/utils.js', 'js')
     .sass('resources/sass/app.scss', 'css')
     .sass('resources/sass/basic.scss', 'css')
     .webpackConfig({
