@@ -4,7 +4,6 @@
     Cards
 @endsection
 
-@section('content')
-
-    <a href="{{route('cards.create')}}">Create</a>
+@section('menu')
+    @include('cards.nav')
 @endsection

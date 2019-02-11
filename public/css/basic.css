@@ -51,6 +51,10 @@ body {
   margin-bottom: 30px;
 }
 
+.title-menu {
+  margin-bottom: 30px;
+}
+
 #app {
   min-height: 100%;
 }

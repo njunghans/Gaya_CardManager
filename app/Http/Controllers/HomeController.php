@@ -13,12 +13,12 @@ class HomeController extends Controller
 
     public function start()
     {
-        return view('welcome');
+        return view('home.welcome');
     }
 
     public function profile()
     {
         $this->middleware('auth');
-        return view('home');
+        return view('home.profile');
     }
 }

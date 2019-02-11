@@ -4,6 +4,10 @@
     Create a Card
 @endsection
 
+@section('menu')
+    @include('cards.nav')
+@endsection
+
 @section('content')
     <div class="flex-center position-ref">
         @include('cards.live_render')
