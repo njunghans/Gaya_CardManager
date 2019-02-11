@@ -1,10 +1,10 @@
-@extends('sets.layout')
+@extends('layouts.app')
 
-@section('sets.title')
+@section('title')
     Sets
 @endsection
 
-@section('sets.content')
+@section('content')
 
     <a href="{{route('sets.create')}}">Create</a>
 @endsection

@@ -1,10 +1,10 @@
-@extends('cards.layout')
+@extends('layouts.app')
 
-@section('cards.title')
+@section('title')
     Edit a Card
 @endsection
 
-@section('cards.content')
+@section('content')
     <div class="flex-center position-ref">
         @include('cards.live_render')
         {{ Form::model($card, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'class'=>'form-horizontal' , 'route' => ['cards.update' , $card->id]]) }}

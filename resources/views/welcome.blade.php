@@ -1,5 +1,9 @@
-@extends('layouts.master')
+@extends('layouts.app')
+
+@section('title')
+    Gaya
+@endsection
 
 @section('content')
-    <h1>Gaya</h1>
+    Development of Card Game Gaya
 @endsection

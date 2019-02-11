@@ -1,9 +1,9 @@
-@extends('cards.layout')
+@extends('layouts.app')
 
-@section('cards.title')
+@section('title')
     Show Card
 @endsection
 
-@section('cards.content')
-    @include('cards.live_render')
+@section('content')
+    View a card
 @endsection

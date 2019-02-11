@@ -1,10 +1,10 @@
-@extends('sets.layout')
+@extends('layouts.app')
 
-@section('sets.title')
+@section('title')
     Create a Set
 @endsection
 
-@section('sets.content')
+@section('content')
     <div class="flex-center position-ref">
         {{ Form::open(['method' => 'POST' , 'class'=>'form-horizontal' , 'route' => ['sets.store']]) }}
 

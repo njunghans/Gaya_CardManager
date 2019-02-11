@@ -34,6 +34,6 @@ Route::get('sets/{setId}', 'SetController@view')->name('sets.view')->middleware(
 
 Route::get('/mechanics', 'MechanicController@index')->name('mechanics.index');
 
+Auth::routes();
 
-//
-//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@profile')->name('home');
