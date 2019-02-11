@@ -25,20 +25,9 @@
                     <!-- Links -->
                     <h5 class="text-uppercase">Links 1</h5>
 
-                    {{--<ul class="list-unstyled">--}}
-                        {{--<li>--}}
-                            {{--<a href="#!">Link 1</a>--}}
-                        {{--</li>--}}
-                        {{--<li>--}}
-                            {{--<a href="#!">Link 2</a>--}}
-                        {{--</li>--}}
-                        {{--<li>--}}
-                            {{--<a href="#!">Link 3</a>--}}
-                        {{--</li>--}}
-                        {{--<li>--}}
-                            {{--<a href="#!">Link 4</a>--}}
-                        {{--</li>--}}
-                    {{--</ul>--}}
+                    <ul class="list-unstyled">
+                        @include('layouts.nav.bot-left')
+                    </ul>
 
                 </div>
                 <!-- Grid column -->
@@ -49,20 +38,9 @@
                     <!-- Links -->
                     <h5 class="text-uppercase">Links 2</h5>
 
-                    {{--<ul class="list-unstyled">--}}
-                        {{--<li>--}}
-                            {{--<a href="#!">Link 1</a>--}}
-                        {{--</li>--}}
-                        {{--<li>--}}
-                            {{--<a href="#!">Link 2</a>--}}
-                        {{--</li>--}}
-                        {{--<li>--}}
-                            {{--<a href="#!">Link 3</a>--}}
-                        {{--</li>--}}
-                        {{--<li>--}}
-                            {{--<a href="#!">Link 4</a>--}}
-                        {{--</li>--}}
-                    {{--</ul>--}}
+                    <ul class="list-unstyled">
+                        @include('layouts.nav.bot-right')
+                    </ul>
 
                 </div>
                 <!-- Grid column -->
