@@ -53,6 +53,8 @@ card.app.view.addEventListener('mousemove', e => {
     }
 });
 
+let effect = document.getElementsByName("card_effect")[0];
+card.setText(effect.value);
 let name = document.getElementsByName("name")[0];
 card.setTitle(name.value);
 let card_type = document.getElementsByName("card_type")[0];
@@ -138,4 +140,7 @@ costs.forEach(c => {
     c.addEventListener('input', () => {
         card.setCost(costs);
     }, this)
+});
+effect.addEventListener('input', ()=>{
+    card.setText(effect.value);
 });

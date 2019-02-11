@@ -1,7 +1,8 @@
 Utils = require('./utils');
+TextBoxWithIcons = require('./PIXI.TextBoxWithIcons');
 
 class CardView {
-    constructor(baseWidth = 500) {
+    constructor(baseWidth = 640) {
 
         this.app = new PIXI.Application({width: baseWidth, height: baseWidth / 0.7159, transparent: true});
 
@@ -20,6 +21,8 @@ class CardView {
         this.defenseText = new PIXI.Text("");
 
         this.container = new PIXI.Container();
+
+        this.text = new TextBoxWithIcons(new PIXI.Rectangle());
 
         this.setAttackSymbol(PIXI.Texture.fromImage('/data/AttackIcon.png'));
         this.setDefenseSymbol(PIXI.Texture.fromImage('/data/DefenseIcon.png'));
@@ -45,6 +48,7 @@ class CardView {
         this.app.stage.addChild(this.attackText);
         this.app.stage.addChild(this.defenseText);
         this.app.stage.addChild(this.goldText);
+        this.app.stage.addChild(this.text.view);
 
         this.costs = [];
         this.bio_tex = PIXI.Texture.fromImage('/data/ManaCrystalGreen.png');
@@ -54,8 +58,8 @@ class CardView {
         this.neu_tex = PIXI.Texture.fromImage('/data/ManaCrystalNeutral.png');
 
 
-        this.setWidths(baseWidth);
         this.setStyles();
+        this.setWidths(baseWidth);
         this.setImageFrame();
     }
 
@@ -73,6 +77,10 @@ class CardView {
             dropShadowAngle: Math.PI / 6,
             dropShadowDistance: 6
         };
+        this.text.baseStyle = new PIXI.TextStyle(base);
+        this.text.baseStyle.fontSize=22;
+        this.text.baseStyle.strokeThickness=0;
+        this.text.baseStyle.fill="black";
 
         this.title.style = new PIXI.TextStyle(base);
 
@@ -162,6 +170,13 @@ class CardView {
         this.defenseText.anchor.y = 0.5;
 
         this.container.filterArea = new PIXI.Rectangle(baseWidth / 7.88, baseWidth / 7.7, baseWidth / 1.31, baseWidth / 1.26);
+
+        this.text.box = new PIXI.Rectangle(baseWidth/7, baseWidth/1.0, baseWidth/1.33,baseWidth/5);
+        this.text.minFontSize = 12 * baseWidth/640;
+        this.text.maxFontSize = 36 * baseWidth/640;
+        this.text.fontSize = 22 * baseWidth/640;
+
+        this.text.setText(this.text.text);
     }
 
     setTitle(txt) {
@@ -318,6 +333,10 @@ class CardView {
             }
         }, this);
     }
+    setText(txt){
+        this.text.setText(txt);
+    }
 }
+
 
 module.exports = CardView;
