@@ -115,7 +115,7 @@ eval("function _typeof(obj) { if (typeof Symbol === \"function\" && typeof Symbo
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/nino/IdeaProjects/Gaya_CardManager/resources/js/mechanics.js */"./resources/js/mechanics.js");
+module.exports = __webpack_require__(/*! /home/ngrippa/workspace/gaya/resources/js/mechanics.js */"./resources/js/mechanics.js");
 
 
 /***/ })
