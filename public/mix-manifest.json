@@ -4,6 +4,7 @@
     "/css/basic.css": "/css/basic.css",
     "/js/backend.js": "/js/backend.js",
     "/js/cardView.js": "/js/cardView.js",
+    "/js/gallery.js": "/js/gallery.js",
     "/js/mechanics.js": "/js/mechanics.js",
     "/js/render.js": "/js/render.js",
     "/js/utils.js": "/js/utils.js"

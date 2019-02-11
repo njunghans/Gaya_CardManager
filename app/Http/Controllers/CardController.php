@@ -13,6 +13,13 @@ class CardController extends Controller
         return view('cards.index');
     }
 
+    public function getCards()
+    {
+        $cards = Card::all();
+        return $cards;
+
+    }
+
     public function create()
     {
         $dropDowns = config('gaya.drop_downs');

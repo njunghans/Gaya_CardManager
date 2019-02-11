@@ -18,6 +18,7 @@ Route::get('/', 'HomeController@start')->name('start');
 Route::get('/rules', 'HomeController@rules')->name('rules');
 
 Route::get('/cards', 'CardController@index')->name('cards.index');
+Route::get('/getCards', 'CardController@getCards')->name('cards.get');
 Route::get('/cards/create', 'CardController@create')->name('cards.create')->middleware('auth');
 Route::post('/cards/create' , 'CardController@store')->name('cards.store')->middleware('auth');
 Route::get('/cards/{cardId}', 'CardController@show')->name('cards.show');
