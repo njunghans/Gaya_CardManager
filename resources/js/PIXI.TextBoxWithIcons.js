@@ -155,6 +155,7 @@ class TextBoxWithIcons{
             previousLineEnd+=lineHeight;
         }
     }
+
     getTextToWriteUntilTagOrEndline(textToWrite, line){
         if(textToWrite.length>0){
             let i = 0;

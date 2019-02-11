@@ -15,7 +15,7 @@ class SetController extends Controller
 
     public function view($setId)
     {
-        $set = Set::find($setId);
+        $set = Set::findOrFail($setId);
         $cards = $set->getCardsInSet();
         dd($cards);
     }
@@ -28,7 +28,7 @@ class SetController extends Controller
 
     public function edit($setId)
     {
-        $set = Set::find($setId);
+        $set = Set::findOrFail($setId);
         $dropDowns = config('gaya.drop_downs');
         return view('sets.edit', compact('set', 'dropDowns'));
     }
@@ -42,7 +42,7 @@ class SetController extends Controller
 
     public function update(Request $request, $setId)
     {
-        $set = Set::find($setId);
+        $set = Set::findOrFail($setId);
         $data = $request->all();
         $set->fill($this->enrich($data))->save();
         return redirect()->route('sets.index');

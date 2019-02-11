@@ -1,0 +1,1 @@
+<a href={{route('cards.index')}}>Gallery</a>

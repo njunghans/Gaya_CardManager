@@ -1,10 +1,14 @@
-@extends('cards.layout')
+@extends('layouts.app')
 
-@section('cards.title')
+@section('title')
     Create a Card
 @endsection
 
-@section('cards.content')
+@section('menu')
+    @include('cards.nav')
+@endsection
+
+@section('content')
     <div class="flex-center position-ref">
         @include('cards.live_render')
         {{ Form::open(['method' => 'POST' , 'enctype' => 'multipart/form-data', 'class'=>'form-horizontal' , 'route' => ['cards.store']]) }}

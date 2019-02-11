@@ -1,10 +1,10 @@
-@extends('sets.layout')
+@extends('layouts.app')
 
-@section('sets.title')
+@section('title')
     Edit a Set
 @endsection
 
-@section('sets.content')
+@section('content')
     <div class="flex-center position-ref">
         {{ Form::model($set, ['method' => 'PATCH' , 'class'=>'form-horizontal' , 'route' => ['sets.update' , $set->id]]) }}
 

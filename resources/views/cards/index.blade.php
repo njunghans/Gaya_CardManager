@@ -1,10 +1,9 @@
-@extends('cards.layout')
+@extends('layouts.app')
 
-@section('cards.title')
+@section('title')
     Cards
 @endsection
 
-@section('cards.content')
-
-    <a href="{{route('cards.create')}}">Create</a>
+@section('menu')
+    @include('cards.nav')
 @endsection

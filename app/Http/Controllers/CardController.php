@@ -21,14 +21,14 @@ class CardController extends Controller
 
     public function edit($cardId)
     {
-        $card = Card::find($cardId);
+        $card = Card::findOrFail($cardId);
         $dropDowns = config('gaya.drop_downs');
         return view('cards.edit', compact('card', 'dropDowns'));
     }
 
     public function show($cardId)
     {
-        $card = Card::find($cardId);
+        $card = Card::findOrFail($cardId);
         return view('cards.show', compact('card'));
     }
 
@@ -41,9 +41,14 @@ class CardController extends Controller
 
     public function update(Request $request, $cardId)
     {
-        $card = Card::find($cardId);
+        $card = Card::findOrFail($cardId);
         $card->fill($this->enrich($request))->save();
         return redirect()->route('cards.edit', ['cardId' => $cardId]);
+    }
+
+    public function uploadImage(Request $request)
+    {
+        return $this->processImage($request);
     }
 
     protected function enrich(Request $request)
@@ -54,18 +59,15 @@ class CardController extends Controller
             $data['image_path'] = $this->processImage($request);
         }
         $data['user_id'] = Auth::id();
-        $data['official'] = false;
+        $data['official'] = true;
         $data['edition_id'] = 1;
         unset($data['card_image']);
 
         return $data;
     }
 
-    public function uploadImage(Request $request) {
-        return $this->processImage($request);
-    }
-
-    protected function processImage(Request $request) {
+    protected function processImage(Request $request)
+    {
         $image = $request->file('card_image');
         $imageName = uniqid() . '.' . $image->getClientOriginalExtension();
         $image->move(public_path(config('gaya.image_base_path')), $imageName);
