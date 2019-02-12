@@ -44,6 +44,24 @@ html, body {
     margin-bottom: 30px;
 }
 
+.loader {
+    position: fixed;
+    left: 50% - $loader-radius;
+    top: 50% - $loader-radius;
+    z-index: 9999;
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: $loader-radius * 2;
+    height: $loader-radius * 2;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 .title-menu {
     margin-bottom: 30px;
 }
@@ -64,3 +82,4 @@ html, body {
     height: $footer-height;
     background-color: $footer-color;
 }
+

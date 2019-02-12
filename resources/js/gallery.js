@@ -4,6 +4,7 @@ require('lg-thumbnail.js');
 require('lg-zoom.js');
 
 Cards = require('./cards.js');
+Utils = require('./utils.js');
 // lightGallery(document.getElementById('animated-thumbnails'));
 // n =  require(["lg-zoom"]);
 
@@ -12,11 +13,13 @@ Cards = require('./cards.js');
 class Gallery {
 
   constructor(strSelector) {
-    this.lg = document.getElementById(strSelector);
-
+    let _this = this;
+    _this.cards = [];
     const c = new Cards;
-    this.cards = c.cards;
-    this.buildCards();
+    const u = new Utils;
+    this.lg = document.getElementById(strSelector);
+    u.startLoader();
+
 
     let oOptions = {
       height: '100%',
@@ -26,21 +29,28 @@ class Gallery {
       showThumbByDefault: true
     };
 
-    let _this = this;
-
-    this.lg.addEventListener('onAfterSlide', function(e){
-      let tb = document.getElementsByClassName('lg-toolbar')[0];
-      let id = _this.cards[e.detail.index].id;
-      let url = "/cards/" + id + "/edit";
-      tb.insertAdjacentHTML('beforeend', "<a id='edit-icon' class='lg-icon' href='" + url + "'>E</a>")
-    });
-
     this.lg.addEventListener('onBeforeSlide', function(e){
       i = document.getElementById('edit-icon');
       if (i) i.parentNode.removeChild(i);
     }, false);
 
-    lightGallery(this.lg, oOptions);
+
+    jQuery(document).ajaxComplete(function (event, request, settings) {
+      _this.cards = c.cards;
+      u.removeLoader();
+      _this.buildCards();
+
+      _this.lg.addEventListener('onAfterSlide', function(e){
+        let tb = document.getElementsByClassName('lg-toolbar')[0];
+        let id = _this.cards[e.detail.index].id;
+        let url = "/cards/" + id + "/edit";
+        tb.insertAdjacentHTML('beforeend', "<a id='edit-icon' class='lg-icon' href='" + url + "'>E</a>")
+      });
+
+      lightGallery(this.lg, oOptions);
+    });
+
+
   }
 
   buildCards() {
@@ -48,7 +58,6 @@ class Gallery {
     this.cards.forEach(card => {
       cardsHtml += "<a id='card-" + card.id + "' href='/files/card.png'><img src='/files/card.png'/></a>";
     });
-    console.log("HTML", cardsHtml);
     this.lg.insertAdjacentHTML('beforeend', cardsHtml);
   }
 }
