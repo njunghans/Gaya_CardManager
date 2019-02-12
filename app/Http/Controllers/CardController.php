@@ -13,11 +13,9 @@ class CardController extends Controller
         return view('cards.index');
     }
 
-    public function getCards()
+    public function getCards(Request $request)
     {
-        $cards = Card::all();
-        return $cards;
-
+        return Card::matchParams($request)->get();
     }
 
     public function create()
