@@ -118,3 +118,9 @@ body {
   background-color: #f7f9fa;
 }
 
+.leading-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 4.5px;
+}
+

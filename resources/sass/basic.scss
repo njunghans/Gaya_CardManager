@@ -101,3 +101,8 @@ html, body {
   background-color: $footer-color;
 }
 
+.leading-icon {
+  width: $leading-icon;
+  height: $leading-icon;
+  margin-right: $leading-icon / 4;
+}

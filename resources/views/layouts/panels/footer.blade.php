@@ -36,7 +36,7 @@
                 <div class="col-md-3 mb-md-0 mb-3">
 
                     <!-- Links -->
-                    <h5 class="text-uppercase">Links 2</h5>
+                    <h5 class="text-uppercase">Social Media</h5>
 
                     <ul class="list-unstyled">
                         @include('layouts.nav.bot-right')
