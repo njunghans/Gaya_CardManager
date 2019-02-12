@@ -1,14 +1,11 @@
-// require('lightgallery.js/dist/js/lightgallery.min.js');
 require('lightgallery.js/dist/js/lightgallery.min.js');
 require('lg-thumbnail.js');
 require('lg-zoom.js');
+require('lg-fullscreen.js');
+require('lg-pager.js');
 
 Cards = require('./cards.js');
-Utils = require('./utils.js');
-// lightGallery(document.getElementById('animated-thumbnails'));
-// n =  require(["lg-zoom"]);
-
-
+Loader = require('./loader.js');
 
 class Gallery {
 
@@ -16,9 +13,9 @@ class Gallery {
     let _this = this;
     _this.cards = [];
     const c = new Cards;
-    const u = new Utils;
+    const loader = new Loader;
     this.lg = document.getElementById(strSelector);
-    u.startLoader();
+    loader.startLoader();
 
 
     let oOptions = {
@@ -37,17 +34,17 @@ class Gallery {
 
     jQuery(document).ajaxComplete(function (event, request, settings) {
       _this.cards = c.cards;
-      u.removeLoader();
+      loader.removeLoader();
       _this.buildCards();
 
       _this.lg.addEventListener('onAfterSlide', function(e){
         let tb = document.getElementsByClassName('lg-toolbar')[0];
         let id = _this.cards[e.detail.index].id;
         let url = "/cards/" + id + "/edit";
-        tb.insertAdjacentHTML('beforeend', "<a id='edit-icon' class='lg-icon' href='" + url + "'>E</a>")
+        tb.insertAdjacentHTML('beforeend', "<a id='edit-icon' class='lg-icon' href='" + url + "'>E</a>");
       });
 
-      lightGallery(this.lg, oOptions);
+      lightGallery(_this.lg, oOptions);
     });
 
 
