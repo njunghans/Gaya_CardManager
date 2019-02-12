@@ -9,9 +9,9 @@ class Cards extends Backend {
     }
 
     fetchAllCards() {
-        this.callBackend('/getCards', data => {
+        this.callBackend('/getCards', null,  data => {
             this.setCards(data);
-        }, true);
+        });
     }
 
     setCards(m) {

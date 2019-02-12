@@ -1,4 +1,3 @@
-Mechanics = require('./mechanics');
 CardView = require('./cardView');
 
 const card = new CardView();

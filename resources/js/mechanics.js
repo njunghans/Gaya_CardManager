@@ -18,7 +18,7 @@ class Mechanics extends Backend {
     }
 
     fetchAllMechanics() {
-        this.callBackend('/mechanics', data => {
+        this.callBackend('/mechanics', null, data => {
             this.setMechanics(data);
         });
     }

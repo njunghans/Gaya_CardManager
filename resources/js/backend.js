@@ -4,15 +4,16 @@ class Backend {
 
   }
 
-  callBackend(url, callback, async = false, failure = null) {
+  callBackend(url, data, callback, failure, async) {
     jQuery.ajax({
       url: url,
       async: async,
-      success: function(data) {
-        callback(data);
+      data: data,
+      success: function(d) {
+        callback(d);
       },
-      error: function(data) {
-        failure(data);
+      error: function(d) {
+        failure(d);
       },
     });
   }
