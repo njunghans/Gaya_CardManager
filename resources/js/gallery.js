@@ -14,66 +14,83 @@ class Gallery {
     this.loader = new Loader;
     this.lg = document.getElementById(strSelector);
 
-    this.lgOptions = {
-      height: '100%',
-      width: '100%',
-      thumbnail:true,
-      animateThumb: true,
-      showThumbByDefault: true
-    };
-
-    this.lg.addEventListener('onBeforeSlide', function(e){
-      i = document.getElementById('edit-icon');
-      if (i) i.parentNode.removeChild(i);
-    }, false);
-
-    const searchButton = document.getElementById('search-cards');
-    let _this = this;
-    searchButton.addEventListener('click', function(e) {
-      _this.updateGallery();
-    });
+    this.setLgOptions();
+    this.addBeforeSlideEvent();
+    this.addSearchEvent();
     this.updateGallery();
 
   }
 
   updateGallery() {
-    let _this = this;
-    while (this.lg.firstChild) {
-      this.lg.removeChild(this.lg.firstChild);
-    }
+    this.removeOldCards();
     this.loader.startLoader();
     const query = document.getElementById('card-query').value;
+    let _this = this;
     this.cards.fetchCards(query, () => {
       _this.loader.removeLoader();
       _this.buildCards();
-
-      _this.lg.addEventListener('onAfterSlide', function(e) {
-        let tb = document.getElementsByClassName('lg-toolbar')[0];
-        let id = _this.cards.cards[e.detail.index].id;
-        let url = "/cards/" + id + "/edit";
-        tb.insertAdjacentHTML('beforeend',
-            "<a id='edit-icon' class='lg-icon' href='" + url + "'>E</a>");
-      });
-
+      _this.addAfterSlideEvent();
       lightGallery(this.lg, this.lgOptions);
-    }, () =>  {
+    }, () => {
       console.log('TODO: implement Error Handler: Invalid query');
     });
   }
 
   buildCards() {
-    let cardsHtml = "";
+    let cardsHtml = '';
     this.cards.cards.forEach(card => {
-      cardsHtml += "<a id='card-" + card.id + "' href='/files/card.png'><img src='/files/card.png'/></a>";
+      cardsHtml += '<a id=\'card-' + card.id +
+          '\' href=\'/files/card.png\'><img src=\'/files/card.png\'/></a>';
     });
     this.lg.insertAdjacentHTML('beforeend', cardsHtml);
   }
+
+
+  addBeforeSlideEvent() {
+    this.lg.addEventListener('onBeforeSlide', function(e) {
+      i = document.getElementById('edit-icon');
+      if (i) i.parentNode.removeChild(i);
+    });
+  }
+
+  addAfterSlideEvent() {
+    const _this = this;
+    _this.lg.addEventListener('onAfterSlide', function(e) {
+      const tb = document.getElementsByClassName('lg-toolbar')[0];
+      const id = _this.cards.cards[e.detail.index].id;
+      const url = '/cards/' + id + '/edit';
+      tb.insertAdjacentHTML('beforeend',
+          '<a id=\'edit-icon\' class=\'lg-icon\' href=\'' + url + '\'>E</a>');
+    });
+  }
+
+  addSearchEvent() {
+    const searchButton = document.getElementById('search-cards');
+    const _this = this;
+    searchButton.addEventListener('click', function(e) {
+      _this.updateGallery();
+    });
+  }
+
+  removeOldCards() {
+    while (this.lg.firstChild) {
+      this.lg.removeChild(this.lg.firstChild);
+    }
+  }
+
+  setLgOptions(opts = null) {
+    if (!opts) {
+      opts = {
+        height: '100%',
+        width: '100%',
+        thumbnail: true,
+        animateThumb: true,
+        showThumbByDefault: true,
+      };
+    }
+    this.lgOptions = opts;
+  }
+
 }
 
 new Gallery('animated-thumbnails');
-
-// console.log('starting');
-// lightGallery(document.getElementById('animated-thumbnails'), {
-//   thumbnail:true
-// });
-// console.log('done');

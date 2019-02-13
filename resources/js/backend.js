@@ -4,9 +4,10 @@ class Backend {
 
   }
 
-  callBackend(url, data, callback, query, failure, async) {
+  callBackend(baseUrl, data, callback, query, failure, async) {
+    const url = baseUrl + '?' + query;
     jQuery.ajax({
-      url: url + '?' + query,
+      url: url,
       async: async,
       data: data,
       success: function(d) {
