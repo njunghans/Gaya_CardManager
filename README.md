@@ -15,6 +15,12 @@ GRANT ALL PRIVILEGES ON gayadb.* TO 'gaya'@'localhost';
 ```
 Then Run Deployment with .env.dev as .env
 
+Use watchpoll (but not during pulls)
+
+```
+npm run watch-poll
+```
+
 ## Deployment
 Run
 ```
