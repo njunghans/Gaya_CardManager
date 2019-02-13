@@ -5,13 +5,12 @@ class Cards extends Backend {
     constructor() {
         super();
         this.cards = [];
-        this.fetchAllCards();
     }
 
-    fetchAllCards() {
+    fetchCards(query, failure) {
         this.callBackend('/getCards', null,  data => {
             this.setCards(data);
-        });
+        }, query, failure);
     }
 
     setCards(m) {
@@ -19,5 +18,6 @@ class Cards extends Backend {
     }
 
 }
+
 
 module.exports = Cards;

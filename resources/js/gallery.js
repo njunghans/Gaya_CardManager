@@ -10,15 +10,11 @@ Loader = require('./loader.js');
 class Gallery {
 
   constructor(strSelector) {
-    let _this = this;
-    _this.cards = [];
-    const c = new Cards;
-    const loader = new Loader;
+    this.cards = new Cards;
+    this.loader = new Loader;
     this.lg = document.getElementById(strSelector);
-    loader.startLoader();
 
-
-    let oOptions = {
+    let lgOptions = {
       height: '100%',
       width: '100%',
       thumbnail:true,
@@ -31,28 +27,45 @@ class Gallery {
       if (i) i.parentNode.removeChild(i);
     }, false);
 
+    const searchButton = document.getElementById('search-cards');
+    let _this = this;
+    searchButton.addEventListener('click', function(e) {
+      _this.updateGallery();
+    });
+    this.updateGallery();
 
+    lightGallery(this.lg, lgOptions);
+
+  }
+
+  updateGallery() {
+    let _this = this;
+    while (this.lg.firstChild) {
+      this.lg.removeChild(this.lg.firstChild);
+    }
+    this.loader.startLoader();
+    const query = document.getElementById('card-query').value;
+    this.cards.fetchCards(query, () => {
+      console.log('Invalid query');
+    });
     jQuery(document).ajaxComplete(function (event, request, settings) {
-      _this.cards = c.cards;
-      loader.removeLoader();
+      let cards = _this.cards.cards;
+      _this.loader.removeLoader();
       _this.buildCards();
 
-      _this.lg.addEventListener('onAfterSlide', function(e){
+      _this.lg.addEventListener('onAfterSlide', function(e) {
         let tb = document.getElementsByClassName('lg-toolbar')[0];
-        let id = _this.cards[e.detail.index].id;
+        let id = cards[e.detail.index].id;
         let url = "/cards/" + id + "/edit";
-        tb.insertAdjacentHTML('beforeend', "<a id='edit-icon' class='lg-icon' href='" + url + "'>E</a>");
+        tb.insertAdjacentHTML('beforeend',
+            "<a id='edit-icon' class='lg-icon' href='" + url + "'>E</a>");
       });
-
-      lightGallery(_this.lg, oOptions);
     });
-
-
   }
 
   buildCards() {
     let cardsHtml = "";
-    this.cards.forEach(card => {
+    this.cards.cards.forEach(card => {
       cardsHtml += "<a id='card-" + card.id + "' href='/files/card.png'><img src='/files/card.png'/></a>";
     });
     this.lg.insertAdjacentHTML('beforeend', cardsHtml);
