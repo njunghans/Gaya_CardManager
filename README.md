@@ -2,10 +2,23 @@
 A website to create and store Cards for Gaya.
 
 Youtrack - http://dspace.dainst.org:8080
+## Development
+In your Homstead/homestead.yml, indicate the correct location of your project.
+
+Then Run in Homestead/
+```
+vagrant ssh
+mysql -u homestead -p (Passwort "secret")
+CREATE DATABASE gayadb;
+CREATE USER 'gaya'@'localhost' IDENTIFIED BY 'gayapw';
+GRANT ALL PRIVILEGES ON gayadb.* TO 'gaya'@'localhost';
+```
+Then Run Deployment with .env.dev as .env
 
 ## Deployment
 Run
 ```
+create .env (see.env.example)
 composer install
 npm install
 php artisan migrate

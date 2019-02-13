@@ -149,7 +149,7 @@ eval("function _classCallCheck(instance, Constructor) { if (!(instance instanceo
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/ngrippa/workspace/gaya/resources/js/render.js */"./resources/js/render.js");
+        module.exports = __webpack_require__(/*! /home/nino/PhpstormProjects/Gaya_CardManager/resources/js/render.js */"./resources/js/render.js");
 
 
 /***/ })
