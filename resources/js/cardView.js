@@ -171,7 +171,7 @@ class CardView {
 
         this.container.filterArea = new PIXI.Rectangle(baseWidth / 7.88, baseWidth / 7.7, baseWidth / 1.31, baseWidth / 1.26);
 
-        this.text.box = new PIXI.Rectangle(baseWidth/7, baseWidth/1.0, baseWidth/1.33,baseWidth/5);
+        this.text.box = new PIXI.Rectangle(baseWidth / 7, baseWidth / 1.0, baseWidth / 1.34, baseWidth / 1.5);
         this.text.minFontSize = 12 * baseWidth/640;
         this.text.maxFontSize = 36 * baseWidth/640;
         this.text.fontSize = 22 * baseWidth/640;
