@@ -14,7 +14,7 @@ class Gallery {
     this.loader = new Loader;
     this.lg = document.getElementById(strSelector);
 
-    let lgOptions = {
+    this.lgOptions = {
       height: '100%',
       width: '100%',
       thumbnail:true,
@@ -34,8 +34,6 @@ class Gallery {
     });
     this.updateGallery();
 
-    lightGallery(this.lg, lgOptions);
-
   }
 
   updateGallery() {
@@ -46,20 +44,20 @@ class Gallery {
     this.loader.startLoader();
     const query = document.getElementById('card-query').value;
     this.cards.fetchCards(query, () => {
-      console.log('Invalid query');
-    });
-    jQuery(document).ajaxComplete(function (event, request, settings) {
-      let cards = _this.cards.cards;
       _this.loader.removeLoader();
       _this.buildCards();
 
       _this.lg.addEventListener('onAfterSlide', function(e) {
         let tb = document.getElementsByClassName('lg-toolbar')[0];
-        let id = cards[e.detail.index].id;
+        let id = _this.cards.cards[e.detail.index].id;
         let url = "/cards/" + id + "/edit";
         tb.insertAdjacentHTML('beforeend',
             "<a id='edit-icon' class='lg-icon' href='" + url + "'>E</a>");
       });
+
+      lightGallery(this.lg, this.lgOptions);
+    }, () =>  {
+      console.log('TODO: implement Error Handler: Invalid query');
     });
   }
 

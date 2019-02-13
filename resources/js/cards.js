@@ -7,9 +7,10 @@ class Cards extends Backend {
         this.cards = [];
     }
 
-    fetchCards(query, failure) {
+    fetchCards(query, success, failure) {
         this.callBackend('/getCards', null,  data => {
             this.setCards(data);
+            success();
         }, query, failure);
     }
 
