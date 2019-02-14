@@ -1,19 +1,21 @@
 window.jQuery = require('jquery');
-require('lightgallery.js/dist/js/lightgallery.min.js');
-require('lg-thumbnail.js');
-require('lg-zoom.js');
-require('lg-fullscreen.js');
-require('lg-pager.js');
+window.$ = require('jquery');
+
+require('lightgallery');
+require('lg-thumbnail');
+require('lg-zoom');
+require('lg-fullscreen');
+require('lg-pager');
 
 Cards = require('./cards.js');
 Loader = require('./loader.js');
 
 class Gallery {
 
-  constructor(strSelector) {
+  constructor() {
     this.cards = new Cards;
     this.loader = new Loader;
-    this.lg = document.getElementById(strSelector);
+    this.lg = $('#animated-thumbnails');
 
     this.setLgOptions();
     this.addBeforeSlideEvent();
@@ -26,12 +28,11 @@ class Gallery {
   updateGallery() {
     this.removeOldCards();
     this.loader.startLoader();
-    const query = document.getElementById('card-query').value;
-    let _this = this;
+    const query = $('#card-query').val();
     this.cards.fetchCards(query, () => {
-      _this.loader.removeLoader();
-      _this.buildCards();
-      lightGallery(this.lg, this.lgOptions);
+      this.loader.removeLoader();
+      this.buildCards();
+      this.lg.lightGallery(this.lgOptions);
     }, () => {
       console.log('TODO: implement Error Handler: Invalid query');
     });
@@ -39,44 +40,38 @@ class Gallery {
 
   buildCards() {
     let cardsHtml = '';
-    this.cards.cards.forEach(card => {
+    this.cards.cards.forEach((card) => {
       cardsHtml += '<a id=\'card-' + card.id +
-          '\' href=\'/files/card.png\'><img alt="[GAYA CARD]" src=\'/files/card.png\'/></a>';
+          '\' href=\'/files/card.png\'><img alt="Karte ' + card.name +
+          ' " src=\'/files/card.png\'/></a>';
     });
-    this.lg.insertAdjacentHTML('beforeend', cardsHtml);
+    this.lg.append(cardsHtml);
   }
 
-
   addBeforeSlideEvent() {
-    this.lg.addEventListener('onBeforeSlide', function(e) {
-      i = document.getElementById('edit-icon');
-      if (i) i.parentNode.removeChild(i);
+    this.lg.on('onBeforeSlide.lg', () => {
+      $('#edit-icon').remove();
     });
   }
 
   addAfterSlideEvent() {
-    const _this = this;
-    _this.lg.addEventListener('onAfterSlide', function(e) {
-      const tb = document.getElementsByClassName('lg-toolbar')[0];
-      const id = _this.cards.cards[e.detail.index].id;
+    this.lg.on('onAfterSlide.lg', (event, index) => {
+      const id = this.cards.cards[index].id;
       const url = '/cards/' + id + '/edit';
-      tb.insertAdjacentHTML('beforeend',
-          '<a id=\'edit-icon\' class=\'lg-icon\' href=\'' + url + '\'>E</a>');
+      const editIcon = '<a id="edit-icon" class="lg-icon" href="' + url +
+          '">E</a>';
+      $('.lg-toolbar').append(editIcon);
     });
   }
 
   addSearchEvent() {
-    const searchButton = document.getElementById('search-cards');
-    const _this = this;
-    searchButton.addEventListener('click', function(e) {
-      _this.updateGallery();
+    $('#search-cards').click(() => {
+      this.updateGallery();
     });
   }
 
   removeOldCards() {
-    while (this.lg.firstChild) {
-      this.lg.removeChild(this.lg.firstChild);
-    }
+    this.lg.empty();
   }
 
   setLgOptions(opts = null) {
@@ -94,4 +89,4 @@ class Gallery {
 
 }
 
-new Gallery('animated-thumbnails');
+new Gallery();
