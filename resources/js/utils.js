@@ -24,4 +24,11 @@ class Utils {
 
 }
 
+//Gives Array a last() method. Gets the last item in the list.
+if (!Array.prototype.last) {
+  Array.prototype.last = function () {
+    return this[this.length - 1];
+  };
+}
+
 module.exports = Utils;

@@ -1,10 +1,6 @@
 PIXI = require('pixi.js');
+Utils = require('./utils');
 
-if (!Array.prototype.last){
-    Array.prototype.last = function(){
-        return this[this.length - 1];
-    };
-}
 
 class TextBoxWithIcons{
 
