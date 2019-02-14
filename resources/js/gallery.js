@@ -1,10 +1,9 @@
-window.jQuery = require('jquery');
-window.$ = require('jquery');
+require('./initJQuery');
 
 require('lightgallery');
 require('lg-thumbnail');
 require('lg-zoom');
-require('lg-fullscreen');
+// require('lg-fullscreen');
 require('lg-pager');
 
 Cards = require('./cards.js');
@@ -32,7 +31,7 @@ class Gallery {
     this.cards.fetchCards(query, () => {
       this.loader.removeLoader();
       this.buildCards();
-      this.lg.lightGallery(this.lgOptions);
+      this.initLightGallery();
     }, () => {
       console.log('TODO: implement Error Handler: Invalid query');
     });
@@ -46,6 +45,13 @@ class Gallery {
           ' " src=\'/files/card.png\'/></a>';
     });
     this.lg.append(cardsHtml);
+  }
+
+  initLightGallery() {
+    if (this.lg.data('lightGallery')) {
+      this.lg.data('lightGallery').destroy(true);
+    }
+    this.lg.lightGallery(this.lgOptions);
   }
 
   addBeforeSlideEvent() {
