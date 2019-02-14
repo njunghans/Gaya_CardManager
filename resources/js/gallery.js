@@ -19,6 +19,7 @@ class Gallery {
     this.addBeforeSlideEvent();
     this.addSearchEvent();
     this.updateGallery();
+    this.addAfterSlideEvent();
 
   }
 
@@ -30,7 +31,6 @@ class Gallery {
     this.cards.fetchCards(query, () => {
       _this.loader.removeLoader();
       _this.buildCards();
-      _this.addAfterSlideEvent();
       lightGallery(this.lg, this.lgOptions);
     }, () => {
       console.log('TODO: implement Error Handler: Invalid query');
@@ -41,7 +41,7 @@ class Gallery {
     let cardsHtml = '';
     this.cards.cards.forEach(card => {
       cardsHtml += '<a id=\'card-' + card.id +
-          '\' href=\'/files/card.png\'><img src=\'/files/card.png\'/></a>';
+          '\' href=\'/files/card.png\'><img alt="[GAYA CARD]" src=\'/files/card.png\'/></a>';
     });
     this.lg.insertAdjacentHTML('beforeend', cardsHtml);
   }
