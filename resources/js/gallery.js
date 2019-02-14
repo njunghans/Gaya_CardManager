@@ -1,3 +1,4 @@
+window.jQuery = require('jquery');
 require('lightgallery.js/dist/js/lightgallery.min.js');
 require('lg-thumbnail.js');
 require('lg-zoom.js');

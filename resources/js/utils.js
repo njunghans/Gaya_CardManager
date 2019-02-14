@@ -1,3 +1,4 @@
+PIXI = require('pixi.js');
 S = require('spin.js').Spinner;
 
 class Utils {

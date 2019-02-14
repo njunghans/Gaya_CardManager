@@ -1,3 +1,6 @@
+window.jQuery = require('jquery');
+PIXI = require('pixi.js');
+
 CardView = require('./cardView');
 
 const card = new CardView();
