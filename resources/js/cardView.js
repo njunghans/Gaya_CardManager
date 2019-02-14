@@ -3,7 +3,7 @@ TextBoxWithIcons = require('./PIXI.TextBoxWithIcons');
 
 class CardView {
     constructor(baseWidth = 640) {
-
+        this.drag = false;
         this.app = new PIXI.Application({width: baseWidth, height: baseWidth / 0.7159, transparent: true});
 
         this.frame = new PIXI.Sprite();

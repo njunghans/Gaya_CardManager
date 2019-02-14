@@ -5,13 +5,14 @@ class Mechanics extends Backend {
     constructor() {
         super();
         this.mechanics = [];
+        this.identifiers = [];
         this.fetchAllMechanics();
         this.setIdentifiers();
     }
 
     setIdentifiers() {
         let ids = [];
-        this.mechanics.forEach(e => {
+        this.mechanics.forEach((e) => {
             ids.push(e.pattern)
         });
         this.identifiers = ids;
