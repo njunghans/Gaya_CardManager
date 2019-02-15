@@ -29,5 +29,5 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CardsInSet extends Model
 {
-    //
+    protected $guarded = [];
 }

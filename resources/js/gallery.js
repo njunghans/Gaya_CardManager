@@ -7,20 +7,25 @@ require('lg-pager');
 
 Cards = require('./cards.js');
 Loader = require('./loader.js');
+Sets = require('./sets.js');
+Menu = require('./collapsibleMenu.js');
 
 class Gallery {
 
   constructor(setId = null) {
     this.cards = new Cards;
+    this.sets = new Sets;
+    this.sets.fetchSets();
     this.loader = new Loader;
     this.setId = setId;
     this.lg = $('#animated-thumbnails');
 
-    this.setLgOptions();
+
     this.addBeforeSlideEvent();
+    this.addAfterSlideEvent();
+    this.setLgOptions();
     this.addSearchEvent();
     this.updateGallery(this.setId);
-    this.addAfterSlideEvent();
 
   }
 
@@ -57,16 +62,36 @@ class Gallery {
   addBeforeSlideEvent() {
     this.lg.on('onBeforeSlide.lg', () => {
       $('#edit-icon').remove();
+      $('#set-list').remove();
     });
   }
 
   addAfterSlideEvent() {
-    this.lg.on('onAfterSlide.lg', (event, index) => {
-      const id = this.cards.cards[index].id;
-      const url = '/cards/' + id + '/edit';
-      const editIcon = '<a id="edit-icon" class="lg-icon" href="' + url +
+    this.lg.on('onAfterSlide.lg ', (event, index) => {
+
+      const cardId = this.cards.cards[index].id;
+      const editUrl = '/cards/' + cardId + '/edit';
+      const editIcon = '<a id="edit-icon" class="lg-icon" href="' + editUrl +
           '">E</a>';
       $('.lg-toolbar').append(editIcon);
+      this.addSetList();
+      this.addAddCardToSetEvent(cardId);
+    });
+  }
+
+  addAddCardToSetEvent(cardId) {
+    console.log('Stes', this.sets.sets);
+    $('.set').each((i, s) => {
+      const $s = $(s);
+      const setId = $s.attr('id').replace( /^\D+/g, '');
+      $s.click(() => {
+        this.sets.addCardToSet(setId, cardId, () => {
+          alert('added card');
+          console.log("added card to set", cardId, this.setId);
+        }, () => {
+          console.log("FAILED");
+        } )
+      });
     });
   }
 
@@ -78,6 +103,17 @@ class Gallery {
 
   removeOldCards() {
     this.lg.empty();
+  }
+
+  addSetList() {
+    console.log("set list");
+    console.log(this.sets.sets);
+    $('.lg-toolbar').append('<div id="set-list" class="lg-icon"></div>');
+    let setsHtml = [];
+    this.sets.sets.forEach((set) => {
+      setsHtml.push('<a id ="set-' + set.id + '" class="set">' + set.name + '</set>');
+    });
+    new Menu($('#set-list'), '+', setsHtml);
   }
 
   setLgOptions(opts = null) {

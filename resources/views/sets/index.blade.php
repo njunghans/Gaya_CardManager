@@ -4,6 +4,10 @@
     Sets
 @endsection
 
+@section('menu')
+    @include('sets.nav')
+@endsection
+
 @section('content')
     <a href="{{route('sets.create')}}">Create</a>
 

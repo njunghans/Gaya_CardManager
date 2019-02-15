@@ -20,6 +20,11 @@ class SetController extends Controller
         return view('sets.view', compact('set'));
     }
 
+    public function getSets(Request $request)
+    {
+        return Set::all();
+    }
+
     public function getCardsInSet($setId)
     {
         $set = Set::findOrFail($setId);
