@@ -1,6 +1,7 @@
 {
-    "/js/gallery.js": "/js/gallery.js",
+    "/js/cardGallery.js": "/js/cardGallery.js",
     "/js/render.js": "/js/render.js",
     "/css/app.css": "/css/app.css",
-    "/css/basic.css": "/css/basic.css"
+    "/css/basic.css": "/css/basic.css",
+    "/js/setGallery.js": "/js/setGallery.js"
 }

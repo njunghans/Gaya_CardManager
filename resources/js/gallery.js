@@ -3,7 +3,6 @@ require('./initJQuery');
 require('lightgallery');
 require('lg-thumbnail');
 require('lg-zoom');
-// require('lg-fullscreen');
 require('lg-pager');
 
 Cards = require('./cards.js');
@@ -11,24 +10,25 @@ Loader = require('./loader.js');
 
 class Gallery {
 
-  constructor() {
+  constructor(setId = null) {
     this.cards = new Cards;
     this.loader = new Loader;
+    this.setId = setId;
     this.lg = $('#animated-thumbnails');
 
     this.setLgOptions();
     this.addBeforeSlideEvent();
     this.addSearchEvent();
-    this.updateGallery();
+    this.updateGallery(this.setId);
     this.addAfterSlideEvent();
 
   }
 
-  updateGallery() {
+  updateGallery(setId = null) {
     this.removeOldCards();
     this.loader.startLoader();
     const query = $('#card-query').val();
-    this.cards.fetchCards(query, () => {
+    this.cards.fetchCards(setId, query, () => {
       this.loader.removeLoader();
       this.buildCards();
       this.initLightGallery();
@@ -72,7 +72,7 @@ class Gallery {
 
   addSearchEvent() {
     $('#search-cards').click(() => {
-      this.updateGallery();
+      this.updateGallery(this.setId);
     });
   }
 
@@ -95,4 +95,4 @@ class Gallery {
 
 }
 
-new Gallery();
+module.exports = Gallery;

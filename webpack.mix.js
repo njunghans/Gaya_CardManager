@@ -13,7 +13,8 @@ const mix = require('laravel-mix');
 
 mix.setPublicPath('public')
     .js('resources/js/render.js', 'js')
-    .js('resources/js/gallery.js', 'js')
+    .js('resources/js/cardGallery.js', 'js')
+    .js('resources/js/setGallery.js', 'js')
     .sass('resources/sass/app.scss', 'css')
     .sass('resources/sass/basic.scss', 'css')
     .webpackConfig({

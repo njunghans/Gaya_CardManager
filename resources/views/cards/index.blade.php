@@ -24,5 +24,5 @@
 @endsection
 
 @section('js')
-    <script src="{{ mix('js/gallery.js') }}"></script>
+    <script src="{{ mix('js/cardGallery.js') }}"></script>
 @endsection

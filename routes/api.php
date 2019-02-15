@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/getCards', 'CardController@getCards')->name('cards.get');
+Route::get('/getCardsInSet/{setId}', 'SetController@getCardsInSet')->name('sets.getCards');

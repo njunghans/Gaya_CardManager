@@ -10,14 +10,21 @@ class SetController extends Controller
 {
     public function index()
     {
-        return view('sets.index');
+        $sets = Set::all();
+        return view('sets.index', compact('sets'));
     }
 
     public function view($setId)
     {
         $set = Set::findOrFail($setId);
+        return view('sets.view', compact('set'));
+    }
+
+    public function getCardsInSet($setId)
+    {
+        $set = Set::findOrFail($setId);
         $cards = $set->getCardsInSet();
-        dd($cards);
+        return $cards;
     }
 
     public function create()

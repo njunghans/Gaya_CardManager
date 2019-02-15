@@ -106,3 +106,7 @@ html, body {
   height: $leading-icon;
   margin-right: $leading-icon / 4;
 }
+
+.hidden {
+  visibility: hidden;
+}

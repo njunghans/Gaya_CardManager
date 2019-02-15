@@ -7,8 +7,23 @@ class Cards extends Backend {
         this.cards = [];
     }
 
-    fetchCards(query, success, failure) {
-        this.callBackend('/getCards', null,  data => {
+    fetchCards(setId, query, success, failure) {
+        if (setId) {
+            this.fetchCardsInSet(setId, query, success, failure);
+        } else {
+            this.fetchAllCards(query, success, failure);
+        }
+    }
+
+    fetchAllCards(query, success, failure) {
+        this.callBackend('/api/getCards', null,  data => {
+            this.setCards(data);
+            success();
+        }, query, failure);
+    }
+
+    fetchCardsInSet(setId, query, success, failure) {
+        this.callBackend('/api/getCardsInSet/' + setId, null,  data => {
             this.setCards(data);
             success();
         }, query, failure);
