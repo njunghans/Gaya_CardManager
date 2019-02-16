@@ -1,4 +1,4 @@
-Backend = require('./backend');
+Backend = require('../backend');
 
 class Cards extends Backend {
 

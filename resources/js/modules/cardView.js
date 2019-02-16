@@ -1,4 +1,4 @@
-Utils = require('./utils');
+Utils = require('../utils/font');
 TextBoxWithIcons = require('./PIXI.TextBoxWithIcons');
 
 class CardView {

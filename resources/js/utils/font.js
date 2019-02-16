@@ -1,6 +1,6 @@
 PIXI = require('pixi.js');
 
-class Utils {
+class Font {
 
   static setFontStyle(
       text, style, maxWidth, maxFontSize = 40, minFontSize = 18,
@@ -30,4 +30,4 @@ if (!Array.prototype.last) {
   };
 }
 
-module.exports = Utils;
+module.exports = Font;

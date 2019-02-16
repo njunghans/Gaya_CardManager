@@ -1,3 +1,3 @@
-Renderer = require('./renderer');
+Renderer = require('./modules/renderer');
 
 new Renderer();

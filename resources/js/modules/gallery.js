@@ -1,14 +1,14 @@
-require('./initJQuery');
+require('../utils/initJQuery');
 
 require('lightgallery');
 require('lg-thumbnail');
 require('lg-zoom');
 require('lg-pager');
 
-Cards = require('./cards.js');
-Loader = require('./loader.js');
-Sets = require('./sets.js');
-Menu = require('./collapsibleMenu.js');
+Cards = require('../backend/models/cards.js');
+Loader = require('../utils/loader.js');
+Sets = require('../backend/models/sets.js');
+Menu = require('../utils/collapsibleMenu.js');
 
 class Gallery {
 

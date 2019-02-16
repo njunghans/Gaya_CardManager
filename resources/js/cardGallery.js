@@ -1,3 +1,3 @@
-Gallery = require('./gallery');
+Gallery = require('./modules/gallery');
 
 new Gallery();

@@ -1,4 +1,4 @@
-require('./initJQuery');
+require('../utils/initJQuery');
 PIXI = require('pixi.js');
 
 CardView = require('./cardView');

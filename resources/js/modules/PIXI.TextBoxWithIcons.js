@@ -1,5 +1,5 @@
 PIXI = require('pixi.js');
-Utils = require('./utils');
+Utils = require('../utils/font');
 
 class TextBoxWithIcons {
 
