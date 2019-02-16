@@ -16,14 +16,14 @@ class Cards extends Backend {
     }
 
     fetchAllCards(query, success, failure) {
-        this.callBackend('/api/getCards', null,  data => {
+        this.callBackend('/api/getCards', null, data => {
             this.setCards(data);
             success();
         }, query, failure);
     }
 
     fetchCardsInSet(setId, query, success, failure) {
-        this.callBackend('/api/getCardsInSet/' + setId, null,  data => {
+        this.callBackend('/api/getCardsInSet/' + setId, null, data => {
             this.setCards(data);
             success();
         }, query, failure);
@@ -34,6 +34,5 @@ class Cards extends Backend {
     }
 
 }
-
 
 module.exports = Cards;

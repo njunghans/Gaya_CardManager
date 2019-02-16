@@ -13,7 +13,7 @@ class Mechanics extends Backend {
     setIdentifiers() {
         let ids = [];
         this.mechanics.forEach((e) => {
-            ids.push(e.pattern)
+            ids.push(e.pattern);
         });
         this.identifiers = ids;
     }

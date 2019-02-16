@@ -4,7 +4,8 @@ TextBoxWithIcons = require('./PIXI.TextBoxWithIcons');
 class CardView {
     constructor(baseWidth = 640) {
         this.drag = false;
-        this.app = new PIXI.Application({width: baseWidth, height: baseWidth / 0.7159, transparent: true});
+        this.app = new PIXI.Application(
+            {width: baseWidth, height: baseWidth / 0.7159, transparent: true});
 
         this.frame = new PIXI.Sprite();
         this.rarityStone = new PIXI.Sprite();
@@ -13,12 +14,12 @@ class CardView {
         this.image = new PIXI.Sprite();
         this.defense = new PIXI.Sprite();
 
-        this.title = new PIXI.Text("");
-        this.category = new PIXI.Text("");
-        this.info = new PIXI.Text("");
-        this.goldText = new PIXI.Text("");
-        this.attackText = new PIXI.Text("");
-        this.defenseText = new PIXI.Text("");
+        this.title = new PIXI.Text('');
+        this.category = new PIXI.Text('');
+        this.info = new PIXI.Text('');
+        this.goldText = new PIXI.Text('');
+        this.attackText = new PIXI.Text('');
+        this.defenseText = new PIXI.Text('');
 
         this.container = new PIXI.Container();
 
@@ -27,11 +28,10 @@ class CardView {
         this.setAttackSymbol(PIXI.Texture.fromImage('/data/AttackIcon.png'));
         this.setDefenseSymbol(PIXI.Texture.fromImage('/data/DefenseIcon.png'));
 
-
         this.container.addChild(this.image);
         this.container.filters = [new PIXI.filters.AlphaFilter()];
 
-        this.setFrame(PIXI.Texture.fromImage("/data/Frame.png"));
+        this.setFrame(PIXI.Texture.fromImage('/data/Frame.png'));
 
         this.setGoldSymbol(PIXI.Texture.fromImage('/data/Gold.png'));
 
@@ -57,7 +57,6 @@ class CardView {
         this.art_tex = PIXI.Texture.fromImage('/data/ManaCrystalBlack.png');
         this.neu_tex = PIXI.Texture.fromImage('/data/ManaCrystalNeutral.png');
 
-
         this.setStyles();
         this.setWidths(baseWidth);
         this.setImageFrame();
@@ -65,22 +64,22 @@ class CardView {
 
     setStyles() {
         let base = {
-            fontFamily: "Arial",
+            fontFamily: 'Arial',
             fontSize: 36,
-            fontWeight: "normal",
-            fill: "white",
+            fontWeight: 'normal',
+            fill: 'white',
             stroke: 'black',
             strokeThickness: 4,
             dropShadow: false,
-            dropShadowColor: "#000000",
+            dropShadowColor: '#000000',
             dropShadowBlur: 4,
             dropShadowAngle: Math.PI / 6,
-            dropShadowDistance: 6
+            dropShadowDistance: 6,
         };
         this.text.baseStyle = new PIXI.TextStyle(base);
-        this.text.baseStyle.fontSize=22;
-        this.text.baseStyle.strokeThickness=0;
-        this.text.baseStyle.fill="black";
+        this.text.baseStyle.fontSize = 22;
+        this.text.baseStyle.strokeThickness = 0;
+        this.text.baseStyle.fill = 'black';
 
         this.title.style = new PIXI.TextStyle(base);
 
@@ -89,14 +88,14 @@ class CardView {
         this.category.style = new PIXI.TextStyle(category);
 
         let info = jQuery.extend({}, base);
-        info.fill = "grey";
-        info.stroke = "grey";
+        info.fill = 'grey';
+        info.stroke = 'grey';
         info.fontSize = 18;
         info.strokeThickness = 0;
         this.info.style = new PIXI.TextStyle(info);
 
         let stat = jQuery.extend({}, base);
-        stat.fontWeight = "bold";
+        stat.fontWeight = 'bold';
 
         this.goldText.style = new PIXI.TextStyle(stat);
         this.attackText.style = new PIXI.TextStyle(stat);
@@ -169,24 +168,26 @@ class CardView {
         this.defenseText.anchor.x = 0.5;
         this.defenseText.anchor.y = 0.5;
 
-        this.container.filterArea = new PIXI.Rectangle(baseWidth / 7.88, baseWidth / 7.7, baseWidth / 1.31, baseWidth / 1.26);
+        this.container.filterArea = new PIXI.Rectangle(baseWidth / 7.88,
+            baseWidth / 7.7, baseWidth / 1.31, baseWidth / 1.26);
 
-        this.text.box = new PIXI.Rectangle(baseWidth / 7, baseWidth / 1.0, baseWidth / 1.34, baseWidth / 1.5);
-        this.text.minFontSize = 12 * baseWidth/640;
-        this.text.maxFontSize = 36 * baseWidth/640;
-        this.text.fontSize = 22 * baseWidth/640;
+        this.text.box = new PIXI.Rectangle(baseWidth / 7, baseWidth / 1.0,
+            baseWidth / 1.34, baseWidth / 1.5);
+        this.text.minFontSize = 12 * baseWidth / 640;
+        this.text.maxFontSize = 36 * baseWidth / 640;
+        this.text.fontSize = 22 * baseWidth / 640;
 
         this.text.setText(this.text.text);
     }
 
     setTitle(txt) {
         this.title.text = txt;
-        this.title.style = Utils.setFontStyle(txt, this.title.style, 200)
+        this.title.style = Utils.setFontStyle(txt, this.title.style, 200);
     }
 
     setCategory(txt) {
         this.category.text = txt;
-        this.category.style = Utils.setFontStyle(txt, this.category.style, 200)
+        this.category.style = Utils.setFontStyle(txt, this.category.style, 200);
     }
 
     setInfo(txt) {
@@ -221,13 +222,17 @@ class CardView {
 
     setRarity(rarity) {
         if (rarity === 0) {
-            this.setRarityStone(PIXI.Texture.fromImage('/data/RarityStoneCommon.png'));
+            this.setRarityStone(
+                PIXI.Texture.fromImage('/data/RarityStoneCommon.png'));
         } else if (rarity === 1) {
-            this.setRarityStone(PIXI.Texture.fromImage('/data/RarityStoneRare.png'));
+            this.setRarityStone(
+                PIXI.Texture.fromImage('/data/RarityStoneRare.png'));
         } else if (rarity === 2) {
-            this.setRarityStone(PIXI.Texture.fromImage('/data/RarityStoneEpic.png'));
+            this.setRarityStone(
+                PIXI.Texture.fromImage('/data/RarityStoneEpic.png'));
         } else if (rarity === 3) {
-            this.setRarityStone(PIXI.Texture.fromImage('/data/RarityStoneUnique.png'));
+            this.setRarityStone(
+                PIXI.Texture.fromImage('/data/RarityStoneUnique.png'));
         } else {
             this.setRarityStone(PIXI.Texture.EMPTY);
         }
@@ -264,13 +269,15 @@ class CardView {
     }
 
     setImageFrame() {
-        let image_settings = document.getElementsByName("image_settings")[0];
+        let image_settings = document.getElementsByName('image_settings')[0];
         try {
             let obj = JSON.parse(image_settings.value);
             this.image.width = obj.width * this.app.width / 630;
             this.image.height = obj.height * this.app.width / 630;
-            this.image.x = obj.x * this.app.width / 630 + this.image.width * this.image.anchor.x;
-            this.image.y = obj.y * this.app.width / 630 + this.image.height * this.image.anchor.y;
+            this.image.x = obj.x * this.app.width / 630 + this.image.width *
+                this.image.anchor.x;
+            this.image.y = obj.y * this.app.width / 630 + this.image.height *
+                this.image.anchor.y;
             this.image.rotation = obj.rotation;
         } catch (e) {
 
@@ -294,25 +301,25 @@ class CardView {
             let d = {};
             d.type = e.id;
             d.cost = e.value;
-            if (d.type === "cost_neutral") {
-                d.texture = this.neu_tex
-            } else if (d.type === "cost_bio") {
-                d.texture = this.bio_tex
-            } else if (d.type === "cost_par") {
-                d.texture = this.par_tex
-            } else if (d.type === "cost_art") {
-                d.texture = this.art_tex
-            } else if (d.type === "cost_ene") {
-                d.texture = this.ene_tex
+            if (d.type === 'cost_neutral') {
+                d.texture = this.neu_tex;
+            } else if (d.type === 'cost_bio') {
+                d.texture = this.bio_tex;
+            } else if (d.type === 'cost_par') {
+                d.texture = this.par_tex;
+            } else if (d.type === 'cost_art') {
+                d.texture = this.art_tex;
+            } else if (d.type === 'cost_ene') {
+                d.texture = this.ene_tex;
             }
-            if (d.type === "cost_neutral") {
-                neu = d
-            } else if (d.type !== "cost_gold") {
-                costs.push(d)
+            if (d.type === 'cost_neutral') {
+                neu = d;
+            } else if (d.type !== 'cost_gold') {
+                costs.push(d);
             }
         }, this);
-        costs.sort(function (a, b) {
-            return b.cost - a.cost
+        costs.sort(function(a, b) {
+            return b.cost - a.cost;
         });
         costs.push(neu);
         return costs;
@@ -333,10 +340,10 @@ class CardView {
             }
         }, this);
     }
-    setText(txt){
+
+    setText(txt) {
         this.text.setText(txt);
     }
 }
-
 
 module.exports = CardView;

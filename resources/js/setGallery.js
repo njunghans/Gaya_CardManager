@@ -1,8 +1,5 @@
 require('./initJQuery');
 Gallery = require('./gallery');
 
-console.log("init");
-e = $('#setId');
-const setId = e.text();
-console.log("setid", setId, e);
+const setId = $('#setId').text();
 new Gallery(setId);
