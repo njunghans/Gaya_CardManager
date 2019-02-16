@@ -9,8 +9,6 @@ class CardsInSetController extends Controller
 {
     public function addCardToSet(Request $request)
     {
-        $r = $request->toArray();
-        $r['user_id'] = 1;
-        CardsInSet::create($r);
+        CardsInSet::create($request->toArray());
     }
 }

@@ -18,13 +18,11 @@ class CreateCardsInSetsTable extends Migration
 
             $table->integer('set_id')->unsigned();
             $table->integer('card_id')->unsigned();
-            $table->integer('user_id')->unsigned();
 
             $table->timestamps();
 
             $table->foreign('set_id')->references('id')->on('sets');
             $table->foreign('card_id')->references('id')->on('cards');
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
