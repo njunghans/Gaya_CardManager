@@ -35,5 +35,7 @@
         "vue": "^2.6.5",
         "vue-template-compiler": "^2.6.5"
     },
-    "dependencies": {}
+    "dependencies": {
+        "lg-hash": "^1.0.4"
+    }
 }

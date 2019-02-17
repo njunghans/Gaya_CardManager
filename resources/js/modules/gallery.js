@@ -4,6 +4,8 @@ require('lightgallery');
 require('lg-thumbnail');
 require('lg-zoom');
 require('lg-pager');
+require('lg-fullscreen');
+require('lg-hash');
 
 Cards = require('../backend/models/cards.js');
 Loader = require('../utils/loader.js');
@@ -123,6 +125,9 @@ class Gallery {
                 thumbnail: true,
                 animateThumb: true,
                 showThumbByDefault: true,
+                closable: false,
+                preload: 10
+
             };
         }
         this.lgOptions = opts;
