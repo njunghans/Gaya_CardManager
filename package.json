@@ -39,7 +39,5 @@
         "vue": "^2.6.5",
         "vue-template-compiler": "^2.6.5"
     },
-    "dependencies": {
-        "async-regex-replace": "^3.0.0"
-    }
+    "dependencies": {}
 }

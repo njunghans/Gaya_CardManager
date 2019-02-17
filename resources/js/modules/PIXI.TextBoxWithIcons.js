@@ -1,5 +1,4 @@
 PIXI = require('pixi.js');
-asyncRegexReplace = require('async-regex-replace');
 
 Utils = require('../utils/font');
 Mechanics = require('../backend/models/mechanics');
