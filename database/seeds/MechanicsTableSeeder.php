@@ -11,6 +11,9 @@ class MechanicsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(gaya\Mechanic::class, 1)->create();
+        if (!gaya\Mechanic::where('name', 'flying')->get()) {
+
+            factory(gaya\Mechanic::class, 1)->create();
+        }
     }
 }

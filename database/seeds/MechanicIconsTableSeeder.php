@@ -11,6 +11,9 @@ class MechanicIconsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(gaya\MechanicIcon::class, 1)->create();
+        if (!gaya\MechanicIcon::where('pattern', '$flying1')->get()) {
+
+            factory(gaya\Mechanic::class, 1)->create();
+        }
     }
 }
