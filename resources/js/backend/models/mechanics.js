@@ -4,36 +4,8 @@ class Mechanics extends Backend {
 
     constructor() {
         super();
-    }
-
-    fetchIdentifiers(success, failure) {
-        jQuery.ajax({
-            url: '/api/getMechanicIdentifiers',
-            success: (i) => {
-                this.setIdentifiers(i);
-                if (typeof success === 'function') success();
-            },
-            error: () => {
-                if (typeof failure === 'function') failure();
-            },
-        });
-    }
-
-    getIconByIdentifier(identifier, success, failure) {
-        jQuery.ajax({
-            url: '/api/getIconByIdentifier',
-            data: {
-                identifier: identifier
-            },
-            success: (icon) => {
-                this.setIcon(icon);
-                if (typeof success === 'function') success();
-            },
-            error: () => {
-                if (typeof failure === 'function') failure();
-                console.log("failed");
-            },
-        });
+        this.identifiers = [];
+        this.mechanicIcons = {};
     }
 
     fetchAllIcons(success, failure) {
@@ -41,6 +13,7 @@ class Mechanics extends Backend {
             url: '/api/getMechanicIcons',
             success: (icons) => {
                 this.setMechanicIcons(icons);
+                this.setIdentifiers();
                 if (typeof success === 'function') success();
             },
             error: () => {
@@ -49,12 +22,12 @@ class Mechanics extends Backend {
         });
     }
 
-    setIcon(icon) {
-        this.icon = icon;
-    }
-
-    setIdentifiers(i) {
-        this.identifiers = i;
+    setIdentifiers() {
+        let ids = [];
+        jQuery.each(this.mechanicIcons, (i) => {
+            ids.push(i);
+        });
+        this.identifiers = ids;
     }
 
     setMechanicIcons(m) {

@@ -24,33 +24,31 @@ class TextBoxWithIcons {
         this.style = style;
         this.text = text;
         this.updatedText = text;
-
     }
 
     setText(text) {
-        const regex = /\$(\w+)/;
-        const __this = this;
+        const _this = this;
+        if (this.mechanics.identifiers.length === 0) {
+            this.mechanics.fetchAllIcons(() => {
+                replaceAll(text);
+            });
+        } else {
+            replaceAll(text);
+        }
 
-        this.mechanics.fetchIdentifiers(() => {
-            asyncRegexReplace.replace(regex, text, replacer, done);
-        });
-
-        function replacer(callback, match) {
-            if (__this.mechanics.identifiers.includes(match)) {
-                __this.mechanics.getIconByIdentifier(match, () => {
-                    const icon = __this.mechanics.icon;
-                    const string = '<icon src="' + icon.source + '" width="' +
-                        icon.width + '" height="' + icon.height + '"></icon>';
-                    callback('', string);
-                });
+        function replacer(match) {
+            if (_this.mechanics.identifiers.includes(match)) {
+                const icon = _this.mechanics.mechanicIcons[match];
+                return '<icon src="' + icon.source + '" width="' + icon.width +
+                    '" height="' + icon.height + '"></icon>';
             } else {
-                callback('', match);
+                return match;
             }
         }
 
-        function done(err, final_result) {
-            __this.text = final_result;
-            __this.renderText();
+        function replaceAll(text) {
+            _this.text = text.replace(/\$(\w+)/g, replacer);
+            _this.renderText();
         }
     }
 

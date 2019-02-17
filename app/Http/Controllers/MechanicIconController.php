@@ -11,7 +11,7 @@ class MechanicIconController extends Controller
 
     public function getMechanicIcons()
     {
-        return MechanicIcon::all();
+        return MechanicIcon::all()->keyBy('pattern');
     }
 
     public function getIdentifiers()

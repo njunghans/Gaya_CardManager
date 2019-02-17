@@ -176,8 +176,6 @@ class CardView {
         this.text.minFontSize = 12 * baseWidth / 640;
         this.text.maxFontSize = 36 * baseWidth / 640;
         this.text.fontSize = 22 * baseWidth / 640;
-
-        this.text.setText(this.text.text);
     }
 
     setTitle(txt) {
