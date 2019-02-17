@@ -219,16 +219,16 @@ class CardView {
     }
 
     setRarity(rarity) {
-        if (rarity === 0) {
+        if (rarity === "common") {
             this.setRarityStone(
                 PIXI.Texture.fromImage('/data/RarityStoneCommon.png'));
-        } else if (rarity === 1) {
+        } else if (rarity === "uncommon") {
             this.setRarityStone(
                 PIXI.Texture.fromImage('/data/RarityStoneRare.png'));
-        } else if (rarity === 2) {
+        } else if (rarity === "rare") {
             this.setRarityStone(
                 PIXI.Texture.fromImage('/data/RarityStoneEpic.png'));
-        } else if (rarity === 3) {
+        } else if (rarity === "unique") {
             this.setRarityStone(
                 PIXI.Texture.fromImage('/data/RarityStoneUnique.png'));
         } else {
