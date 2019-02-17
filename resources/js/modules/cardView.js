@@ -344,7 +344,7 @@ class CardView {
     }
 
     getRepresentation(type = "image/png", quality = 1) {
-        return this.app.canvas..view.toDataURL(type, quality);
+        return this.app.canvas.view.toDataURL(type, quality);
     }
 }
 
