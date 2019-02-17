@@ -12,7 +12,7 @@
 
                     <!-- Content -->
                     <h5 class="text-uppercase">Gaya</h5>
-                    <p>Version: @include('layouts.version')</p>
+                    <p>@version</p>
 
                 </div>
                 <!-- Grid column -->
