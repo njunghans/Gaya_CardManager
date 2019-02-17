@@ -344,7 +344,11 @@ class CardView {
     }
 
     getRepresentation(type = "image/png", quality = 1) {
-        return this.app.canvas.view.toDataURL(type, quality);
+        let data = "";
+        this.app.renderer.extract.canvas(this.app.stage).toBlob(function (b) {
+            data = b;
+        }, 'image/png');
+        return data;
     }
 }
 
