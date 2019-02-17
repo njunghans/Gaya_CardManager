@@ -123,7 +123,7 @@ class Renderer {
         const uploadImage = $('#card_image');
         uploadImage.change(() => {
             let fReader = new FileReader();
-            fReader.readAsDataURL(uploadImage.files[0]);
+            fReader.readAsDataURL(uploadImage[0].files[0]);
             fReader.onloadend = (event) => {
                 const texture = PIXI.Texture.fromImage(event.target.result);
                 this.cardView.setImage(texture);
