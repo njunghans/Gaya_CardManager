@@ -21,3 +21,6 @@ Route::get('/getCards', 'CardController@getCards')->name('cards.get');
 Route::get('/getSets', 'SetController@getSets')->name('sets.get');
 Route::get('/getCardsInSet/{setId}', 'SetController@getCardsInSet')->name('sets.getCards');
 Route::post('/addCardToSet', 'CardsInSetController@addCardToSet')->name('set.addCardsToSet');
+Route::get('/getMechanicIcons', 'MechanicIconController@getMechanicIcons');
+Route::get('/getMechanicIdentifiers', 'MechanicIconController@getIdentifiers');
+Route::get('/getIconByIdentifier', 'MechanicIconController@getIconByIdentifier');

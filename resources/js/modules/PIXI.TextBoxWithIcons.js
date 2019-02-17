@@ -1,11 +1,16 @@
 PIXI = require('pixi.js');
+asyncRegexReplace = require('async-regex-replace');
+
 Utils = require('../utils/font');
+Mechanics = require('../backend/models/mechanics');
+
 
 class TextBoxWithIcons {
 
     constructor(
         box, text = '', style = null, maxFontSize = 80, minFontSize = 16,
         align = 'center') {
+        this.mechanics = new Mechanics();
         this.view = new PIXI.Container();
         this.view.frame = box;
         //this.textManager = new PIXI.TextMetrics.measureText(text, style);
@@ -23,11 +28,30 @@ class TextBoxWithIcons {
     }
 
     setText(text) {
+        const regex = /\$(\w+)/;
+        const __this = this;
 
-        this.text = text;
-        a;
-        this.renderText();
+        this.mechanics.fetchIdentifiers(() => {
+            asyncRegexReplace.replace(regex, text, replacer, done);
+        });
 
+        function replacer(callback, match) {
+            if (__this.mechanics.identifiers.includes(match)) {
+                __this.mechanics.getIconByIdentifier(match, () => {
+                    const icon = __this.mechanics.icon;
+                    const string = '<icon src="' + icon.source + '" width="' +
+                        icon.width + '" height="' + icon.height + '"></icon>';
+                    callback('', string);
+                });
+            } else {
+                callback('', match);
+            }
+        }
+
+        function done(err, final_result) {
+            __this.text = final_result;
+            __this.renderText();
+        }
     }
 
     setUpdatedText() {

@@ -2,7 +2,6 @@
 
 namespace gaya;
 
-use gaya\Scopes\AccessibleScope;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -36,13 +35,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\gaya\Mechanic whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\gaya\Mechanic whereUserId($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\gaya\MechanicIcon[] $icons
  */
 class Mechanic extends Model
 {
-    protected static function boot()
+    public function icons()
     {
-        parent::boot();
-
-        static::addGlobalScope(new AccessibleScope);
+        return $this->hasMany('gaya\MechanicIcon');
     }
 }

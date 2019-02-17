@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Card
- *
+ * 
  * A Gaya Card
  *
  * @mixin \Eloquent

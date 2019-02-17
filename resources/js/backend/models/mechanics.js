@@ -4,28 +4,61 @@ class Mechanics extends Backend {
 
     constructor() {
         super();
-        this.mechanics = [];
-        this.identifiers = [];
-        this.fetchAllMechanics();
-        this.setIdentifiers();
     }
 
-    setIdentifiers() {
-        let ids = [];
-        this.mechanics.forEach((e) => {
-            ids.push(e.pattern);
-        });
-        this.identifiers = ids;
-    }
-
-    fetchAllMechanics() {
-        this.callBackend('/mechanics', null, data => {
-            this.setMechanics(data);
+    fetchIdentifiers(success, failure) {
+        jQuery.ajax({
+            url: '/api/getMechanicIdentifiers',
+            success: (i) => {
+                this.setIdentifiers(i);
+                if (typeof success === 'function') success();
+            },
+            error: () => {
+                if (typeof failure === 'function') failure();
+            },
         });
     }
 
-    setMechanics(m) {
-        this.mechanics = m;
+    getIconByIdentifier(identifier, success, failure) {
+        jQuery.ajax({
+            url: '/api/getIconByIdentifier',
+            data: {
+                identifier: identifier
+            },
+            success: (icon) => {
+                this.setIcon(icon);
+                if (typeof success === 'function') success();
+            },
+            error: () => {
+                if (typeof failure === 'function') failure();
+                console.log("failed");
+            },
+        });
+    }
+
+    fetchAllIcons(success, failure) {
+        jQuery.ajax({
+            url: '/api/getMechanicIcons',
+            success: (icons) => {
+                this.setMechanicIcons(icons);
+                if (typeof success === 'function') success();
+            },
+            error: () => {
+                if (typeof failure === 'function') failure();
+            },
+        });
+    }
+
+    setIcon(icon) {
+        this.icon = icon;
+    }
+
+    setIdentifiers(i) {
+        this.identifiers = i;
+    }
+
+    setMechanicIcons(m) {
+        this.mechanicIcons = m;
     }
 
 }

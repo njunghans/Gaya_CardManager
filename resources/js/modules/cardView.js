@@ -3,6 +3,7 @@ TextBoxWithIcons = require('./PIXI.TextBoxWithIcons');
 
 class CardView {
     constructor(baseWidth = 640) {
+        this.text = new TextBoxWithIcons(new PIXI.Rectangle());
         this.drag = false;
         this.app = new PIXI.Application(
             {width: baseWidth, height: baseWidth / 0.7159, transparent: true});
@@ -23,7 +24,6 @@ class CardView {
 
         this.container = new PIXI.Container();
 
-        this.text = new TextBoxWithIcons(new PIXI.Rectangle());
 
         this.setAttackSymbol(PIXI.Texture.fromImage('/data/AttackIcon.png'));
         this.setDefenseSymbol(PIXI.Texture.fromImage('/data/DefenseIcon.png'));
