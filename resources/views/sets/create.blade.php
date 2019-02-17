@@ -4,6 +4,10 @@
     Create a Set
 @endsection
 
+@section('menu')
+    @include('sets.nav')
+@endsection
+
 @section('content')
     <div class="flex-center position-ref">
         {{ Form::open(['method' => 'POST' , 'class'=>'form-horizontal' , 'route' => ['sets.store']]) }}

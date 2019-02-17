@@ -4,6 +4,10 @@
     Set "{{$set->name}}"
 @endsection
 
+@section('menu')
+    @include('sets.nav')
+@endsection
+
 @section('content')
     {{$set->description}}
     <hr>

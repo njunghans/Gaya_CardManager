@@ -4,6 +4,10 @@
     Edit a Set
 @endsection
 
+@section('menu')
+    @include('sets.nav')
+@endsection
+
 @section('content')
     <div class="flex-center position-ref">
         {{ Form::model($set, ['method' => 'PATCH' , 'class'=>'form-horizontal' , 'route' => ['sets.update' , $set->id]]) }}
