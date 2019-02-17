@@ -342,6 +342,10 @@ class CardView {
     setText(txt) {
         this.text.setText(txt);
     }
+
+    getRepresentation(type = "image/png", quality = 1) {
+        return this.app.canvas..view.toDataURL(type, quality);
+    }
 }
 
 module.exports = CardView;
