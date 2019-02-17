@@ -27,7 +27,7 @@ class TextBoxWithIcons {
 
     setText(text) {
         const _this = this;
-        if (this.mechanics.identifiers.length === 0) {
+        if (this.mechanics.identifiers === false) {
             this.mechanics.fetchAllIcons(() => {
                 replaceAll(text);
             });

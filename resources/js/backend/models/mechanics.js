@@ -4,7 +4,7 @@ class Mechanics extends Backend {
 
     constructor() {
         super();
-        this.identifiers = [];
+        this.identifiers = false;
         this.mechanicIcons = {};
     }
 
