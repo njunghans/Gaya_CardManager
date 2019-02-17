@@ -8,7 +8,8 @@
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "ide-helper": "php artisan ide-helper:generate && php artisan ide-helper:models && php artisan ide-helper:meta"
+        "ide-helper": "php artisan ide-helper:generate && php artisan ide-helper:models && php artisan ide-helper:meta",
+        "pull": "git pull && npm install && composer install && composer dump-autoload && php artisan migrate && npm run watch-poll"
     },
     "devDependencies": {
         "axios": "^0.18",
