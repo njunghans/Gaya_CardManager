@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class MechanicTableSeeder extends Seeder
+class MechanicsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

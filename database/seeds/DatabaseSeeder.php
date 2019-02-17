@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             CardsTableSeeder::class,
             SetsTableSeeder::class,
             CardsInSetsTableSeeder::class,
-            MechanicTableSeeder::class,
+            MechanicsTableSeeder::class,
+            MechanicIconsTableSeeder::class,
         ]);
     }
 }

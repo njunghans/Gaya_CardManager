@@ -20,7 +20,7 @@ $factory->define(gaya\Card::class, function (Faker $f) {
         'life' => $u->getRandomCost(),
         'shield' => $u->getRandomCost(),
         'range' => $u->getRandomCost(),
-        'card_effect' => $f->text,
+        'card_effect' => "\$flying1 ".$f->text,
         'lore_text' => $f->text,
         'official' => false,
         'premium_effect' => $u->getRandomPremiumEffect(),
