@@ -347,7 +347,7 @@ class CardView {
         let data = "";
         this.app.renderer.extract.canvas(this.app.stage).toBlob(function (b) {
             data = b;
-        }, 'image/png');
+        }, type, quality);
         return data;
     }
 }
