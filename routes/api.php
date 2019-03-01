@@ -24,3 +24,4 @@ Route::post('/addCardToSet', 'CardsInSetController@addCardToSet')->name('set.add
 Route::get('/getMechanicIcons', 'MechanicIconController@getMechanicIcons');
 Route::get('/getMechanicIdentifiers', 'MechanicIconController@getIdentifiers');
 Route::get('/getIconByIdentifier', 'MechanicIconController@getIconByIdentifier');
+Route::get('/getCardsWithoutScreenshot', 'CardController@getCardsWithoutScreenshot');

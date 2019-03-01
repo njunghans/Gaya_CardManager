@@ -51,9 +51,9 @@ class CardController extends Controller
         return redirect()->route('cards.edit', ['cardId' => $cardId]);
     }
 
-    public function uploadImage(Request $request)
+    public function getCardsWithoutScreenshot()
     {
-        return $this->processImage($request);
+        return Card::where('screenshot', false)->get();
     }
 
     protected function enrich(Request $request)
@@ -67,6 +67,7 @@ class CardController extends Controller
         $data['official'] = true;
         $data['edition_id'] = 1;
         unset($data['card_image']);
+        $data['screenshot'] = false;
 
         return $data;
     }

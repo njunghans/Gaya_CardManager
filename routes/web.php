@@ -23,7 +23,6 @@ Route::post('/cards/create' , 'CardController@store')->name('cards.store')->midd
 Route::get('/cards/{cardId}', 'CardController@show')->name('cards.show');
 Route::get('/cards/{cardId}/edit', 'CardController@edit')->name('cards.edit')->middleware('auth');
 Route::patch('/cards/{cardId}/edit', 'CardController@update')->name('cards.update')->middleware('auth');
-Route::post('/cards/{cardId}/uploadImage' , 'CardController@uploadImage')->name('cards.uploadImage')->middleware('auth');
 
 Route::get('/sets', 'SetController@index')->name('sets.index');
 Route::get('/sets/create', 'SetController@create')->name('sets.create')->middleware('auth');
