@@ -28,6 +28,9 @@ create .env (see.env.example)
 composer install
 npm install
 php artisan migrate
+git submodule add https://github.com/ngrippa/gaya-node-server
+cd gaya-node-server
+npm run init
 ```
 
 ## Development
