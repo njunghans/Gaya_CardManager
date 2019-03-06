@@ -83,18 +83,21 @@ class CardView {
 
         this.title.style = new PIXI.TextStyle(base);
 
-        let category = jQuery.extend({}, base);
+        let category = {};
+        Object.assign(category, base);
         category.fontSize = 26;
         this.category.style = new PIXI.TextStyle(category);
 
-        let info = jQuery.extend({}, base);
+        let info = {};
+        Object.assign(info, base);
         info.fill = 'grey';
         info.stroke = 'grey';
         info.fontSize = 18;
         info.strokeThickness = 0;
         this.info.style = new PIXI.TextStyle(info);
 
-        let stat = jQuery.extend({}, base);
+        let stat = {};
+        Object.assign(stat, base);
         stat.fontWeight = 'bold';
 
         this.goldText.style = new PIXI.TextStyle(stat);
