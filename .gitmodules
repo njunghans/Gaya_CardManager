@@ -1,0 +1,3 @@
+[submodule "node_server"]
+	path = node_server
+	url = https://github.com/ngrippa/gaya-node-server

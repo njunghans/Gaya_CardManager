@@ -8,12 +8,10 @@ Youtrack - http://dspace.dainst.org:8080
 ### Basic Steps
 Execute the following steps on your server. If you are using Homestead
 have a look at the Homestead section *before* excecuting those steps.
-1. `git clone https://github.com/njunghans/Gaya_CardManager`
-1. `cd Gaya_CardManager`
-1. `git submodule add https://github.com/ngrippa/gaya-node-server`
-1. `cd gaya-node-server && npm run init && cd ..`
+1. `git clone --recurse-submodules https://github.com/njunghans/Gaya_CardManager gaya`
+1. `cd gaya/node_server && npm run init && cd ..`
 1. `npm run init-dev` or `npm run init-prod`
-1. Adapt your `.env` and your `gaya-node-server/config.json`
+1. Adapt your `.env` and your `node_server/config.json`
 1. `php artisan migrate` 
 1. `php artisan db:seed` if you want to seed your database
 
