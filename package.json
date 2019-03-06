@@ -9,7 +9,10 @@
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "ide-helper": "php artisan ide-helper:generate && php artisan ide-helper:models && php artisan ide-helper:meta",
-        "pull": "git pull && npm install && composer install && composer dump-autoload && php artisan migrate && npm run watch-poll"
+        "pull": "git pull && npm install && composer install && composer dump-autoload && php artisan migrate && npm run watch-poll",
+        "init": "npm run init-dev",
+        "init-prod": "cp .env.prod .env && npm install --prod && composer install --prod",
+        "init-dev": "cp .env.dev .env && npm install && composer install"
     },
     "devDependencies": {
         "axios": "^0.18",
@@ -17,7 +20,6 @@
         "bootstrap-confirmation": "0.0.2",
         "chart.js": "^2.7.3",
         "cross-env": "^5.1",
-      "http": "0.0.0",
         "jquery": "^3.3.1",
         "jquery-ui": "^1.12.1",
         "laravel-mix": "^4.0.14",

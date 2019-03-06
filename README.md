@@ -2,49 +2,53 @@
 A website to create and store Cards for Gaya.
 
 Youtrack - http://dspace.dainst.org:8080
-## Development
-In your Homstead/homestead.yml, indicate the correct location of your project.
 
-Then Run in Homestead/
+## Installation
+
+### Basic Steps
+Execute the following steps on your server. If you are using Homestead
+have a look at the Homestead section *before* excecuting those steps.
+1. `git clone https://github.com/njunghans/Gaya_CardManager`
+1. `cd Gaya_CardManager`
+1. `git submodule add https://github.com/ngrippa/gaya-node-server`
+1. `cd gaya-node-server && npm run init && cd ..`
+1. `npm run init-dev` or `npm run init-prod`
+1. Adapt your `.env` and your `gaya-node-server/config.json`
+1. `php artisan migrate` 
+1. `php artisan db:seed` if you want to seed your database
+
+### Using Homestead
+Follow https://laravel.com/docs/5.8/homestead
+
+Make sure to forward the nodeJS port to your local machine by adding 
 ```
-vagrant ssh
+ports:
+    - send: 1111
+      to: 1111
+```
+to your `Homestead.yaml`.
+
+In your Homstead/homestead.yml, indicate the correct location of your project. E.g.:
+```
+folders:
+    - map: ~/workspace/gaya/
+      to: /home/vagrant/gaya/
+```
+
+Then access your Machine via `vagrant ssh` and remember to create your database user.
+```
 mysql -u homestead -p (Passwort "secret")
 CREATE DATABASE gayadb;
 CREATE USER 'gaya'@'localhost' IDENTIFIED BY 'gayapw';
 GRANT ALL PRIVILEGES ON gayadb.* TO 'gaya'@'localhost';
 ```
-Then Run Deployment with .env.dev as .env
 
-Use watchpoll (but not during pulls)
+If you use a different user/database remember to adapt your .env later in the installation process.
 
-```
-npm run watch-poll
-```
+Run the whole installation from your "server", using `vagrant ssh`"
 
-## Deployment
-Run
-```
-create .env (see.env.example)
-composer install
-npm install
-php artisan migrate
-git submodule add https://github.com/ngrippa/gaya-node-server
-cd gaya-node-server
-npm run init
-```
 
 ## Development
-If you included new dependencies make sure to run `npm run dev` after it.
+Make sure to run `npm run watch-poll` to have your frontend-js files compiled automatically.
 
-You can use the seeder with 
-```
-php artisan db:seed
-```
-
-for php commands:
-In Homestead
-```
-vagrant ssh
-cd code
-php stuff
-```
+Run all commands (such as `npm`, `composer`, `php artisan`) from your Homestead machine.
