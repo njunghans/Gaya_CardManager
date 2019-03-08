@@ -8,3 +8,5 @@ class CardViewBase {
 
     }
 }
+
+module.exports = CardViewBase;
