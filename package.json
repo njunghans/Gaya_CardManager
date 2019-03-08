@@ -9,7 +9,7 @@
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "ide-helper": "php artisan ide-helper:generate && php artisan ide-helper:models && php artisan ide-helper:meta",
-        "pull": "git pull && npm install && composer install && composer dump-autoload && php artisan migrate && npm run watch-poll",
+        "pull": "git pull --recurse-submodules && npm install && composer install && composer dump-autoload && php artisan migrate && npm run watch-poll",
         "init": "npm run init-dev",
         "init-prod": "cp .env.prod .env && npm install --prod && composer install --prod",
         "init-dev": "cp .env.dev .env && npm install && composer install"
