@@ -346,9 +346,17 @@ class CardView extends CardViewBase {
     }
 
     getRepresentation(type = 'image/png', quality = 1) {
-        let data = '';
-        this.app.renderer.extract.canvas(this.app.stage).toBlob(function(b) {
+
+        let data = null;
+        this.app.renderer.extract.canvas(this.app.stage).toBlob(function (b) {
             data = b;
+            //TO TEST IF IMAGE IS CORRECT : YES IT IS
+            // var a = document.createElement('a');
+            // document.body.append(a);
+            // a.download = 'test.png';
+            // a.href = URL.createObjectURL(b);
+            // a.click();
+            // a.remove();
         }, type, quality);
         return data;
     }
