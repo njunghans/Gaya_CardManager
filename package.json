@@ -23,22 +23,22 @@
         "jquery": "^3.3.1",
         "jquery-ui": "^1.12.1",
         "laravel-mix": "^4.0.14",
-        "lg-fullscreen": "^1.0.1",
+        "lg-fullscreen": "^1.1.0",
         "lg-hash": "^1.0.4",
         "lg-pager": "^1.0.2",
         "lg-thumbnail": "^1.1.0",
         "lg-zoom": "^1.1.0",
-        "lightgallery": "^1.6.11",
+        "lightgallery": "^1.6.12",
         "lodash": "^4.17.5",
         "pixi.js": "^4.8.6",
         "resolve-from": "^4.0.0",
         "resolve-url-loader": "^2.3.2",
-        "sass": "^1.16.1",
+        "sass": "^1.17.2",
         "sass-loader": "^7.1.0",
         "spin.js": "^4.0.0",
         "sweetalert": "^2.1.2",
-        "vue": "^2.6.6",
-        "vue-template-compiler": "^2.6.6"
+        "vue": "^2.6.8",
+        "vue-template-compiler": "^2.6.8"
     },
     "dependencies": {}
 }
