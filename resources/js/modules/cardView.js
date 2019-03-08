@@ -60,7 +60,6 @@ class CardView extends CardViewBase {
 
         this.setStyles();
         this.setWidths(640);
-        this.setImageFrame();
     }
 
     setStyles() {
@@ -270,10 +269,9 @@ class CardView extends CardViewBase {
         this.image.texture = texture;
     }
 
-    setImageFrame() {
-        let image_settings = document.getElementsByName('image_settings')[0];
+    setImageFrame(image_settings) {
         try {
-            let obj = JSON.parse(image_settings.value);
+            let obj = JSON.parse(image_settings);
             this.image.width = obj.width * this.app.width / 630;
             this.image.height = obj.height * this.app.width / 630;
             this.image.x = obj.x * this.app.width / 630 + this.image.width *

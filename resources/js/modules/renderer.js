@@ -49,7 +49,7 @@ class Renderer {
                     obj.x += e.movementX;
                     obj.y += e.movementY;
                     this.imageSettings.val(JSON.stringify(obj));
-                    this.cardView.setImageFrame();
+                    this.cardView.setImageFrame(this.imageSettings.val());
                 } catch (e) {
                 }
             }
@@ -115,7 +115,7 @@ class Renderer {
                 + ',"height":'
                 + this.cardView.image.texture.baseTexture.realHeight
                 + ',"rotation":0}');
-            this.cardView.setImageFrame();
+            this.cardView.setImageFrame(this.imageSettings.val());
         });
     }
 
