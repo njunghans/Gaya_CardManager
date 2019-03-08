@@ -1,12 +1,14 @@
 Utils = require('../utils/font');
 TextBoxWithIcons = require('./PIXI.TextBoxWithIcons');
+CardViewBase = require('./CardViewBase');
 
-class CardView {
-    constructor(baseWidth = 640) {
+class CardView extends CardViewBase {
+
+    createView() {
         this.text = new TextBoxWithIcons(new PIXI.Rectangle());
         this.drag = false;
-        this.app = new PIXI.Application(
-            {width: baseWidth, height: baseWidth / 0.7159, transparent: true});
+        //this.app = new PIXI.Application(
+        //    {width: baseWidth, height: baseWidth / 0.7159, transparent: true});
 
         this.frame = new PIXI.Sprite();
         this.rarityStone = new PIXI.Sprite();
@@ -58,7 +60,7 @@ class CardView {
         this.neu_tex = PIXI.Texture.fromImage('/data/ManaCrystalNeutral.png');
 
         this.setStyles();
-        this.setWidths(baseWidth);
+        this.setWidths(640);
         this.setImageFrame();
     }
 
