@@ -26,7 +26,6 @@ class CardView extends CardViewBase {
 
         this.container = new PIXI.Container();
 
-
         this.setAttackSymbol(PIXI.Texture.fromImage('/data/AttackIcon.png'));
         this.setDefenseSymbol(PIXI.Texture.fromImage('/data/DefenseIcon.png'));
 
@@ -224,16 +223,16 @@ class CardView extends CardViewBase {
     }
 
     setRarity(rarity) {
-        if (rarity === "common") {
+        if (rarity === 'common') {
             this.setRarityStone(
                 PIXI.Texture.fromImage('/data/RarityStoneCommon.png'));
-        } else if (rarity === "uncommon") {
+        } else if (rarity === 'uncommon') {
             this.setRarityStone(
                 PIXI.Texture.fromImage('/data/RarityStoneRare.png'));
-        } else if (rarity === "rare") {
+        } else if (rarity === 'rare') {
             this.setRarityStone(
                 PIXI.Texture.fromImage('/data/RarityStoneEpic.png'));
-        } else if (rarity === "unique") {
+        } else if (rarity === 'unique') {
             this.setRarityStone(
                 PIXI.Texture.fromImage('/data/RarityStoneUnique.png'));
         } else {
@@ -348,9 +347,9 @@ class CardView extends CardViewBase {
         this.text.setText(txt);
     }
 
-    getRepresentation(type = "image/png", quality = 1) {
-        let data = "";
-        this.app.renderer.extract.canvas(this.app.stage).toBlob(function (b) {
+    getRepresentation(type = 'image/png', quality = 1) {
+        let data = '';
+        this.app.renderer.extract.canvas(this.app.stage).toBlob(function(b) {
             data = b;
         }, type, quality);
         return data;
