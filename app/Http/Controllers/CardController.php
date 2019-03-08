@@ -5,6 +5,7 @@ namespace gaya\Http\Controllers;
 use Auth;
 use gaya\Card;
 use Illuminate\Http\Request;
+use GuzzleHttp\Client;
 
 class CardController extends Controller
 {
@@ -34,12 +35,14 @@ class CardController extends Controller
     public function show($cardId)
     {
         $card = Card::findOrFail($cardId);
+        $this->generateScreenshot([$card]);
         return view('cards.show', compact('card'));
     }
 
     public function store(Request $request)
     {
-        Card::create($this->enrich($request));
+        $card = Card::create($this->enrich($request));
+        $this->generateScreenshot([$card]);
 
         return redirect()->route('cards.index');
     }
@@ -54,6 +57,12 @@ class CardController extends Controller
     public function getCardsWithoutScreenshot()
     {
         return Card::where('screenshot', false)->get();
+    }
+
+    protected function generateScreenshot($cards) {
+        $client = new Client();
+        $promise = $client->postAsync(env('SCREENSHOT_SERVER_URL'), ['json' => $cards]);
+        $promise->wait();
     }
 
     protected function enrich(Request $request)
